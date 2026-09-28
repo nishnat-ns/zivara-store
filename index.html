@@ -1,679 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>ZIVARA | Online Fashion Store</title>
-
-    <meta name="description"
-        content="ZIVARA - Lehenga, Chunari and Women's Ethnic Fashion Collection">
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: #fff8fb;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        /* HEADER */
-
-        header {
-            background: linear-gradient(135deg, #7b1e4b, #a52a68);
-            color: white;
-            text-align: center;
-            padding: 35px 15px;
-        }
-
-        header h1 {
-            font-size: 44px;
-            letter-spacing: 3px;
-            margin-bottom: 5px;
-        }
-
-        header p {
-            font-size: 16px;
-        }
-
-        /* NAVIGATION */
-
-        nav {
-            background: white;
-            padding: 15px 10px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #7b1e4b;
-            font-weight: bold;
-            margin: 0 10px;
-        }
-
-        nav a:hover {
-            color: #d13b7a;
-        }
-
-        /* HERO */
-
-        .hero {
-            text-align: center;
-            padding: 55px 20px;
-            background: #fff0f6;
-        }
-
-        .hero h2 {
-            color: #7b1e4b;
-            font-size: 32px;
-            margin-bottom: 12px;
-        }
-
-        .hero p {
-            max-width: 650px;
-            margin: auto;
-            font-size: 17px;
-        }
-
-        .btn {
-            display: inline-block;
-            margin: 20px 5px 5px;
-            padding: 13px 25px;
-            background: #7b1e4b;
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background: #a52a68;
-        }
-
-        .whatsapp {
-            background: #128c7e;
-        }
-
-        .whatsapp:hover {
-            background: #075e54;
-        }
-
-        /* SECTION */
-
-        .section {
-            padding: 50px 15px;
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .section-title {
-            text-align: center;
-            color: #7b1e4b;
-            font-size: 30px;
-            margin-bottom: 35px;
-        }
-
-        /* PRODUCTS */
-
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.10);
-            transition: transform 0.3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 330px;
-            overflow: hidden;
-            background: #f5e5ed;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .product-info {
-            padding: 20px;
-        }
-
-        .product-info h3 {
-            color: #7b1e4b;
-            font-size: 21px;
-            margin-bottom: 8px;
-        }
-
-        .product-info p {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-
-        .price {
-            font-size: 23px;
-            color: #a52a68;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-
-        .sizes {
-            font-size: 13px;
-            color: #555;
-        }
-
-        /* FEATURE BOX */
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .feature {
-            background: white;
-            text-align: center;
-            padding: 25px 15px;
-            border-radius: 15px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
-        }
-
-        .feature .icon {
-            font-size: 35px;
-            margin-bottom: 10px;
-        }
-
-        .feature h3 {
-            color: #7b1e4b;
-            font-size: 18px;
-        }
-
-        /* ABOUT */
-
-        .about {
-            background: #fff0f6;
-            text-align: center;
-        }
-
-        .about p {
-            max-width: 800px;
-            margin: auto;
-            font-size: 16px;
-        }
-
-        /* CONTACT */
-
-        .contact-box {
-            background: white;
-            max-width: 600px;
-            margin: auto;
-            padding: 30px;
-            border-radius: 18px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.10);
-        }
-
-        .contact-box h3 {
-            color: #7b1e4b;
-            font-size: 25px;
-            margin-bottom: 10px;
-        }
-
-        /* FOOTER */
-
-        footer {
-            background: #7b1e4b;
-            color: white;
-            text-align: center;
-            padding: 35px 15px;
-        }
-
-        footer h2 {
-            margin-bottom: 8px;
-            letter-spacing: 2px;
-        }
-
-        footer p {
-            font-size: 14px;
-            margin: 5px;
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 600px) {
-
-            header h1 {
-                font-size: 36px;
-            }
-
-            nav a {
-                margin: 0 5px;
-                font-size: 13px;
-            }
-
-            .hero h2 {
-                font-size: 27px;
-            }
-
-            .product-image {
-                height: 350px;
-            }
-
-            .section {
-                padding: 40px 12px;
-            }
-        }
-
-    </style>
-
-</head>
-
-
-<body>
-
-    <!-- HEADER -->
-
-    <header>
-
-        <h1>✨ ZIVARA ✨</h1>
-
-        <p>Lehenga • Chunari • Ladies Collection</p>
-
-    </header>
-
-
-    <!-- NAVIGATION -->
-
-    <nav>
-
-        <a href="#home">Home</a>
-
-        <a href="#collection">Collection</a>
-
-        <a href="#about">About Us</a>
-
-        <a href="#contact">Contact</a>
-
-    </nav>
-
-
-    <!-- HERO -->
-
-    <section class="hero" id="home">
-
-        <h2>Welcome to ZIVARA</h2>
-
-        <p>
-            Discover beautiful Lehenga, Chunari and
-            premium women's ethnic fashion collection.
-        </p>
-
-        <a href="#collection" class="btn">
-            🛍️ Shop Collection
-        </a>
-
-        <a href="https://wa.me/91XXXXXXXXXX"
-           class="btn whatsapp">
-            💬 WhatsApp Us
-        </a>
-
-    </section>
-
-
-    <!-- COLLECTION -->
-
-    <section class="section" id="collection">
-
-        <h2 class="section-title">
-            ✨ Our Collection ✨
-        </h2>
-
-
-        <div class="products">
-
-
-            <!-- PRODUCT 1 -->
-
-            <div class="product-card">
-
-                <div class="product-image">
-
-                    <img
-                        src="https://i.ibb.co/7ts39z9P/IMG-20260927-160155-861.jpg"
-                        alt="ZIVARA Fashion Collection">
-
-                </div>
-
-                <div class="product-info">
-
-                    <h3>Premium Ethnic Collection</h3>
-
-                    <p>
-                        Beautiful designer ethnic wear
-                        for festive and special occasions.
-                    </p>
-
-                    <div class="price">
-                        Contact for Price
-                    </div>
-
-                    <a
-                        href="https://wa.me/91XXXXXXXXXX?text=Hello%20ZIVARA%2C%20I%20want%20details%20about%20your%20Premium%20Ethnic%20Collection."
-                        class="btn whatsapp">
-                        Order on WhatsApp
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- PRODUCT 2 -->
-
-            <div class="product-card">
-
-                <div class="product-image">
-
-                    <img
-                        src="https://i.ibb.co/Rk6Yxbg0/IMG-20260927-160147-802.jpg"
-                        alt="Navratri Denim Set">
-
-                </div>
-
-                <div class="product-info">
-
-                    <h3>Navratri Denim Set</h3>
-
-                    <p>
-                        RR-61 • Faux Georgette
-                        • Real Mirror Lace
-                    </p>
-
-                    <p>
-                        Pure Cotton Denim Jeans
-                        with front embroidery work.
-                    </p>
-
-                    <p class="sizes">
-                        Size: M, L, XL, XXL
-                    </p>
-
-                    <div class="price">
-                        ₹1,550
-                    </div>
-
-                    <a
-                        href="https://wa.me/91XXXXXXXXXX?text=Hello%20ZIVARA%2C%20I%20want%20to%20order%20the%20Navratri%20Denim%20Set%20RR-61."
-                        class="btn whatsapp">
-                        Order on WhatsApp
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- PRODUCT 3 -->
-
-            <div class="product-card">
-
-                <div class="product-image">
-
-                    <img
-                        src="https://i.ibb.co/YTwkwHB4/IMG-20260927-160134-839.jpg"
-                        alt="ZF-5022 Purple Ethnic Set">
-
-                </div>
-
-                <div class="product-info">
-
-                    <h3>ZF-5022 Ethnic Set</h3>
-
-                    <p>
-                        Heavy Crunchy Silk
-                        with Jacquard Butti.
-                    </p>
-
-                    <p>
-                        Sharara Palazzo +
-                        Dupatta with Lace Border.
-                    </p>
-
-                    <p class="sizes">
-                        Size: M, L, XL, XXL
-                    </p>
-
-                    <div class="price">
-                        ₹1,000
-                    </div>
-
-                    <a
-                        href="https://wa.me/91XXXXXXXXXX?text=Hello%20ZIVARA%2C%20I%20want%20to%20order%20ZF-5022%20Ethnic%20Set."
-                        class="btn whatsapp">
-                        Order on WhatsApp
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- PRODUCT 4 -->
-
-            <div class="product-card">
-
-                <div class="product-image">
-
-                    <img
-                        src="https://i.ibb.co/zVkQVBj9/IMG-20260927-160123-340.jpg"
-                        alt="NNK1791 Navratri Collection">
-
-                </div>
-
-                <div class="product-info">
-
-                    <h3>NNK1791 Navratri Collection</h3>
-
-                    <p>
-                        Pure Rayon Fabric with
-                        Contrast Panel Design.
-                    </p>
-
-                    <p>
-                        Gota Patti Lace,
-                        Pearls & Shell Tassels.
-                    </p>
-
-                    <p class="sizes">
-                        Blouse: 38 adjustable up to 42
-                    </p>
-
-                    <div class="price">
-                        ₹2,100
-                    </div>
-
-                    <a
-                        href="https://wa.me/91XXXXXXXXXX?text=Hello%20ZIVARA%2C%20I%20want%20to%20order%20NNK1791%20Navratri%20Collection."
-                        class="btn whatsapp">
-                        Order on WhatsApp
-                    </a>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- WHY ZIVARA -->
-
-    <section class="section">
-
-        <h2 class="section-title">
-            💖 Why Shop With ZIVARA?
-        </h2>
-
-        <div class="features">
-
-            <div class="feature">
-
-                <div class="icon">✨</div>
-
-                <h3>Premium Quality</h3>
-
-                <p>
-                    Carefully selected fashion collection.
-                </p>
-
-            </div>
-
-
-            <div class="feature">
-
-                <div class="icon">🚚</div>
-
-                <h3>Ready to Ship</h3>
-
-                <p>
-                    Fast processing and shipping.
-                </p>
-
-            </div>
-
-
-            <div class="feature">
-
-                <div class="icon">💬</div>
-
-                <h3>Easy Ordering</h3>
-
-                <p>
-                    Order directly through WhatsApp.
-                </p>
-
-            </div>
-
-
-            <div class="feature">
-
-                <div class="icon">❤️</div>
-
-                <h3>Latest Designs</h3>
-
-                <p>
-                    Trendy collection for every occasion.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ABOUT -->
-
-    <section class="section about" id="about">
-
-        <h2 class="section-title">
-            About ZIVARA
-        </h2>
-
-        <p>
-
-            ZIVARA is a fashion destination for
-            beautiful Lehenga, Chunari and women's
-            ethnic wear.
-
-            We bring stylish designs, premium fabrics
-            and fashionable collections for festivals,
-            weddings and special occasions.
-
-        </p>
-
-    </section>
-
-
-    <!-- CONTACT -->
-
-    <section class="section" id="contact">
-
-        <h2 class="section-title">
-            📞 Contact ZIVARA
-        </h2>
-
-        <div class="contact-box">
-
-            <h3>Place Your Order</h3>
-
-            <p>
-                For product details, availability,
-                size and orders, contact us on WhatsApp.
-            </p>
-
-            <a
-                href="https://wa.me/91XXXXXXXXXX"
-                class="btn whatsapp">
-                💬 Chat on WhatsApp
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-
-    <footer>
-
-        <h2>ZIVARA</h2>
-
-        <p>
-            Lehenga • Chunari • Ladies Collection
-        </p>
-
-        <p>
-            © 2026 ZIVARA. All Rights Reserved.
-        </p>
-
-    </footer>
-
-
-</body>
-
-</html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZIVARA | Online Fashion Store</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#fff8fb;
+    color:#333;
+}
+
+header{
+    background:linear-gradient(135deg,#68153e,#a52a68);
+    color:white;
+    text-align:center;
+    padding:35px 15px;
+}
+
+header h1{
+    font-size:44px;
+    letter-spacing:4px;
+}
+
+header p{
+    margin-top:6px;
+}
+
+nav{
+    background:white;
+    padding:15px;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 2px 10px #0002;
+}
+
+nav a{
+    color:#7b1e4b;
+    text-decoration:none;
+    font-weight:bold;
+    margin:0 9px;
+    font-size:14px;
+}
+
+.hero{
+    text-align:center;
+    padding:55px 20px;
+    background:#fff0f6;
+}
+
+.hero h2{
+    color:#7b1e4b;
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    max-width:650px;
+    margin:auto;
+    font-size:17px;
+}
+
+.section{
+    max-width:1200px;
+    margin:auto;
+    padding:45px 15px;
+}
+
+.title{
+    text-align:center;
+    color:#7b1e4b;
+    font-size:30px;
+    margin-bottom:30px;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.product{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 5px 20px #0002;
+}
+
+.gallery{
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:thin;
+}
+
+.gallery img{
+    min-width:100%;
+    width:100%;
+    height:390px;
+    object-fit:cover;
+   
