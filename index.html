@@ -36,12 +36,12 @@ header h1{
 }
 
 header p{
-    margin-top:6px;
+    margin-top:7px;
 }
 
 nav{
     background:white;
-    padding:15px;
+    padding:15px 10px;
     text-align:center;
     position:sticky;
     top:0;
@@ -53,7 +53,7 @@ nav a{
     color:#7b1e4b;
     text-decoration:none;
     font-weight:bold;
-    margin:0 9px;
+    margin:0 8px;
     font-size:14px;
 }
 
@@ -70,9 +70,10 @@ nav a{
 }
 
 .hero p{
-    max-width:650px;
+    max-width:700px;
     margin:auto;
     font-size:17px;
+    line-height:1.6;
 }
 
 .section{
@@ -99,6 +100,11 @@ nav a{
     border-radius:18px;
     overflow:hidden;
     box-shadow:0 5px 20px #0002;
+    transition:.2s;
+}
+
+.product:hover{
+    transform:translateY(-4px);
 }
 
 .gallery{
@@ -113,4 +119,296 @@ nav a{
     width:100%;
     height:390px;
     object-fit:cover;
-   
+    scroll-snap-align:start;
+}
+
+.product-info{
+    padding:20px;
+}
+
+.product-info h3{
+    color:#7b1e4b;
+    font-size:21px;
+    margin-bottom:8px;
+}
+
+.code{
+    font-size:13px;
+    color:#777;
+    margin-bottom:10px;
+}
+
+.price{
+    color:#a52a68;
+    font-size:24px;
+    font-weight:bold;
+    margin:10px 0;
+}
+
+.product-info p{
+    line-height:1.55;
+    font-size:14px;
+    white-space:pre-line;
+}
+
+.order-btn{
+    display:block;
+    width:100%;
+    margin-top:15px;
+    padding:13px;
+    background:#25D366;
+    color:white;
+    text-decoration:none;
+    text-align:center;
+    border-radius:9px;
+    font-weight:bold;
+}
+
+.loading{
+    text-align:center;
+    padding:30px;
+    color:#777;
+}
+
+.empty{
+    text-align:center;
+    padding:35px;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 3px 15px #0001;
+}
+
+.about{
+    background:#fff0f6;
+    text-align:center;
+}
+
+.about p{
+    max-width:800px;
+    margin:auto;
+    line-height:1.7;
+}
+
+footer{
+    background:#68153e;
+    color:white;
+    text-align:center;
+    padding:25px 15px;
+    margin-top:20px;
+}
+
+@media(max-width:600px){
+    header h1{
+        font-size:36px;
+    }
+
+    .hero h2{
+        font-size:27px;
+    }
+
+    .gallery img{
+        height:350px;
+    }
+
+    .products{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>ZIVARA</h1>
+    <p>Lehenga • Chunari • Ladies Collection</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#products">Products</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section class="hero" id="home">
+    <h2>Elegant Fashion, Beautiful You</h2>
+    <p>
+        Discover premium lehenga, chunari, Anarkali suits
+        and ladies fashion collection from ZIVARA.
+    </p>
+</section>
+
+<section class="section" id="products">
+    <h2 class="title">Our Collection</h2>
+
+    <div id="productList" class="products">
+        <div class="loading">
+            Loading products...
+        </div>
+    </div>
+</section>
+
+<section class="section about" id="about">
+    <h2 class="title">About ZIVARA</h2>
+    <p>
+        ZIVARA brings stylish and elegant ethnic fashion
+        collections at attractive prices. Our collection includes
+        lehenga, chunari, Anarkali suits and ladies wear.
+    </p>
+</section>
+
+<section class="section" id="contact">
+    <h2 class="title">Contact Us</h2>
+    <div class="empty">
+        <p>For orders and product enquiries, contact us on WhatsApp.</p>
+        <br>
+        <a class="order-btn"
+           href="https://wa.me/919XXXXXXXXX"
+           target="_blank">
+           💬 WhatsApp Us
+        </a>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 ZIVARA • Online Fashion Store</p>
+</footer>
+<script>
+const SUPABASE_URL = "https://honebtbtjruvncafczun.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_vJnA2ymyJwDIytTUMqmXrA_G1rWiuky";
+
+const productList = document.getElementById("productList");
+
+async function loadProducts(){
+
+    productList.innerHTML = `
+        <div class="loading">
+            Products loading...
+        </div>
+    `;
+
+    try{
+
+        const response = await fetch(
+            SUPABASE_URL + "/rest/v1/products?select=*",
+            {
+                method:"GET",
+                headers:{
+                    "apikey":SUPABASE_PUBLISHABLE_KEY,
+                    "Authorization":"Bearer " + SUPABASE_PUBLISHABLE_KEY
+                }
+            }
+        );
+
+        if(!response.ok){
+            throw new Error("Unable to load products");
+        }
+
+        const products = await response.json();
+
+        if(!products.length){
+            productList.innerHTML = `
+                <div class="empty">
+                    <h3>No Products Available</h3>
+                    <p>New products will appear here soon.</p>
+                </div>
+            `;
+            return;
+        }
+
+        productList.innerHTML = "";
+
+        products.forEach(product => {
+
+            const card = document.createElement("div");
+            card.className = "product";
+
+            const image = product.image_url
+                ? product.image_url
+                : "https://via.placeholder.com/600x700?text=ZIVARA";
+
+            const whatsappMessage =
+                "Hello ZIVARA, I am interested in " +
+                (product.name || "this product") +
+                " - ₹" +
+                (product.price || "");
+
+            card.innerHTML = `
+                <div class="gallery">
+                    <img
+                        src="${image}"
+                        alt="${escapeHTML(product.name || "ZIVARA Product")}"
+                        loading="lazy"
+                    >
+                </div>
+
+                <div class="product-info">
+
+                    <h3>${escapeHTML(product.name || "ZIVARA Product")}</h3>
+
+                    ${
+                        product.category
+                        ? `<div class="code">${escapeHTML(product.category)}</div>`
+                        : ""
+                    }
+
+                    <div class="price">
+                        ₹${escapeHTML(product.price || "")}
+                    </div>
+
+                    ${
+                        product.description
+                        ? `<p>${escapeHTML(product.description)}</p>`
+                        : ""
+                    }
+
+                    ${
+                        product.sizes
+                        ? `<p><strong>Sizes:</strong> ${escapeHTML(product.sizes)}</p>`
+                        : ""
+                    }
+
+                    <a
+                        class="order-btn"
+                        href="https://wa.me/919XXXXXXXXX?text=${encodeURIComponent(whatsappMessage)}"
+                        target="_blank"
+                    >
+                        💬 Order on WhatsApp
+                    </a>
+
+                </div>
+            `;
+
+            productList.appendChild(card);
+        });
+
+    }catch(error){
+
+        console.error(error);
+
+        productList.innerHTML = `
+            <div class="empty">
+                <h3>Products could not be loaded</h3>
+                <p>Please try again later.</p>
+            </div>
+        `;
+    }
+}
+
+function escapeHTML(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+loadProducts();
+</script>
+
+</body>
+</html>
