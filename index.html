@@ -293,7 +293,64 @@ footer{
 
 <footer>
     <p>© 2026 ZIVARA • Online Fashion Store</p>
-</footer>
+</footer>async function addProduct() {
+
+    const name = document.getElementById("productName").value.trim();
+    const price = document.getElementById("productPrice").value;
+    const category = document.getElementById("productCategory").value.trim();
+    const description = document.getElementById("productDescription").value.trim();
+    const sizes = document.getElementById("productSizes").value.trim();
+    const image_url = document.getElementById("productImage").value.trim();
+
+    if (!name || !price || !image_url) {
+        alert("Please enter Product Name, Price and Image URL.");
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            SUPABASE_URL + "/rest/v1/products",
+            {
+                method: "POST",
+                headers: {
+                    "apikey": SUPABASE_PUBLISHABLE_KEY,
+                    "Authorization": "Bearer " + SUPABASE_PUBLISHABLE_KEY,
+                    "Content-Type": "application/json",
+                    "Prefer": "return=representation"
+                },
+                body: JSON.stringify({
+                    name: name,
+                    price: Number(price),
+                    category: category,
+                    description: description,
+                    sizes: sizes,
+                    image_url: image_url
+                })
+            }
+        );
+
+        if (!response.ok) {
+            const error = await response.text();
+            throw new Error(error);
+        }
+
+        alert("✅ Product added successfully!");
+
+        document.getElementById("productName").value = "";
+        document.getElementById("productPrice").value = "";
+        document.getElementById("productCategory").value = "";
+        document.getElementById("productDescription").value = "";
+        document.getElementById("productSizes").value = "";
+        document.getElementById("productImage").value = "";
+
+        loadProducts();
+
+    } catch (error) {
+        console.error(error);
+        alert("❌ Product add nahi hua. Supabase settings check karein.");
+    }
+}
 <script>
 const SUPABASE_URL = "https://honebtbtjruvncafczun.supabase.co";
 
