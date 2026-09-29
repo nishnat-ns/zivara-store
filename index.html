@@ -189,8 +189,29 @@ function renderProductRows(){$("productRows").innerHTML=products.map(p=>`<tr><td
 async function orderStatus(id,s){let {error}=await sb.from("orders").update({order_status:s}).eq("id",id);if(error)alert(error.message);else loadAdmin()}
 async function deleteReview(id){if(!confirm("Delete review?"))return;let {error}=await sb.from("reviews").delete().eq("id",id);if(error)alert(error.message);else{loadReviews();loadAdmin()}}
 
-sb.auth.onAuthStateChange((event,session)=>{if(session?.user?.email?.toLowerCase()===ADMIN_EMAIL.toLowerCase()){$("adminPanel").style.display="block";$("logout").classList.remove("hidden")}});
-loadProducts();loadCoupons();loadReviews();checkAdmin();
-</script>
-</body>
-</html>
+window.addEventListener("load", async function(){
+
+    try {
+
+        if (!window.supabase) {
+            $("productGrid").innerHTML =
+                '<div class="status err">Supabase library load nahi hui.</div>';
+            return;
+        }
+
+        await loadProducts();
+        await loadCoupons();
+        await loadReviews();
+        await checkAdmin();
+
+    } catch (error) {
+
+        console.error("ZIVARA ERROR:", error);
+
+        $("productGrid").innerHTML =
+            '<div class="status err">Products load nahi ho pa rahe: ' +
+            esc(error.message || error) +
+            '</div>';
+    }
+
+});
