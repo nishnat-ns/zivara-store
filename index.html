@@ -1,879 +1,196 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ZIVARA | Online Fashion Store</title>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:Arial,sans-serif;
-    background:#fff8fb;
-    color:#333;
-}
-
-header{
-    background:linear-gradient(135deg,#68153e,#a52a68);
-    color:white;
-    text-align:center;
-    padding:35px 15px;
-}
-
-header h1{
-    font-size:44px;
-    letter-spacing:4px;
-}
-
-header p{
-    margin-top:7px;
-}
-
-nav{
-    background:white;
-    padding:15px 10px;
-    text-align:center;
-    position:sticky;
-    top:0;
-    z-index:100;
-    box-shadow:0 2px 10px #0002;
-}
-
-nav a{
-    color:#7b1e4b;
-    text-decoration:none;
-    font-weight:bold;
-    margin:0 8px;
-    font-size:14px;
-}
-
-.hero{
-    text-align:center;
-    padding:55px 20px;
-    background:#fff0f6;
-}
-
-.hero h2{
-    color:#7b1e4b;
-    font-size:32px;
-    margin-bottom:10px;
-}
-
-.hero p{
-    max-width:700px;
-    margin:auto;
-    font-size:17px;
-    line-height:1.6;
-}
-
-.section{
-    max-width:1200px;
-    margin:auto;
-    padding:45px 15px;
-}
-
-.title{
-    text-align:center;
-    color:#7b1e4b;
-    font-size:30px;
-    margin-bottom:30px;
-}
-
-.products{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:25px;
-}
-
-.product{
-    background:white;
-    border-radius:18px;
-    overflow:hidden;
-    box-shadow:0 5px 20px #0002;
-    transition:.2s;
-}
-
-.product:hover{
-    transform:translateY(-4px);
-}
-
-.gallery{
-    display:flex;
-    overflow-x:auto;
-    scroll-snap-type:x mandatory;
-    scrollbar-width:thin;
-}
-
-.gallery img{
-    min-width:100%;
-    width:100%;
-    height:390px;
-    object-fit:cover;
-    scroll-snap-align:start;
-}
-
-.product-info{
-    padding:20px;
-}
-
-.product-info h3{
-    color:#7b1e4b;
-    font-size:21px;
-    margin-bottom:8px;
-}
-
-.code{
-    font-size:13px;
-    color:#777;
-    margin-bottom:10px;
-}
-
-.price{
-    color:#a52a68;
-    font-size:24px;
-    font-weight:bold;
-    margin:10px 0;
-}
-
-.product-info p{
-    line-height:1.55;
-    font-size:14px;
-    white-space:pre-line;
-    margin-top:8px;
-}
-
-.order-btn{
-    display:block;
-    width:100%;
-    margin-top:15px;
-    padding:13px;
-    background:#25D366;
-    color:white;
-    text-decoration:none;
-    text-align:center;
-    border-radius:9px;
-    font-weight:bold;
-    border:none;
-    cursor:pointer;
-    font-size:15px;
-}
-
-.loading{
-    text-align:center;
-    padding:30px;
-    color:#777;
-}
-
-.empty{
-    text-align:center;
-    padding:35px;
-    background:white;
-    border-radius:15px;
-    box-shadow:0 3px 15px #0001;
-}
-
-.about{
-    background:#fff0f6;
-    text-align:center;
-}
-
-.about p{
-    max-width:800px;
-    margin:auto;
-    line-height:1.7;
-}
-
-.admin-box{
-    max-width:650px;
-    margin:auto;
-    background:white;
-    padding:25px;
-    border-radius:18px;
-    box-shadow:0 5px 20px #0002;
-}
-
-.admin-box input,
-.admin-box textarea{
-    width:100%;
-    padding:13px;
-    margin-bottom:12px;
-    border:1px solid #ddd;
-    border-radius:9px;
-    font-size:15px;
-    font-family:Arial,sans-serif;
-}
-
-.admin-box textarea{
-    min-height:120px;
-    resize:vertical;
-}
-
-.admin-box input:focus,
-.admin-box textarea:focus{
-    outline:none;
-    border-color:#a52a68;
-}
-
-.save-btn{
-    background:#7b1e4b;
-}
-
-.status{
-    text-align:center;
-    margin-top:12px;
-    font-weight:bold;
-}
-
-footer{
-    background:#68153e;
-    color:white;
-    text-align:center;
-    padding:25px 15px;
-    margin-top:20px;
-}
-
-@media(max-width:600px){
-
-    header h1{
-        font-size:36px;
-    }
-
-    .hero h2{
-        font-size:27px;
-    }
-
-    .gallery img{
-        height:350px;
-    }
-
-    .products{
-        grid-template-columns:1fr;
-    }
-
-    nav a{
-        margin:0 5px;
-        font-size:13px;
-    }
-}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,sans-serif;background:#fff8fb;color:#292129}header{background:#7d123f;color:#fff;padding:14px;position:sticky;top:0;z-index:20}.nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:8px}.logo{font-size:25px;font-weight:800;letter-spacing:2px}.tag{font-size:11px}.nav button,.btn{border:0;border-radius:9px;padding:10px 13px;font-weight:700;cursor:pointer}.nav button{background:#fff;color:#7d123f}.hero{background:linear-gradient(135deg,#7d123f,#c53c72);color:white;text-align:center;padding:42px 15px}.hero h1{font-size:34px;margin-bottom:8px}.gold{background:#f3c44e;color:#351b00}.primary{background:#7d123f;color:#fff}.danger{background:#c62828;color:#fff}.gray{background:#eee;color:#333}.section{max-width:1100px;margin:auto;padding:28px 15px}.title{text-align:center;color:#7d123f;margin-bottom:18px}.offer,.box{background:#fff;border-radius:14px;padding:16px;box-shadow:0 4px 18px #0001;margin-bottom:18px}.offer{background:#fff2c9;border:1px solid #e4c96c;text-align:center}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}.card{background:#fff;border:1px solid #f0dce5;border-radius:15px;overflow:hidden;box-shadow:0 4px 18px #0001}.gallery{height:280px;background:#f5edf1;position:relative}.gallery img,.gallery video{width:100%;height:100%;object-fit:cover}.arrow{position:absolute;top:50%;transform:translateY(-50%);background:#0008;color:#fff;border:0;border-radius:50%;width:34px;height:34px}.left{left:8px}.right{right:8px}.cardbody{padding:14px}.card h3{color:#7d123f}.price{font-size:20px;font-weight:800;margin:7px 0}.muted{font-size:13px;color:#777}.actions{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap}.actions .btn{flex:1}.row{display:grid;grid-template-columns:1fr 1fr;gap:9px}.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px}input,textarea,select{width:100%;padding:11px;border:1px solid #ddd;border-radius:9px;margin:5px 0 10px;font-size:15px}textarea{min-height:90px}.status{padding:9px;border-radius:8px;margin-top:8px}.ok{background:#e7f7eb;color:#176334}.err{background:#fde9e9;color:#a00}.admin{display:none}.modal{display:none;position:fixed;inset:0;background:#0009;z-index:100;padding:12px;overflow:auto}.modalbox{background:#fff;max-width:600px;margin:25px auto;padding:18px;border-radius:16px;position:relative}.close{position:absolute;right:10px;top:8px;border:0;border-radius:50%;width:32px;height:32px}.table{overflow:auto}.table table{width:100%;border-collapse:collapse}.table th,.table td{padding:8px;border-bottom:1px solid #eee;text-align:left;font-size:13px;vertical-align:top}.hidden{display:none!important}footer{background:#57102f;color:#fff;text-align:center;padding:25px;margin-top:25px}a{color:inherit}@media(max-width:600px){.row,.row3{grid-template-columns:1fr}.hero h1{font-size:29px}.gallery{height:260px}}
 </style>
 </head>
-
 <body>
+<header><div class="nav"><div><div class="logo">ZIVARA</div><div class="tag">Lehenga • Chunari • Ladies Collection</div></div><div><button onclick="go('products')">Shop</button> <button onclick="go('adminLogin')">Admin</button></div></div></header>
 
-<header>
-    <h1>ZIVARA</h1>
-    <p>Lehenga • Chunari • Ladies Collection</p>
-</header>
+<section class="hero"><h1>Elegant Fashion, Made for You</h1><p>Premium Lehenga • Anarkali • Chunari • Ladies Collection</p><button class="btn gold" onclick="go('products')">Shop Now</button></section>
 
-<nav>
-    <a href="#home">Home</a>
-    <a href="#products">Products</a>
-    <a href="#admin">Add Product</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-</nav>
+<section class="section"><div id="offers" class="offer hidden"></div></section>
 
-<section class="hero" id="home">
+<section class="section" id="products"><h2 class="title">✨ Our Collection</h2><div id="productGrid" class="grid">Loading...</div></section>
 
-    <h2>Elegant Fashion, Beautiful You</h2>
+<section class="section"><h2 class="title">⭐ Customer Reviews</h2><div id="reviewList" class="grid"></div></section>
 
-    <p>
-        Discover premium lehenga, chunari, Anarkali suits
-        and ladies fashion collection from ZIVARA.
-    </p>
+<section class="section"><div class="box">
+<h2 class="title">Write a Review</h2>
+<div class="row"><input id="rName" placeholder="Your name"><select id="rProduct"></select></div>
+<select id="rRating"><option value="5">★★★★★ 5</option><option value="4">★★★★ 4</option><option value="3">★★★ 3</option><option value="2">★★ 2</option><option value="1">★ 1</option></select>
+<textarea id="rText" placeholder="Your review"></textarea><input id="rImage" placeholder="Review photo direct URL (optional)">
+<button class="btn primary" onclick="submitReview()">Submit Review</button><div id="rStatus"></div>
+</div></section>
 
+<section class="section" id="adminLogin"><div class="box">
+<h2 class="title">🔐 Admin Login</h2>
+<input id="aEmail" type="email" placeholder="Admin email"><input id="aPass" type="password" placeholder="Admin password">
+<button class="btn primary" onclick="login()">Login</button> <button id="logout" class="btn gray hidden" onclick="logout()">Logout</button><div id="aStatus"></div>
+</div></section>
+
+<section class="section admin" id="adminPanel"><h2 class="title">🛠️ Admin Panel</h2>
+
+<div class="box"><h3>➕ Add / Edit Product</h3><input type="hidden" id="pid">
+<div class="row"><input id="pname" placeholder="Product name"><input id="pprice" type="number" placeholder="Price"></div>
+<div class="row"><input id="pcat" placeholder="Category"><input id="psizes" placeholder="M,L,XL,XXL"></div>
+<textarea id="pdesc" placeholder="Product details"></textarea>
+<input id="i1" placeholder="Photo 1 direct URL"><input id="i2" placeholder="Photo 2 direct URL"><input id="i3" placeholder="Photo 3 direct URL"><input id="i4" placeholder="Photo 4 direct URL"><input id="i5" placeholder="Photo 5 direct URL"><input id="i6" placeholder="Photo 6 direct URL"><input id="i7" placeholder="Photo 7 direct URL">
+<input id="v1" placeholder="Video 1 URL (optional)"><input id="v2" placeholder="Video 2 URL (optional)">
+<button class="btn primary" onclick="saveProduct()">💾 Save Product</button> <button class="btn gray" onclick="clearProduct()">Clear</button><div id="pStatus"></div></div>
+
+<div class="box"><h3>🎟️ Festival / Custom Coupon</h3><input type="hidden" id="cid">
+<div class="row"><input id="ctitle" placeholder="Diwali Special"><input id="ccode" placeholder="DIWALI30"></div>
+<div class="row"><select id="ctype"><option value="percentage">Percentage %</option><option value="fixed">Fixed ₹</option></select><input id="cvalue" type="number" placeholder="30"></div>
+<div class="row"><input id="cmin" type="number" placeholder="Minimum order"><input id="cmax" type="number" placeholder="Maximum discount (optional)"></div>
+<div class="row"><input id="cstart" type="date"><input id="cend" type="date"></div>
+<label><input id="cactive" type="checkbox" checked style="width:auto"> Active</label><br>
+<button class="btn primary" onclick="saveCoupon()">💾 Save Coupon</button> <button class="btn gray" onclick="clearCoupon()">Clear</button><div id="cStatus"></div></div>
+
+<div class="box"><h3>📦 Orders</h3><div class="table"><table><thead><tr><th>Order</th><th>Customer</th><th>Product</th><th>Total</th><th>Status</th></tr></thead><tbody id="orders"></tbody></table></div></div>
+<div class="box"><h3>🎟️ Coupons</h3><div class="table"><table><thead><tr><th>Offer</th><th>Code</th><th>Discount</th><th>Active</th><th>Action</th></tr></thead><tbody id="couponRows"></tbody></table></div></div>
+<div class="box"><h3>🛍️ Products</h3><div class="table"><table><thead><tr><th>Product</th><th>Price</th><th>Action</th></tr></thead><tbody id="productRows"></tbody></table></div></div>
+<div class="box"><h3>⭐ Reviews</h3><div class="table"><table><thead><tr><th>Name</th><th>Rating</th><th>Review</th><th>Action</th></tr></thead><tbody id="reviewRows"></tbody></table></div></div>
 </section>
 
+<footer><b>ZIVARA</b><br>Lehenga • Chunari • Ladies Collection<br><br><a href="https://wa.me/919752923124">📱 WhatsApp Order / Enquiry</a></footer>
 
-<section class="section" id="products">
-
-    <h2 class="title">Our Collection</h2>
-
-    <div id="productList" class="products">
-
-        <div class="loading">
-            Loading products...
-        </div>
-
-    </div>
-
-</section>
-
-
-<section class="section" id="admin">
-
-    <h2 class="title">➕ Add Product</h2>
-
-    <div class="admin-box">
-
-        <input
-            id="productName"
-            type="text"
-            placeholder="Product Name"
-        >
-
-        <input
-            id="productPrice"
-            type="number"
-            placeholder="Price"
-        >
-
-        <input
-            id="productCategory"
-            type="text"
-            placeholder="Category"
-        >
-
-        <textarea
-            id="productDescription"
-            placeholder="Product Description"
-        ></textarea>
-
-        <input
-            id="productSizes"
-            type="text"
-            placeholder="Sizes (M, L, XL, XXL)"
-        >
-
-        <input
-            id="productImage"
-            type="url"
-            placeholder="Direct Image URL"
-        >
-
-        <button
-            class="order-btn save-btn"
-            type="button"
-            onclick="addProduct()"
-        >
-            💾 Save Product
-        </button>
-
-        <div id="statusMessage" class="status"></div>
-
-    </div>
-
-</section>
-
-
-<section class="section about" id="about">
-
-    <h2 class="title">About ZIVARA</h2>
-
-    <p>
-        ZIVARA brings stylish and elegant ethnic fashion
-        collections at attractive prices. Our collection includes
-        lehenga, chunari, Anarkali suits and ladies wear.
-    </p>
-
-</section>
-
-
-<section class="section" id="contact">
-
-    <h2 class="title">Contact Us</h2>
-
-    <div class="empty">
-
-        <p>
-            For orders and product enquiries,
-            contact us on WhatsApp.
-        </p>
-
-        <a
-            class="order-btn"
-            href="https://wa.me/919752923124"
-            target="_blank"
-        >
-            💬 WhatsApp Us
-        </a>
-
-    </div>
-
-</section>
-
-
-<footer>
-
-    <p>
-        © 2026 ZIVARA • Online Fashion Store
-    </p>
-
-</footer>
-
+<div class="modal" id="orderModal"><div class="modalbox"><button class="close" onclick="closeOrder()">×</button><h2 class="title">🛒 Place Your Order</h2><div id="selected"></div>
+<div class="row"><input id="name" placeholder="Name"><input id="phone" placeholder="Mobile"></div><textarea id="address" placeholder="Full address"></textarea>
+<div class="row3"><input id="city" placeholder="City"><input id="state" value="Madhya Pradesh"><input id="pin" placeholder="Pincode"></div>
+<div class="row"><input id="qty" type="number" min="1" value="1" onchange="calc()"><select id="size"></select></div>
+<div class="row"><input id="coupon" placeholder="Coupon code"><button class="btn gold" onclick="applyCoupon()">Apply Coupon</button></div><div id="couponMsg"></div><div id="summary" class="offer"></div>
+<select id="payment"><option value="COD">Cash on Delivery</option><option value="ONLINE">Online Payment — gateway pending</option></select>
+<button class="btn primary" style="width:100%" onclick="placeOrder()">Confirm Order</button><div id="orderStatus"></div></div></div>
 
 <script>
+const SUPABASE_URL="https://honebtbtjruvncafczun.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_vJnA2ymyJwDIytTUMqmXrA_G1rWiuky";
+const ADMIN_EMAIL="nishantsharma9752@gmail.com";
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+let products=[],activeCoupons=[],allCoupons=[],selected=null,applied=null,indexes={};
 
-/* ================================
-   SUPABASE CONNECTION
-================================ */
-
-const SUPABASE_URL =
-    "https://honebtbtjruvncafczun.supabase.co";
-
-
-const SUPABASE_PUBLISHABLE_KEY =
-    "sb_publishable_vJnA2ymyJwDIytTUMqmXrA_G1rWiuky";
-
-
-/* ================================
-   PRODUCT LIST
-================================ */
-
-const productList =
-    document.getElementById("productList");
-
-
-/* ================================
-   STATUS MESSAGE
-================================ */
-
-const statusMessage =
-    document.getElementById("statusMessage");
-
-
-/* ================================
-   LOAD PRODUCTS
-================================ */
+const $=id=>document.getElementById(id);
+const esc=x=>String(x??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function go(id){$(id).scrollIntoView({behavior:"smooth"})}
+function status(id,text,ok=true){$(id).innerHTML='<div class="status '+(ok?"ok":"err")+'>'+esc(text)+'</div>'}
+function imgs(p){let a=Array.isArray(p.image_urls)?p.image_urls.filter(Boolean):[];if(!a.length&&p.image_url)a=[p.image_url];return a}
 
 async function loadProducts(){
+ const {data,error}=await sb.from("products").select("*").order("created_at",{ascending:false});
+ if(error){$("productGrid").textContent=error.message;return} products=data||[];renderProducts();fillReviewProducts();renderProductRows();
+}
+function renderProducts(){
+ $("productGrid").innerHTML=products.length?products.map(p=>{
+  let a=imgs(p);indexes[p.id]=Math.min(indexes[p.id]||0,Math.max(0,a.length-1));let i=indexes[p.id]||0;
+  let media=a[i]?`<img src="${esc(a[i])}" alt="${esc(p.name)}">`:"<div style="height:100%;display:grid;place-items:center">No image</div>";
+  return `<article class="card"><div class="gallery">${media}${a.length>1?`<button class="arrow left" onclick="gallery(${p.id},-1)">‹</button><button class="arrow right" onclick="gallery(${p.id},1)">›</button>`:""}</div><div class="cardbody"><h3>${esc(p.name)}</h3><div class="muted">${esc(p.category||"Fashion")}</div><div class="price">₹${Number(p.price||0).toLocaleString("en-IN")}</div><div class="muted">Sizes: ${esc(p.sizes||"On request")}</div><p style="margin-top:7px">${esc(p.description||"")}</p>${p.video_urls?.[0]?`<video controls style="width:100%;margin-top:8px" src="${esc(p.video_urls[0])}"></video>`:""}<div class="actions"><button class="btn primary" onclick="openOrder(${p.id})">🛒 Buy Now</button></div></div></article>`
+ }).join(""):"<p>No products yet.</p>";
+}
+function gallery(id,n){let a=imgs(products.find(p=>p.id===id));if(!a.length)return;indexes[id]=((indexes[id]||0)+n+a.length)%a.length;renderProducts()}
+function fillReviewProducts(){$("rProduct").innerHTML=products.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join("")}
 
-    productList.innerHTML = `
-        <div class="loading">
-            Products loading...
-        </div>
-    `;
-
-    try{
-
-        const response = await fetch(
-            SUPABASE_URL +
-            "/rest/v1/products?select=*",
-            {
-                method:"GET",
-
-                headers:{
-                    "apikey":
-                        SUPABASE_PUBLISHABLE_KEY,
-
-                    "Authorization":
-                        "Bearer " +
-                        SUPABASE_PUBLISHABLE_KEY
-                }
-            }
-        );
-
-
-        if(!response.ok){
-
-            const errorText =
-                await response.text();
-
-            throw new Error(errorText);
-        }
-
-
-        const products =
-            await response.json();
-
-
-        if(!products.length){
-
-            productList.innerHTML = `
-                <div class="empty">
-
-                    <h3>No Products Available</h3>
-
-                    <p>
-                        New products will appear here soon.
-                    </p>
-
-                </div>
-            `;
-
-            return;
-        }
-
-
-        productList.innerHTML = "";
-
-
-        products.forEach(product => {
-
-            const card =
-                document.createElement("div");
-
-            card.className = "product";
-
-
-            const image =
-                product.image_url ||
-                "https://via.placeholder.com/600x700?text=ZIVARA";
-
-
-            const whatsappMessage =
-                "Hello ZIVARA, I am interested in " +
-                (product.name || "this product") +
-                " - ₹" +
-                (product.price || "");
-
-
-            card.innerHTML = `
-
-                <div class="gallery">
-
-                    <img
-                        src="${image}"
-                        alt="${escapeHTML(
-                            product.name ||
-                            "ZIVARA Product"
-                        )}"
-                        loading="lazy"
-                    >
-
-                </div>
-
-
-                <div class="product-info">
-
-                    <h3>
-                        ${escapeHTML(
-                            product.name ||
-                            "ZIVARA Product"
-                        )}
-                    </h3>
-
-
-                    ${
-                        product.category
-                        ?
-                        `<div class="code">
-                            ${escapeHTML(
-                                product.category
-                            )}
-                        </div>`
-                        :
-                        ""
-                    }
-
-
-                    <div class="price">
-
-                        ₹${escapeHTML(
-                            product.price || ""
-                        )}
-
-                    </div>
-
-
-                    ${
-                        product.description
-                        ?
-                        `<p>
-                            ${escapeHTML(
-                                product.description
-                            )}
-                        </p>`
-                        :
-                        ""
-                    }
-
-
-                    ${
-                        product.sizes
-                        ?
-                        `<p>
-                            <strong>Sizes:</strong>
-                            ${escapeHTML(
-                                product.sizes
-                            )}
-                        </p>`
-                        :
-                        ""
-                    }
-
-
-                    <a
-                        class="order-btn"
-                        href="https://wa.me/919752923124?text=${encodeURIComponent(
-                            whatsappMessage
-                        )}"
-                        target="_blank"
-                    >
-                        💬 Order on WhatsApp
-                    </a>
-
-                </div>
-
-            `;
-
-
-            productList.appendChild(card);
-
-        });
-
-
-    }catch(error){
-
-        console.error(error);
-
-
-        productList.innerHTML = `
-
-            <div class="empty">
-
-                <h3>
-                    Products could not be loaded
-                </h3>
-
-                <p>
-                    ${escapeHTML(
-                        error.message ||
-                        "Please try again later."
-                    )}
-                </p>
-
-            </div>
-
-        `;
-    }
+async function loadCoupons(){
+ const {data}=await sb.from("coupons").select("*").eq("is_active",true);const today=new Date().toISOString().slice(0,10);
+ activeCoupons=(data||[]).filter(c=>(!c.start_date||c.start_date<=today)&&(!c.end_date||c.end_date>=today));
+ if(activeCoupons.length){$("offers").classList.remove("hidden");$("offers").innerHTML="🎉 "+activeCoupons.map(c=>`<b>${esc(c.title||"Special Offer")}</b>: ${esc(c.code)} — ${c.discount_type==="percentage"?c.discount_value+"% OFF":"₹"+c.discount_value+" OFF"}`).join(" &nbsp; | &nbsp; ")}
+}
+async function loadReviews(){
+ const {data}=await sb.from("reviews").select("*").order("created_at",{ascending:false}).limit(30);
+ $("reviewList").innerHTML=(data||[]).map(r=>`<div class="card"><div class="cardbody"><b>${esc(r.customer_name||"Customer")}</b><div>${"★".repeat(r.rating||0)}${"☆".repeat(5-(r.rating||0))}</div><p>${esc(r.review_text)}</p>${r.review_image_urls?.[0]?`<img src="${esc(r.review_image_urls[0])}" style="width:100%;margin-top:7px;border-radius:9px">`:""}</div></div>`).join("")||"<p>No reviews yet.</p>"
+}
+async function submitReview(){
+ if(!$("rName").value.trim()||!$("rText").value.trim())return status("rStatus","Name and review are required.",false);
+ const {error}=await sb.from("reviews").insert({product_id:Number($("rProduct").value),customer_name:$("rName").value.trim(),rating:Number($("rRating").value),review_text:$("rText").value.trim(),review_image_urls:$("rImage").value.trim()?[$("rImage").value.trim()]:[]});
+ if(error)return status("rStatus",error.message,false);status("rStatus","Review submitted.");$("rText").value="";$("rImage").value="";loadReviews()
 }
 
-
-/* ================================
-   ADD PRODUCT
-================================ */
-
-async function addProduct(){
-
-    const name =
-        document
-        .getElementById("productName")
-        .value
-        .trim();
-
-
-    const price =
-        document
-        .getElementById("productPrice")
-        .value;
-
-
-    const category =
-        document
-        .getElementById("productCategory")
-        .value
-        .trim();
-
-
-    const description =
-        document
-        .getElementById("productDescription")
-        .value
-        .trim();
-
-
-    const sizes =
-        document
-        .getElementById("productSizes")
-        .value
-        .trim();
-
-
-    const image_url =
-        document
-        .getElementById("productImage")
-        .value
-        .trim();
-
-
-    if(!name){
-
-        statusMessage.innerText =
-            "❌ Product Name required.";
-
-        statusMessage.style.color =
-            "#c62828";
-
-        return;
-    }
-
-
-    if(!price){
-
-        statusMessage.innerText =
-            "❌ Price required.";
-
-        statusMessage.style.color =
-            "#c62828";
-
-        return;
-    }
-
-
-    if(!image_url){
-
-        statusMessage.innerText =
-            "❌ Image URL required.";
-
-        statusMessage.style.color =
-            "#c62828";
-
-        return;
-    }
-
-
-    statusMessage.innerText =
-        "Saving product...";
-
-    statusMessage.style.color =
-        "#7b1e4b";
-
-
-    try{
-
-        const response =
-            await fetch(
-                SUPABASE_URL +
-                "/rest/v1/products",
-                {
-                    method:"POST",
-
-                    headers:{
-                        "apikey":
-                            SUPABASE_PUBLISHABLE_KEY,
-
-                        "Authorization":
-                            "Bearer " +
-                            SUPABASE_PUBLISHABLE_KEY,
-
-                        "Content-Type":
-                            "application/json",
-
-                        "Prefer":
-                            "return=representation"
-                    },
-
-                    body:JSON.stringify({
-
-                        name:name,
-
-                        price:Number(price),
-
-                        category:category,
-
-                        description:description,
-
-                        sizes:sizes,
-
-                        image_url:image_url
-
-                    })
-                }
-            );
-
-
-        if(!response.ok){
-
-            const errorText =
-                await response.text();
-
-            throw new Error(errorText);
-        }
-
-
-        statusMessage.innerText =
-            "✅ Product added successfully!";
-
-        statusMessage.style.color =
-            "#16803c";
-
-
-        document
-        .getElementById("productName")
-        .value = "";
-
-
-        document
-        .getElementById("productPrice")
-        .value = "";
-
-
-        document
-        .getElementById("productCategory")
-        .value = "";
-
-
-        document
-        .getElementById("productDescription")
-        .value = "";
-
-
-        document
-        .getElementById("productSizes")
-        .value = "";
-
-
-        document
-        .getElementById("productImage")
-        .value = "";
-
-
-        await loadProducts();
-
-
-    }catch(error){
-
-        console.error(error);
-
-
-        statusMessage.innerText =
-            "❌ Product save failed: " +
-            error.message;
-
-        statusMessage.style.color =
-            "#c62828";
-    }
+function openOrder(id){
+ selected=products.find(p=>p.id===id);applied=null;$("orderModal").style.display="block";$("selected").innerHTML=`<div class="offer"><b>${esc(selected.name)}</b> — ₹${selected.price}</div>`;
+ let s=String(selected.sizes||"").split(",").map(x=>x.trim()).filter(Boolean);$("size").innerHTML=s.length?s.map(x=>`<option>${esc(x)}</option>`).join(""):"<option>Not specified</option>";
+ $("coupon").value="";$("couponMsg").innerHTML="";$("orderStatus").innerHTML="";calc()
+}
+function closeOrder(){$("orderModal").style.display="none"}
+function calc(){
+ if(!selected)return;let sub=Number(selected.price)*Math.max(1,Number($("qty").value)||1),d=0;
+ if(applied){d=applied.discount_type==="percentage"?sub*Number(applied.discount_value)/100:Number(applied.discount_value);if(applied.maximum_discount!=null)d=Math.min(d,Number(applied.maximum_discount))}
+ $("summary").innerHTML=`Subtotal ₹${sub.toFixed(0)}<br>Discount ₹${d.toFixed(0)}<br><b>Total ₹${(sub-d).toFixed(0)}</b><br><small>Delivery charge confirmed at order processing.</small>`
+}
+async function applyCoupon(){
+ let code=$("coupon").value.trim().toUpperCase(),today=new Date().toISOString().slice(0,10);
+ let {data}=await sb.from("coupons").select("*").eq("code",code).eq("is_active",true).maybeSingle();
+ if(!data||data.start_date&&data.start_date>today||data.end_date&&data.end_date<today){applied=null;status("couponMsg","Invalid or expired coupon.",false);return calc()}
+ let sub=Number(selected.price)*Math.max(1,Number($("qty").value)||1);
+ if(sub<Number(data.minimum_order||0)){applied=null;status("couponMsg","Minimum order ₹"+data.minimum_order+" required.",false);return calc()}
+ applied=data;status("couponMsg","Coupon applied.");calc()
+}
+async function placeOrder(){
+ if($("payment").value==="ONLINE")return status("orderStatus","Online payment gateway is not connected yet. Select COD.",false);
+ if(!$("name").value.trim()||!$("phone").value.trim()||!$("address").value.trim())return status("orderStatus","Name, mobile and full address are required.",false);
+ let q=Math.max(1,Number($("qty").value)||1),sub=Number(selected.price)*q,d=0;
+ if(applied){d=applied.discount_type==="percentage"?sub*Number(applied.discount_value)/100:Number(applied.discount_value);if(applied.maximum_discount!=null)d=Math.min(d,Number(applied.maximum_discount))}
+ let total=Math.max(0,sub-d),no="ZIV"+Date.now().toString().slice(-8);
+ let row={order_number:no,customer_name:$("name").value.trim(),customer_phone:$("phone").value.trim(),address:$("address").value.trim(),city:$("city").value.trim(),state:$("state").value.trim(),pincode:$("pin").value.trim(),product_id:selected.id,product_name:selected.name,quantity:q,size:$("size").value,product_price:selected.price,discount_amount:d,coupon_code:applied?.code||null,delivery_charge:0,final_amount:total,payment_method:"COD",payment_status:"Pending",order_status:"New"};
+ let {error}=await sb.from("orders").insert(row);if(error)return status("orderStatus",error.message,false);
+ let wa="https://wa.me/919752923124?text="+encodeURIComponent(`ZIVARA Order ${no}\nProduct: ${selected.name}\nQty: ${q}\nSize: ${row.size}\nAmount: ₹${total}\nCustomer: ${row.customer_name}\nMobile: ${row.customer_phone}\nAddress: ${row.address}`);
+ $("orderStatus").innerHTML=`<div class="status ok">Order placed! <b>${no}</b><br><a class="btn primary" style="display:inline-block;margin-top:8px;text-decoration:none" href="${wa}" target="_blank">📱 Send on WhatsApp</a></div>`
 }
 
-
-/* ================================
-   SECURITY / HTML ESCAPE
-================================ */
-
-function escapeHTML(value){
-
-    return String(value)
-
-        .replace(/&/g,"&amp;")
-
-        .replace(/</g,"&lt;")
-
-        .replace(/>/g,"&gt;")
-
-        .replace(/"/g,"&quot;")
-
-        .replace(/'/g,"&#039;");
+async function login(){
+ let email=$("aEmail").value.trim(),password=$("aPass").value;
+ if(!email||!password)return status("aStatus","Email and password required.",false);
+ let {data,error}=await sb.auth.signInWithPassword({email,password});
+ if(error)return status("aStatus",error.message,false);
+ if(data.user.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()){await sb.auth.signOut();return status("aStatus","This account is not the configured admin.",false)}
+ status("aStatus","Admin login successful.");$("logout").classList.remove("hidden");$("adminPanel").style.display="block";loadAdmin()
+}
+async function logout(){await sb.auth.signOut();$("adminPanel").style.display="none";$("logout").classList.add("hidden");status("aStatus","Logged out.")}
+async function checkAdmin(){
+ let {data}=await sb.auth.getSession(),u=data.session?.user;
+ if(u&&u.email?.toLowerCase()===ADMIN_EMAIL.toLowerCase()){$("adminPanel").style.display="block";$("logout").classList.remove("hidden");loadAdmin()}
 }
 
+async function saveProduct(){
+ let {data:{user}}=await sb.auth.getUser();if(!user||user.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase())return status("pStatus","Please login as admin.",false);
+ let images=[1,2,3,4,5,6,7].map(i=>$("i"+i).value.trim()).filter(Boolean),videos=[1,2].map(i=>$("v"+i).value.trim()).filter(Boolean);
+ if(!images.length)return status("pStatus","At least one direct image URL is required.",false);
+ let obj={name:$("pname").value.trim(),price:Number($("pprice").value),category:$("pcat").value.trim(),description:$("pdesc").value.trim(),sizes:$("psizes").value.trim(),image_url:images[0],image_urls:images,video_urls:videos},id=$("pid").value;
+ let {error}=id?await sb.from("products").update(obj).eq("id",id):await sb.from("products").insert(obj);
+ if(error)return status("pStatus",error.message,false);status("pStatus",id?"Product updated!":"Product added!");clearProduct();loadProducts()
+}
+function clearProduct(){["pid","pname","pprice","pcat","psizes","pdesc","i1","i2","i3","i4","i5","i6","i7","v1","v2"].forEach(x=>$(x).value="")}
+function editProduct(id){let p=products.find(x=>x.id===id),a=imgs(p),v=p.video_urls||[];$("pid").value=p.id;$("pname").value=p.name||"";$("pprice").value=p.price||"";$("pcat").value=p.category||"";$("psizes").value=p.sizes||"";$("pdesc").value=p.description||"";for(let i=1;i<=7;i++)$("i"+i).value=a[i-1]||"";for(let i=1;i<=2;i++)$("v"+i).value=v[i-1]||"";go("adminPanel")}
+async function deleteProduct(id){if(!confirm("Delete this product?"))return;let {error}=await sb.from("products").delete().eq("id",id);if(error)alert(error.message);else loadProducts()}
 
-/* ================================
-   START
-================================ */
+async function saveCoupon(){
+ let obj={title:$("ctitle").value.trim(),code:$("ccode").value.trim().toUpperCase(),discount_type:$("ctype").value,discount_value:Number($("cvalue").value),minimum_order:Number($("cmin").value||0),maximum_discount:$("cmax").value?Number($("cmax").value):null,start_date:$("cstart").value||null,end_date:$("cend").value||null,is_active:$("cactive").checked},id=$("cid").value;
+ if(!obj.title||!obj.code||!obj.discount_value)return status("cStatus","Offer, code and discount are required.",false);
+ let {error}=id?await sb.from("coupons").update(obj).eq("id",id):await sb.from("coupons").insert(obj);
+ if(error)return status("cStatus",error.message,false);status("cStatus","Coupon saved.");clearCoupon();loadCoupons();loadAdmin()
+}
+function clearCoupon(){["cid","ctitle","ccode","cvalue","cmin","cmax","cstart","cend"].forEach(x=>$(x).value="");$("cactive").checked=true}
+function editCoupon(id){let c=allCoupons.find(x=>x.id===id);if(!c)return;$("cid").value=c.id;$("ctitle").value=c.title||"";$("ccode").value=c.code||"";$("ctype").value=c.discount_type||"percentage";$("cvalue").value=c.discount_value||"";$("cmin").value=c.minimum_order||0;$("cmax").value=c.maximum_discount??"";$("cstart").value=c.start_date||"";$("cend").value=c.end_date||"";$("cactive").checked=c.is_active!==false}
+async function toggleCoupon(id,on){let {error}=await sb.from("coupons").update({is_active:on}).eq("id",id);if(error)alert(error.message);else{loadCoupons();loadAdmin()}}
+async function deleteCoupon(id){if(!confirm("Delete coupon?"))return;let {error}=await sb.from("coupons").delete().eq("id",id);if(error)alert(error.message);else{loadCoupons();loadAdmin()}}
 
-loadProducts();
+async function loadAdmin(){
+ let {data:o}=await sb.from("orders").select("*").order("created_at",{ascending:false});
+ $("orders").innerHTML=(o||[]).map(x=>`<tr><td>${esc(x.order_number)}<br>${new Date(x.created_at).toLocaleString()}</td><td>${esc(x.customer_name)}<br>${esc(x.customer_phone)}<br>${esc(x.address)}</td><td>${esc(x.product_name)}<br>Qty ${x.quantity}, ${esc(x.size)}</td><td>₹${x.final_amount}</td><td><select onchange="orderStatus(${x.id},this.value)">${["New","Confirmed","Packed","Shipped","Delivered","Cancelled"].map(s=>`<option ${s===x.order_status?"selected":""}>${s}</option>`).join("")}</select></td></tr>`).join("");
+ let {data:c}=await sb.from("coupons").select("*").order("created_at",{ascending:false});allCoupons=c||[];
+ $("couponRows").innerHTML=allCoupons.map(x=>`<tr><td>${esc(x.title)}</td><td>${esc(x.code)}</td><td>${x.discount_type==="percentage"?x.discount_value+"%":"₹"+x.discount_value}</td><td>${x.is_active?"ON":"OFF"}</td><td><button class="btn gray" onclick="editCoupon(${x.id})">Edit</button> <button class="btn gold" onclick="toggleCoupon(${x.id},${!x.is_active})">${x.is_active?"OFF":"ON"}</button> <button class="btn danger" onclick="deleteCoupon(${x.id})">Delete</button></td></tr>`).join("");
+ let {data:r}=await sb.from("reviews").select("*").order("created_at",{ascending:false});$("reviewRows").innerHTML=(r||[]).map(x=>`<tr><td>${esc(x.customer_name)}</td><td>${x.rating}/5</td><td>${esc(x.review_text)}</td><td><button class="btn danger" onclick="deleteReview(${x.id})">Delete</button></td></tr>`).join("")
+}
+function renderProductRows(){$("productRows").innerHTML=products.map(p=>`<tr><td>${esc(p.name)}</td><td>₹${p.price}</td><td><button class="btn gray" onclick="editProduct(${p.id})">Edit</button> <button class="btn danger" onclick="deleteProduct(${p.id})">Delete</button></td></tr>`).join("")}
+async function orderStatus(id,s){let {error}=await sb.from("orders").update({order_status:s}).eq("id",id);if(error)alert(error.message);else loadAdmin()}
+async function deleteReview(id){if(!confirm("Delete review?"))return;let {error}=await sb.from("reviews").delete().eq("id",id);if(error)alert(error.message);else{loadReviews();loadAdmin()}}
 
+sb.auth.onAuthStateChange((event,session)=>{if(session?.user?.email?.toLowerCase()===ADMIN_EMAIL.toLowerCase()){$("adminPanel").style.display="block";$("logout").classList.remove("hidden")}});
+loadProducts();loadCoupons();loadReviews();checkAdmin();
 </script>
-
 </body>
 </html>
