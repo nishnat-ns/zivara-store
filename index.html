@@ -3,54 +3,43 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ZIVARA | Online Fashion Store</title>
+<title>ZIVARA | Premium Fashion Store</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,sans-serif;background:#fff8fb;color:#292129}header{background:#7d123f;color:#fff;padding:14px;position:sticky;top:0;z-index:20}.nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:8px}.logo{font-size:25px;font-weight:800;letter-spacing:2px}.tag{font-size:11px}.nav button,.btn{border:0;border-radius:9px;padding:10px 13px;font-weight:700;cursor:pointer}.nav button{background:#fff;color:#7d123f}.hero{background:linear-gradient(135deg,#7d123f,#c53c72);color:white;text-align:center;padding:42px 15px}.hero h1{font-size:34px;margin-bottom:8px}.gold{background:#f3c44e;color:#351b00}.primary{background:#7d123f;color:#fff}.danger{background:#c62828;color:#fff}.gray{background:#eee;color:#333}.section{max-width:1100px;margin:auto;padding:28px 15px}.title{text-align:center;color:#7d123f;margin-bottom:18px}.offer,.box{background:#fff;border-radius:14px;padding:16px;box-shadow:0 4px 18px #0001;margin-bottom:18px}.offer{background:#fff2c9;border:1px solid #e4c96c;text-align:center}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}.card{background:#fff;border:1px solid #f0dce5;border-radius:15px;overflow:hidden;box-shadow:0 4px 18px #0001}.gallery{height:280px;background:#f5edf1;position:relative}.gallery img,.gallery video{width:100%;height:100%;object-fit:cover}.arrow{position:absolute;top:50%;transform:translateY(-50%);background:#0008;color:#fff;border:0;border-radius:50%;width:34px;height:34px}.left{left:8px}.right{right:8px}.cardbody{padding:14px}.card h3{color:#7d123f}.price{font-size:20px;font-weight:800;margin:7px 0}.muted{font-size:13px;color:#777}.actions{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap}.actions .btn{flex:1}.row{display:grid;grid-template-columns:1fr 1fr;gap:9px}.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px}input,textarea,select{width:100%;padding:11px;border:1px solid #ddd;border-radius:9px;margin:5px 0 10px;font-size:15px}textarea{min-height:90px}.status{padding:9px;border-radius:8px;margin-top:8px}.ok{background:#e7f7eb;color:#176334}.err{background:#fde9e9;color:#a00}.admin{display:none}.modal{display:none;position:fixed;inset:0;background:#0009;z-index:100;padding:12px;overflow:auto}.modalbox{background:#fff;max-width:600px;margin:25px auto;padding:18px;border-radius:16px;position:relative}.close{position:absolute;right:10px;top:8px;border:0;border-radius:50%;width:32px;height:32px}.table{overflow:auto}.table table{width:100%;border-collapse:collapse}.table th,.table td{padding:8px;border-bottom:1px solid #eee;text-align:left;font-size:13px;vertical-align:top}.hidden{display:none!important}footer{background:#57102f;color:#fff;text-align:center;padding:25px;margin-top:25px}a{color:inherit}@media(max-width:600px){.row,.row3{grid-template-columns:1fr}.hero h1{font-size:29px}.gallery{height:260px}}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Arial,sans-serif;background:#fff8fb;color:#271d24}.top{background:#57102f;color:#fff;text-align:center;padding:7px;font-size:12px}.nav{position:sticky;top:0;z-index:50;background:#fff;box-shadow:0 2px 15px #0001}.navin{max-width:1150px;margin:auto;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{color:#7d123f;font-size:27px;font-weight:900;letter-spacing:3px}.tag{font-size:10px;color:#777}.navbtn{border:0;background:#7d123f;color:#fff;border-radius:20px;padding:9px 14px;font-weight:700}.hero{max-width:1150px;margin:15px auto;padding:50px 20px;border-radius:24px;background:linear-gradient(135deg,#681034,#c94c7a);color:#fff;text-align:center}.hero h1{font-size:40px;margin-bottom:10px}.hero p{opacity:.92;margin-bottom:20px}.btn{border:0;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer}.gold{background:#f3c44e;color:#3b2100}.primary{background:#7d123f;color:#fff}.danger{background:#c62828;color:#fff}.gray{background:#eee;color:#333}.section{max-width:1150px;margin:auto;padding:25px 16px}.heading{text-align:center;margin-bottom:18px}.heading h2{color:#7d123f;font-size:27px}.heading p{color:#777;margin-top:5px}.offer{background:#fff0c2;border:1px solid #e5c75f;border-radius:15px;padding:14px;text-align:center;margin-bottom:18px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 5px 22px #00000012;border:1px solid #f0dde6}.pic{height:315px;background:#f7edf2;position:relative}.pic img{width:100%;height:100%;object-fit:cover}.arrow{position:absolute;top:50%;transform:translateY(-50%);border:0;border-radius:50%;width:36px;height:36px;background:#0009;color:#fff;font-size:24px}.l{left:8px}.r{right:8px}.dots{position:absolute;bottom:8px;left:0;right:0;text-align:center;color:#fff;text-shadow:0 1px 4px #000}.body{padding:15px}.cat{font-size:12px;color:#9b5b75}.name{font-size:19px;color:#641033;margin:4px 0}.price{font-size:21px;font-weight:800}.sizes{font-size:13px;color:#777;margin:6px 0}.desc{font-size:13px;line-height:1.5;color:#555;min-height:38px}.buy{width:100%;margin-top:10px}.chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-top:12px}.chip{padding:7px 12px;border-radius:20px;background:#fff;border:1px solid #ead1dc;font-size:13px}.box{background:#fff;border-radius:18px;padding:18px;box-shadow:0 5px 22px #0001;margin-bottom:18px}input,textarea,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin:5px 0 10px;font-size:15px;background:#fff}textarea{min-height:90px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}.status{padding:10px;border-radius:9px;margin-top:8px}.ok{background:#e8f7ed;color:#176334}.err{background:#fde8e8;color:#a00}.review{padding:15px}.stars{color:#e5a900;font-size:18px}.muted{color:#777;font-size:13px}.admin{display:none}.table{overflow:auto}.table table{width:100%;border-collapse:collapse}.table th,.table td{padding:9px;border-bottom:1px solid #eee;text-align:left;font-size:13px}.modal{display:none;position:fixed;inset:0;background:#0009;z-index:100;padding:12px;overflow:auto}.modalbox{background:#fff;max-width:620px;margin:25px auto;border-radius:18px;padding:20px;position:relative}.close{position:absolute;right:10px;top:8px;border:0;border-radius:50%;width:32px;height:32px}.hidden{display:none!important}footer{background:#57102f;color:#fff;text-align:center;padding:28px 15px;margin-top:25px}a{color:inherit}@media(max-width:600px){.hero{margin:10px;border-radius:18px;padding:38px 16px}.hero h1{font-size:31px}.row,.row3{grid-template-columns:1fr}.pic{height:290px}.navin{padding:11px}.brand{font-size:23px}}
 </style>
 </head>
 <body>
-<header><div class="nav"><div><div class="logo">ZIVARA</div><div class="tag">Lehenga • Chunari • Ladies Collection</div></div><div><button onclick="go('products')">Shop</button> <button onclick="go('adminLogin')">Admin</button></div></div></header>
+<div class="top">✨ Premium Ladies Collection • COD Available • WhatsApp Orders</div>
+<div class="nav"><div class="navin"><div><div class="brand">ZIVARA</div><div class="tag">LEHENGA • CHUNARI • LADIES COLLECTION</div></div><div><button class="navbtn" onclick="go('products')">Shop</button> <button class="navbtn" onclick="go('adminLogin')">Admin</button></div></div></div>
 
-<section class="hero"><h1>Elegant Fashion, Made for You</h1><p>Premium Lehenga • Anarkali • Chunari • Ladies Collection</p><button class="btn gold" onclick="go('products')">Shop Now</button></section>
+<section class="hero"><h1>Style That Feels Special</h1><p>Discover elegant festive & everyday fashion from ZIVARA.</p><button class="btn gold" onclick="go('products')">Explore Collection</button><div id="chips" class="chips"></div></section>
 
-<section class="section"><div id="offers" class="offer hidden"></div></section>
+<section class="section"><div id="offers"></div></section>
 
-<section class="section" id="products"><h2 class="title">✨ Our Collection</h2><div id="productGrid" class="grid">Loading...</div></section>
+<section class="section" id="products"><div class="heading"><h2>✨ Our Collection</h2><p>Latest arrivals • Premium designs • Ready to wear</p></div><div id="productGrid"><div class="offer">Loading collection...</div></div></section>
 
-<section class="section"><h2 class="title">⭐ Customer Reviews</h2><div id="reviewList" class="grid"></div></section>
+<section class="section"><div class="heading"><h2>⭐ Customer Reviews</h2><p>Real feedback from ZIVARA customers</p></div><div id="reviewList" class="grid"></div></section>
 
-<section class="section"><div class="box">
-<h2 class="title">Write a Review</h2>
+<section class="section"><div class="box"><div class="heading"><h2>Write a Review</h2></div>
 <div class="row"><input id="rName" placeholder="Your name"><select id="rProduct"></select></div>
-<select id="rRating"><option value="5">★★★★★ 5</option><option value="4">★★★★ 4</option><option value="3">★★★ 3</option><option value="2">★★ 2</option><option value="1">★ 1</option></select>
-<textarea id="rText" placeholder="Your review"></textarea><input id="rImage" placeholder="Review photo direct URL (optional)">
-<button class="btn primary" onclick="submitReview()">Submit Review</button><div id="rStatus"></div>
-</div></section>
+<select id="rRating"><option value="5">★★★★★ 5 Stars</option><option value="4">★★★★ 4 Stars</option><option value="3">★★★ 3 Stars</option><option value="2">★★ 2 Stars</option><option value="1">★ 1 Star</option></select>
+<textarea id="rText" placeholder="Share your experience"></textarea><input id="rImage" placeholder="Review photo direct URL (optional)">
+<button class="btn primary" onclick="submitReview()">Submit Review</button><div id="rStatus"></div></div></section>
 
-<section class="section" id="adminLogin"><div class="box">
-<h2 class="title">🔐 Admin Login</h2>
+<section class="section" id="adminLogin"><div class="box"><div class="heading"><h2>🔐 Admin Login</h2><p>Store management is available only to the admin account.</p></div>
 <input id="aEmail" type="email" placeholder="Admin email"><input id="aPass" type="password" placeholder="Admin password">
-<button class="btn primary" onclick="login()">Login</button> <button id="logout" class="btn gray hidden" onclick="logout()">Logout</button><div id="aStatus"></div>
-</div></section>
+<button class="btn primary" onclick="login()">Login</button> <button id="logout" class="btn gray hidden" onclick="logout()">Logout</button><div id="aStatus"></div></div></section>
 
-<section class="section admin" id="adminPanel"><h2 class="title">🛠️ Admin Panel</h2>
+<section class="section admin" id="adminPanel"><div class="heading"><h2>🛠️ ZIVARA Admin</h2><p>Products • Orders • Coupons • Reviews</p></div>
 
-<div class="box"><h3>➕ Add / Edit Product</h3><input type="hidden" id="pid">
-<div class="row"><input id="pname" placeholder="Product name"><input id="pprice" type="number" placeholder="Price"></div>
-<div class="row"><input id="pcat" placeholder="Category"><input id="psizes" placeholder="M,L,XL,XXL"></div>
-<textarea id="pdesc" placeholder="Product details"></textarea>
-<input id="i1" placeholder="Photo 1 direct URL"><input id="i2" placeholder="Photo 2 direct URL"><input id="i3" placeholder="Photo 3 direct URL"><input id="i4" placeholder="Photo 4 direct URL"><input id="i5" placeholder="Photo 5 direct URL"><input id="i6" placeholder="Photo 6 direct URL"><input id="i7" placeholder="Photo 7 direct URL">
-<input id="v1" placeholder="Video 1 URL (optional)"><input id="v2" placeholder="Video 2 URL (optional)">
-<button class="btn primary" onclick="saveProduct()">💾 Save Product</button> <button class="btn gray" onclick="clearProduct()">Clear</button><div id="pStatus"></div></div>
+<div class="box"><h3>➕ Add / Edit Product</h3><input type="hidden" id="pid"><div class="row"><input id="pname" placeholder="Product name"><input id="pprice" type="number" placeholder="Price"></div><div class="row"><input id="pcat" placeholder="Category"><input id="psizes" placeholder="M,L,XL,XXL"></div><textarea id="pdesc" placeholder="Product details"></textarea>
+<input id="i1" placeholder="Photo 1 direct URL"><input id="i2" placeholder="Photo 2 direct URL"><input id="i3" placeholder="Photo 3 direct URL"><input id="i4" placeholder="Photo 4 direct URL"><input id="i5" placeholder="Photo 5 direct URL"><input id="i6" placeholder="Photo 6 direct URL"><input id="i7" placeholder="Photo 7 direct URL"><input id="v1" placeholder="Video URL 1 (optional)"><input id="v2" placeholder="Video URL 2 (optional)">
+<button class="btn primary" onclick="saveProduct()">Save Product</button> <button class="btn gray" onclick="clearProduct()">Clear</button><div id="pStatus"></div></div>
 
-<div class="box"><h3>🎟️ Festival / Custom Coupon</h3><input type="hidden" id="cid">
-<div class="row"><input id="ctitle" placeholder="Diwali Special"><input id="ccode" placeholder="DIWALI30"></div>
-<div class="row"><select id="ctype"><option value="percentage">Percentage %</option><option value="fixed">Fixed ₹</option></select><input id="cvalue" type="number" placeholder="30"></div>
-<div class="row"><input id="cmin" type="number" placeholder="Minimum order"><input id="cmax" type="number" placeholder="Maximum discount (optional)"></div>
-<div class="row"><input id="cstart" type="date"><input id="cend" type="date"></div>
-<label><input id="cactive" type="checkbox" checked style="width:auto"> Active</label><br>
-<button class="btn primary" onclick="saveCoupon()">💾 Save Coupon</button> <button class="btn gray" onclick="clearCoupon()">Clear</button><div id="cStatus"></div></div>
+<div class="box"><h3>🎟️ Festival / Custom Coupon</h3><input type="hidden" id="cid"><div class="row"><input id="ctitle" placeholder="Diwali Special"><input id="ccode" placeholder="DIWALI30"></div><div class="row"><select id="ctype"><option value="percentage">Percentage %</option><option value="fixed">Fixed ₹</option></select><input id="cvalue" type="number" placeholder="Discount"></div><div class="row"><input id="cmin" type="number" placeholder="Minimum order"><input id="cmax" type="number" placeholder="Maximum discount"></div><div class="row"><input id="cstart" type="date"><input id="cend" type="date"></div><label><input id="cactive" type="checkbox" checked style="width:auto"> Active</label><br><button class="btn primary" onclick="saveCoupon()">Save Coupon</button> <button class="btn gray" onclick="clearCoupon()">Clear</button><div id="cStatus"></div></div>
+
+<div class="box"><h3>⭐ Add Customer Review Manually</h3><div class="row"><input id="arName" placeholder="Customer name"><select id="arProduct"></select></div><select id="arRating"><option value="5">★★★★★ 5</option><option value="4">★★★★ 4</option><option value="3">★★★ 3</option><option value="2">★★ 2</option><option value="1">★ 1</option></select><textarea id="arText" placeholder="Customer review"></textarea><input id="arImage" placeholder="Customer photo direct URL (optional)"><button class="btn primary" onclick="adminAddReview()">Add Review</button><div id="arStatus"></div></div>
 
 <div class="box"><h3>📦 Orders</h3><div class="table"><table><thead><tr><th>Order</th><th>Customer</th><th>Product</th><th>Total</th><th>Status</th></tr></thead><tbody id="orders"></tbody></table></div></div>
 <div class="box"><h3>🎟️ Coupons</h3><div class="table"><table><thead><tr><th>Offer</th><th>Code</th><th>Discount</th><th>Active</th><th>Action</th></tr></thead><tbody id="couponRows"></tbody></table></div></div>
@@ -60,158 +49,41 @@
 
 <footer><b>ZIVARA</b><br>Lehenga • Chunari • Ladies Collection<br><br><a href="https://wa.me/919752923124">📱 WhatsApp Order / Enquiry</a></footer>
 
-<div class="modal" id="orderModal"><div class="modalbox"><button class="close" onclick="closeOrder()">×</button><h2 class="title">🛒 Place Your Order</h2><div id="selected"></div>
-<div class="row"><input id="name" placeholder="Name"><input id="phone" placeholder="Mobile"></div><textarea id="address" placeholder="Full address"></textarea>
-<div class="row3"><input id="city" placeholder="City"><input id="state" value="Madhya Pradesh"><input id="pin" placeholder="Pincode"></div>
-<div class="row"><input id="qty" type="number" min="1" value="1" onchange="calc()"><select id="size"></select></div>
-<div class="row"><input id="coupon" placeholder="Coupon code"><button class="btn gold" onclick="applyCoupon()">Apply Coupon</button></div><div id="couponMsg"></div><div id="summary" class="offer"></div>
-<select id="payment"><option value="COD">Cash on Delivery</option><option value="ONLINE">Online Payment — gateway pending</option></select>
-<button class="btn primary" style="width:100%" onclick="placeOrder()">Confirm Order</button><div id="orderStatus"></div></div></div>
+<div class="modal" id="orderModal"><div class="modalbox"><button class="close" onclick="closeOrder()">×</button><div class="heading"><h2>🛒 Place Your Order</h2></div><div id="selected"></div><div class="row"><input id="name" placeholder="Name"><input id="phone" placeholder="Mobile"></div><textarea id="address" placeholder="Full address"></textarea><div class="row3"><input id="city" placeholder="City"><input id="state" value="Madhya Pradesh"><input id="pin" placeholder="Pincode"></div><div class="row"><input id="qty" type="number" min="1" value="1" onchange="calc()"><select id="size"></select></div><div class="row"><input id="coupon" placeholder="Coupon code"><button class="btn gold" onclick="applyCoupon()">Apply Coupon</button></div><div id="couponMsg"></div><div id="summary" class="offer"></div><select id="payment"><option value="COD">Cash on Delivery</option><option value="ONLINE">Online Payment — coming soon</option></select><button class="btn primary" style="width:100%" onclick="placeOrder()">Confirm Order</button><div id="orderStatus"></div></div></div>
 
 <script>
-const SUPABASE_URL="https://honebtbtjruvncafczun.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY="sb_publishable_vJnA2ymyJwDIytTUMqmXrA_G1rWiuky";
-const ADMIN_EMAIL="nishantsharma9752@gmail.com";
-const sb=supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
-let products=[],activeCoupons=[],allCoupons=[],selected=null,applied=null,indexes={};
-
+const URL="https://honebtbtjruvncafczun.supabase.co";
+const KEY="sb_publishable_vJnA2ymyJwDIytTUMqmXrA_G1rWiuky";
+const ADMIN="nishantsharma9752@gmail.com";
+const API=URL+"/rest/v1";
+let client=null;try{client=window.supabase?.createClient(URL,KEY)}catch(e){console.error(e)}
+let products=[],coupons=[],allCoupons=[],selected=null,applied=null,indexes={};
 const $=id=>document.getElementById(id);
 const esc=x=>String(x??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-function go(id){$(id).scrollIntoView({behavior:"smooth"})}
-function status(id,text,ok=true){$(id).innerHTML='<div class="status '+(ok?"ok":"err")+'>'+esc(text)+'</div>'}
-function imgs(p){let a=Array.isArray(p.image_urls)?p.image_urls.filter(Boolean):[];if(!a.length&&p.image_url)a=[p.image_url];return a}
-
-async function loadProducts(){
- const {data,error}=await sb.from("products").select("*").order("created_at",{ascending:false});
- if(error){$("productGrid").textContent=error.message;return} products=data||[];renderProducts();fillReviewProducts();renderProductRows();
+function go(id){$(id)?.scrollIntoView({behavior:"smooth"})}
+function msg(id,t,ok=true){$(id).innerHTML='<div class="status '+(ok?"ok":"err")+'">'+esc(t)+'</div>'}
+function images(p){let a=Array.isArray(p.image_urls)?p.image_urls.filter(Boolean):[];if(!a.length&&p.image_url)a=[p.image_url];return a}
+async function rest(path,options={}){
+ let r=await fetch(API+path,{...options,headers:{apikey:KEY,Authorization:"Bearer "+KEY,"Content-Type":"application/json",...(options.headers||{})}});
+ let text=await r.text();let data=text?JSON.parse(text):null;if(!r.ok)throw new Error(data?.message||data?.hint||text||("HTTP "+r.status));return data;
 }
-function renderProducts(){
- $("productGrid").innerHTML=products.length?products.map(p=>{
-  let a=imgs(p);indexes[p.id]=Math.min(indexes[p.id]||0,Math.max(0,a.length-1));let i=indexes[p.id]||0;
-  let media=a[i]?`<img src="${esc(a[i])}" alt="${esc(p.name)}">`:"<div style="height:100%;display:grid;place-items:center">No image</div>";
-  return `<article class="card"><div class="gallery">${media}${a.length>1?`<button class="arrow left" onclick="gallery(${p.id},-1)">‹</button><button class="arrow right" onclick="gallery(${p.id},1)">›</button>`:""}</div><div class="cardbody"><h3>${esc(p.name)}</h3><div class="muted">${esc(p.category||"Fashion")}</div><div class="price">₹${Number(p.price||0).toLocaleString("en-IN")}</div><div class="muted">Sizes: ${esc(p.sizes||"On request")}</div><p style="margin-top:7px">${esc(p.description||"")}</p>${p.video_urls?.[0]?`<video controls style="width:100%;margin-top:8px" src="${esc(p.video_urls[0])}"></video>`:""}<div class="actions"><button class="btn primary" onclick="openOrder(${p.id})">🛒 Buy Now</button></div></div></article>`
- }).join(""):"<p>No products yet.</p>";
+async function getProducts(){
+ try{products=await rest("/products?select=*&order=created_at.desc");render();fillProducts()}catch(e){$("productGrid").innerHTML='<div class="status err">Products load error: '+esc(e.message)+'</div>'}
 }
-function gallery(id,n){let a=imgs(products.find(p=>p.id===id));if(!a.length)return;indexes[id]=((indexes[id]||0)+n+a.length)%a.length;renderProducts()}
-function fillReviewProducts(){$("rProduct").innerHTML=products.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join("")}
-
-async function loadCoupons(){
- const {data}=await sb.from("coupons").select("*").eq("is_active",true);const today=new Date().toISOString().slice(0,10);
- activeCoupons=(data||[]).filter(c=>(!c.start_date||c.start_date<=today)&&(!c.end_date||c.end_date>=today));
- if(activeCoupons.length){$("offers").classList.remove("hidden");$("offers").innerHTML="🎉 "+activeCoupons.map(c=>`<b>${esc(c.title||"Special Offer")}</b>: ${esc(c.code)} — ${c.discount_type==="percentage"?c.discount_value+"% OFF":"₹"+c.discount_value+" OFF"}`).join(" &nbsp; | &nbsp; ")}
+function render(){
+ $("productGrid").innerHTML=products.length?products.map(p=>{let a=images(p),i=indexes[p.id]||0;if(i>=a.length)i=0;let media=a[i]?'<img src="'+esc(a[i])+'" alt="'+esc(p.name)+'">':'<div style="height:100%;display:grid;place-items:center;color:#777">Image not added</div>';return '<article class="card"><div class="pic">'+media+(a.length>1?'<button class="arrow l" onclick="gallery('+p.id+',-1)">‹</button><button class="arrow r" onclick="gallery('+p.id+',1)">›</button><div class="dots">'+(i+1)+' / '+a.length+'</div>':'')+'</div><div class="body"><div class="cat">'+esc(p.category||"Fashion")+'</div><div class="name">'+esc(p.name)+'</div><div class="price">₹'+Number(p.price||0).toLocaleString("en-IN")+'</div><div class="sizes">Sizes: '+esc(p.sizes||"On request")+'</div><div class="desc">'+esc(p.description||"")+'</div>'+(p.video_urls?.[0]?'<video controls style="width:100%;margin-top:9px;border-radius:10px" src="'+esc(p.video_urls[0])+'"></video>':'')+'<button class="btn primary buy" onclick="openOrder('+p.id+')">🛒 Buy Now</button></div></article>'}).join(""):'<div class="offer">No products available yet.</div>';
 }
-async function loadReviews(){
- const {data}=await sb.from("reviews").select("*").order("created_at",{ascending:false}).limit(30);
- $("reviewList").innerHTML=(data||[]).map(r=>`<div class="card"><div class="cardbody"><b>${esc(r.customer_name||"Customer")}</b><div>${"★".repeat(r.rating||0)}${"☆".repeat(5-(r.rating||0))}</div><p>${esc(r.review_text)}</p>${r.review_image_urls?.[0]?`<img src="${esc(r.review_image_urls[0])}" style="width:100%;margin-top:7px;border-radius:9px">`:""}</div></div>`).join("")||"<p>No reviews yet.</p>"
-}
-async function submitReview(){
- if(!$("rName").value.trim()||!$("rText").value.trim())return status("rStatus","Name and review are required.",false);
- const {error}=await sb.from("reviews").insert({product_id:Number($("rProduct").value),customer_name:$("rName").value.trim(),rating:Number($("rRating").value),review_text:$("rText").value.trim(),review_image_urls:$("rImage").value.trim()?[$("rImage").value.trim()]:[]});
- if(error)return status("rStatus",error.message,false);status("rStatus","Review submitted.");$("rText").value="";$("rImage").value="";loadReviews()
-}
-
-function openOrder(id){
- selected=products.find(p=>p.id===id);applied=null;$("orderModal").style.display="block";$("selected").innerHTML=`<div class="offer"><b>${esc(selected.name)}</b> — ₹${selected.price}</div>`;
- let s=String(selected.sizes||"").split(",").map(x=>x.trim()).filter(Boolean);$("size").innerHTML=s.length?s.map(x=>`<option>${esc(x)}</option>`).join(""):"<option>Not specified</option>";
- $("coupon").value="";$("couponMsg").innerHTML="";$("orderStatus").innerHTML="";calc()
-}
+function gallery(id,n){let a=images(products.find(p=>p.id===id));if(!a.length)return;indexes[id]=((indexes[id]||0)+n+a.length)%a.length;render()}
+function fillProducts(){let o=products.map(p=>'<option value="'+p.id+'">'+esc(p.name)+'</option>').join("");$("rProduct").innerHTML=o;$("arProduct").innerHTML=o;$("chips").innerHTML=products.slice(0,5).map(p=>'<span class="chip">'+esc(p.category||"Collection")+'</span>').join("")}
+async function getCoupons(){try{coupons=await rest("/coupons?select=*&is_active=eq.true&order=created_at.desc");let today=new Date().toISOString().slice(0,10);coupons=coupons.filter(c=>(!c.start_date||c.start_date<=today)&&(!c.end_date||c.end_date>=today));$("offers").innerHTML=coupons.length?'<div class="offer">🎉 '+coupons.map(c=>'<b>'+esc(c.title||"Special Offer")+'</b> • <b>'+esc(c.code)+'</b> • '+(c.discount_type==="percentage"?c.discount_value+"% OFF":"₹"+c.discount_value+" OFF")).join(" &nbsp; | &nbsp; ")+'</div>':''}catch(e){}}
+async function getReviews(){try{let r=await rest("/reviews?select=*&order=created_at.desc&limit=30");$("reviewList").innerHTML=r.length?r.map(x=>'<div class="card review"><b>'+esc(x.customer_name||"Customer")+'</b><div class="stars">'+("★".repeat(Number(x.rating)||0))+'</div><p style="margin-top:7px">'+esc(x.review_text)+'</p>'+(x.review_image_urls?.[0]?'<img src="'+esc(x.review_image_urls[0])+'" style="width:100%;margin-top:8px;border-radius:10px">':'')+'</div>').join(""):'<div class="offer">No reviews yet.</div>'}catch(e){$("reviewList").innerHTML='<div class="status err">Reviews load error: '+esc(e.message)+'</div>'}}
+async function submitReview(){if(!$("rName").value.trim()||!$("rText").value.trim())return msg("rStatus","Name and review are required.",false);try{await rest("/reviews",{method:"POST",headers:{"Prefer":"return=minimal"},body:JSON.stringify({product_id:Number($("rProduct").value),customer_name:$("rName").value.trim(),rating:Number($("rRating").value),review_text:$("rText").value.trim(),review_image_urls:$("rImage").value.trim()?[$("rImage").value.trim()]:[]})});msg("rStatus","Review submitted.");$("rText").value="";$("rImage").value="";getReviews()}catch(e){msg("rStatus",e.message,false)}}
+function openOrder(id){selected=products.find(p=>p.id===id);applied=null;$("orderModal").style.display="block";$("selected").innerHTML='<div class="offer"><b>'+esc(selected.name)+'</b><br>₹'+selected.price+'</div>';let s=String(selected.sizes||"").split(",").map(x=>x.trim()).filter(Boolean);$("size").innerHTML=s.length?s.map(x=>'<option>'+esc(x)+'</option>').join(""):'<option>Not specified</option>';$("coupon").value="";$("couponMsg").innerHTML="";$("orderStatus").innerHTML="";calc()}
 function closeOrder(){$("orderModal").style.display="none"}
-function calc(){
- if(!selected)return;let sub=Number(selected.price)*Math.max(1,Number($("qty").value)||1),d=0;
- if(applied){d=applied.discount_type==="percentage"?sub*Number(applied.discount_value)/100:Number(applied.discount_value);if(applied.maximum_discount!=null)d=Math.min(d,Number(applied.maximum_discount))}
- $("summary").innerHTML=`Subtotal ₹${sub.toFixed(0)}<br>Discount ₹${d.toFixed(0)}<br><b>Total ₹${(sub-d).toFixed(0)}</b><br><small>Delivery charge confirmed at order processing.</small>`
-}
-async function applyCoupon(){
- let code=$("coupon").value.trim().toUpperCase(),today=new Date().toISOString().slice(0,10);
- let {data}=await sb.from("coupons").select("*").eq("code",code).eq("is_active",true).maybeSingle();
- if(!data||data.start_date&&data.start_date>today||data.end_date&&data.end_date<today){applied=null;status("couponMsg","Invalid or expired coupon.",false);return calc()}
- let sub=Number(selected.price)*Math.max(1,Number($("qty").value)||1);
- if(sub<Number(data.minimum_order||0)){applied=null;status("couponMsg","Minimum order ₹"+data.minimum_order+" required.",false);return calc()}
- applied=data;status("couponMsg","Coupon applied.");calc()
-}
-async function placeOrder(){
- if($("payment").value==="ONLINE")return status("orderStatus","Online payment gateway is not connected yet. Select COD.",false);
- if(!$("name").value.trim()||!$("phone").value.trim()||!$("address").value.trim())return status("orderStatus","Name, mobile and full address are required.",false);
- let q=Math.max(1,Number($("qty").value)||1),sub=Number(selected.price)*q,d=0;
- if(applied){d=applied.discount_type==="percentage"?sub*Number(applied.discount_value)/100:Number(applied.discount_value);if(applied.maximum_discount!=null)d=Math.min(d,Number(applied.maximum_discount))}
- let total=Math.max(0,sub-d),no="ZIV"+Date.now().toString().slice(-8);
- let row={order_number:no,customer_name:$("name").value.trim(),customer_phone:$("phone").value.trim(),address:$("address").value.trim(),city:$("city").value.trim(),state:$("state").value.trim(),pincode:$("pin").value.trim(),product_id:selected.id,product_name:selected.name,quantity:q,size:$("size").value,product_price:selected.price,discount_amount:d,coupon_code:applied?.code||null,delivery_charge:0,final_amount:total,payment_method:"COD",payment_status:"Pending",order_status:"New"};
- let {error}=await sb.from("orders").insert(row);if(error)return status("orderStatus",error.message,false);
- let wa="https://wa.me/919752923124?text="+encodeURIComponent(`ZIVARA Order ${no}\nProduct: ${selected.name}\nQty: ${q}\nSize: ${row.size}\nAmount: ₹${total}\nCustomer: ${row.customer_name}\nMobile: ${row.customer_phone}\nAddress: ${row.address}`);
- $("orderStatus").innerHTML=`<div class="status ok">Order placed! <b>${no}</b><br><a class="btn primary" style="display:inline-block;margin-top:8px;text-decoration:none" href="${wa}" target="_blank">📱 Send on WhatsApp</a></div>`
-}
+function calc(){if(!selected)return;let sub=Number(selected.price)*Math.max(1,Number($("qty").value)||1),d=0;if(applied){d=applied.discount_type==="percentage"?sub*Number(applied.discount_value)/100:Number(applied.discount_value);if(applied.maximum_discount!=null)d=Math.min(d,Number(applied.maximum_discount))}$("summary").innerHTML='Subtotal ₹'+sub.toFixed(0)+'<br>Discount ₹'+d.toFixed(0)+'<br><b>Total ₹'+(sub-d).toFixed(0)+'</b>'}
+async function applyCoupon(){let code=$("coupon").value.trim().toUpperCase(),c=coupons.find(x=>x.code.toUpperCase()===code);if(!c){try{c=await rest("/coupons?select=*&code=eq."+encodeURIComponent(code)+"&is_active=eq.true&limit=1");c=c[0]}catch(e){}}let today=new Date().toISOString().slice(0,10);if(!c||c.start_date&&c.start_date>today||c.end_date&&c.end_date<today){applied=null;msg("couponMsg","Invalid or expired coupon.",false);return calc()}let sub=Number(selected.price)*Math.max(1,Number($("qty").value)||1);if(sub<Number(c.minimum_order||0)){applied=null;msg("couponMsg","Minimum order ₹"+c.minimum_order+" required.",false);return calc()}applied=c;msg("couponMsg","Coupon applied.");calc()}
+async function placeOrder(){if($("payment").value==="ONLINE")return msg("orderStatus","Online payment gateway is not connected yet. Select COD.",false);if(!$("name").value.trim()||!$("phone").value.trim()||!$("address").value.trim())return msg("orderStatus","Name, mobile and address are required.",false);let q=Math.max(1,Number($("qty").value)||1),sub=Number(selected.price)*q,d=0;if(applied){d=applied.discount_type==="percentage"?sub*Number(applied.discount_value)/100:Number(applied.discount_value);if(applied.maximum_discount!=null)d=Math.min(d,Number(applied.maximum_discount))}let total=Math.max(0,sub-d),no="ZIV"+Date.now().toString().slice(-8),row={order_number:no,customer_name:$("name").value.trim(),customer_phone:$("phone").value.trim(),address:$("address").value.trim(),city:$("city").value.trim(),state:$("state").value.trim(),pincode:$("pin").value.trim(),product_id:selected.id,product_name:selected.name,quantity:q,size:$("size").value,product_price:selected.price,discount_amount:d,coupon_code:applied?.code||null,delivery_charge:0,final_amount:total,payment_method:"COD",payment_status:"Pending",order_status:"New"};try{await rest("/orders",{method:"POST",headers:{"Prefer":"return=minimal"},body:JSON.stringify(row)});let wa="https://wa.me/919752923124?text="+encodeURIComponent("ZIVARA Order "+no+"\nProduct: "+selected.name+"\nQty: "+q+"\nSize: "+row.size+"\nAmount: ₹"+total+"\nCustomer: "+row.customer_name+"\nMobile: "+row.customer_phone+"\nAddress: "+row.address);$("orderStatus").innerHTML='<div class="status ok">Order placed! <b>'+no+'</b><br><a class="btn primary" style="display:inline-block;margin-top:8px;text-decoration:none" href="'+wa+'" target="_blank">📱 Send on WhatsApp</a></div>'}catch(e){msg("orderStatus",e.message,false)}}
 
-async function login(){
- let email=$("aEmail").value.trim(),password=$("aPass").value;
- if(!email||!password)return status("aStatus","Email and password required.",false);
- let {data,error}=await sb.auth.signInWithPassword({email,password});
- if(error)return status("aStatus",error.message,false);
- if(data.user.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()){await sb.auth.signOut();return status("aStatus","This account is not the configured admin.",false)}
- status("aStatus","Admin login successful.");$("logout").classList.remove("hidden");$("adminPanel").style.display="block";loadAdmin()
-}
-async function logout(){await sb.auth.signOut();$("adminPanel").style.display="none";$("logout").classList.add("hidden");status("aStatus","Logged out.")}
-async function checkAdmin(){
- let {data}=await sb.auth.getSession(),u=data.session?.user;
- if(u&&u.email?.toLowerCase()===ADMIN_EMAIL.toLowerCase()){$("adminPanel").style.display="block";$("logout").classList.remove("hidden");loadAdmin()}
-}
-
-async function saveProduct(){
- let {data:{user}}=await sb.auth.getUser();if(!user||user.email.toLowerCase()!==ADMIN_EMAIL.toLowerCase())return status("pStatus","Please login as admin.",false);
- let images=[1,2,3,4,5,6,7].map(i=>$("i"+i).value.trim()).filter(Boolean),videos=[1,2].map(i=>$("v"+i).value.trim()).filter(Boolean);
- if(!images.length)return status("pStatus","At least one direct image URL is required.",false);
- let obj={name:$("pname").value.trim(),price:Number($("pprice").value),category:$("pcat").value.trim(),description:$("pdesc").value.trim(),sizes:$("psizes").value.trim(),image_url:images[0],image_urls:images,video_urls:videos},id=$("pid").value;
- let {error}=id?await sb.from("products").update(obj).eq("id",id):await sb.from("products").insert(obj);
- if(error)return status("pStatus",error.message,false);status("pStatus",id?"Product updated!":"Product added!");clearProduct();loadProducts()
-}
-function clearProduct(){["pid","pname","pprice","pcat","psizes","pdesc","i1","i2","i3","i4","i5","i6","i7","v1","v2"].forEach(x=>$(x).value="")}
-function editProduct(id){let p=products.find(x=>x.id===id),a=imgs(p),v=p.video_urls||[];$("pid").value=p.id;$("pname").value=p.name||"";$("pprice").value=p.price||"";$("pcat").value=p.category||"";$("psizes").value=p.sizes||"";$("pdesc").value=p.description||"";for(let i=1;i<=7;i++)$("i"+i).value=a[i-1]||"";for(let i=1;i<=2;i++)$("v"+i).value=v[i-1]||"";go("adminPanel")}
-async function deleteProduct(id){if(!confirm("Delete this product?"))return;let {error}=await sb.from("products").delete().eq("id",id);if(error)alert(error.message);else loadProducts()}
-
-async function saveCoupon(){
- let obj={title:$("ctitle").value.trim(),code:$("ccode").value.trim().toUpperCase(),discount_type:$("ctype").value,discount_value:Number($("cvalue").value),minimum_order:Number($("cmin").value||0),maximum_discount:$("cmax").value?Number($("cmax").value):null,start_date:$("cstart").value||null,end_date:$("cend").value||null,is_active:$("cactive").checked},id=$("cid").value;
- if(!obj.title||!obj.code||!obj.discount_value)return status("cStatus","Offer, code and discount are required.",false);
- let {error}=id?await sb.from("coupons").update(obj).eq("id",id):await sb.from("coupons").insert(obj);
- if(error)return status("cStatus",error.message,false);status("cStatus","Coupon saved.");clearCoupon();loadCoupons();loadAdmin()
-}
-function clearCoupon(){["cid","ctitle","ccode","cvalue","cmin","cmax","cstart","cend"].forEach(x=>$(x).value="");$("cactive").checked=true}
-function editCoupon(id){let c=allCoupons.find(x=>x.id===id);if(!c)return;$("cid").value=c.id;$("ctitle").value=c.title||"";$("ccode").value=c.code||"";$("ctype").value=c.discount_type||"percentage";$("cvalue").value=c.discount_value||"";$("cmin").value=c.minimum_order||0;$("cmax").value=c.maximum_discount??"";$("cstart").value=c.start_date||"";$("cend").value=c.end_date||"";$("cactive").checked=c.is_active!==false}
-async function toggleCoupon(id,on){let {error}=await sb.from("coupons").update({is_active:on}).eq("id",id);if(error)alert(error.message);else{loadCoupons();loadAdmin()}}
-async function deleteCoupon(id){if(!confirm("Delete coupon?"))return;let {error}=await sb.from("coupons").delete().eq("id",id);if(error)alert(error.message);else{loadCoupons();loadAdmin()}}
-
-async function loadAdmin(){
- let {data:o}=await sb.from("orders").select("*").order("created_at",{ascending:false});
- $("orders").innerHTML=(o||[]).map(x=>`<tr><td>${esc(x.order_number)}<br>${new Date(x.created_at).toLocaleString()}</td><td>${esc(x.customer_name)}<br>${esc(x.customer_phone)}<br>${esc(x.address)}</td><td>${esc(x.product_name)}<br>Qty ${x.quantity}, ${esc(x.size)}</td><td>₹${x.final_amount}</td><td><select onchange="orderStatus(${x.id},this.value)">${["New","Confirmed","Packed","Shipped","Delivered","Cancelled"].map(s=>`<option ${s===x.order_status?"selected":""}>${s}</option>`).join("")}</select></td></tr>`).join("");
- let {data:c}=await sb.from("coupons").select("*").order("created_at",{ascending:false});allCoupons=c||[];
- $("couponRows").innerHTML=allCoupons.map(x=>`<tr><td>${esc(x.title)}</td><td>${esc(x.code)}</td><td>${x.discount_type==="percentage"?x.discount_value+"%":"₹"+x.discount_value}</td><td>${x.is_active?"ON":"OFF"}</td><td><button class="btn gray" onclick="editCoupon(${x.id})">Edit</button> <button class="btn gold" onclick="toggleCoupon(${x.id},${!x.is_active})">${x.is_active?"OFF":"ON"}</button> <button class="btn danger" onclick="deleteCoupon(${x.id})">Delete</button></td></tr>`).join("");
- let {data:r}=await sb.from("reviews").select("*").order("created_at",{ascending:false});$("reviewRows").innerHTML=(r||[]).map(x=>`<tr><td>${esc(x.customer_name)}</td><td>${x.rating}/5</td><td>${esc(x.review_text)}</td><td><button class="btn danger" onclick="deleteReview(${x.id})">Delete</button></td></tr>`).join("")
-}
-function renderProductRows(){$("productRows").innerHTML=products.map(p=>`<tr><td>${esc(p.name)}</td><td>₹${p.price}</td><td><button class="btn gray" onclick="editProduct(${p.id})">Edit</button> <button class="btn danger" onclick="deleteProduct(${p.id})">Delete</button></td></tr>`).join("")}
-async function orderStatus(id,s){let {error}=await sb.from("orders").update({order_status:s}).eq("id",id);if(error)alert(error.message);else loadAdmin()}
-async function deleteReview(id){if(!confirm("Delete review?"))return;let {error}=await sb.from("reviews").delete().eq("id",id);if(error)alert(error.message);else{loadReviews();loadAdmin()}}
-
-window.addEventListener("load", async function(){
-
-    try {
-
-        if (!window.supabase) {
-            $("productGrid").innerHTML =
-                '<div class="status err">Supabase library load nahi hui.</div>';
-            return;
-        }
-
-        await loadProducts();
-        await loadCoupons();
-        await loadReviews();
-        await checkAdmin();
-
-    } catch (error) {
-
-        console.error("ZIVARA ERROR:", error);
-
-        $("productGrid").innerHTML =
-            '<div class="status err">Products load nahi ho pa rahe: ' +
-            esc(error.message || error) +
-            '</div>';
-    }
-
-});
+async function login(){if(!client)return msg("aStatus","Supabase connection unavailable.",false);let email=$("aEmail").value.trim(),pass=$("aPass").value;if(!email||!pass)return msg("aStatus","Email and password required.",false);let {data,error}=await client.auth.signInWithPassword({email,password:pass});if(error)return msg("aStatus",error.message,false);if(data.user.email.toLowerCase()!==ADMIN.toLowerCase()){await client.auth.signOut();return msg("aStatus","This is not the configured admin account.",false)}showAdmin();msg("aStatus","Admin login successful.")}
+function showAdmin(){$("adminPanel").style.display="block";$("logout").classList.remove("hidden");loadAdmin()}
+async function logout(){if(client)await client.auth.signOut();$("adminPanel").style.display="none";$("logout").classList.add(
