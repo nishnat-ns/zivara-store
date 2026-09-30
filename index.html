@@ -64,8 +64,27 @@ function go(id){$(id)?.scrollIntoView({behavior:"smooth"})}
 function msg(id,t,ok=true){$(id).innerHTML='<div class="status '+(ok?"ok":"err")+'">'+esc(t)+'</div>'}
 function images(p){let a=Array.isArray(p.image_urls)?p.image_urls.filter(Boolean):[];if(!a.length&&p.image_url)a=[p.image_url];return a}
 async function rest(path,options={}){
- let r=await fetch(API+path,{...options,headers:{apikey:KEY,Authorizat"Content-Type":"application/json",...(options.headers||{})}});
- let text=await r.text();let data=text?JSON.parse(text):null;if(!r.ok)throw new Error(data?.message||data?.hint||text||("HTTP "+r.status));return data;
+ let headers={
+   apikey:KEY,
+   "Content-Type":"application/json",
+   ...(options.headers||{})
+ };
+
+ // Public requests use the publishable key.
+ // Admin requests automatically use the current Supabase login token.
+ if(client){
+   try{
+     const {data}=await client.auth.getSession();
+     const token=data?.session?.access_token;
+     if(token) headers.Authorization="Bearer "+token;
+   }catch(e){}
+ }
+
+ let r=await fetch(API+path,{...options,headers});
+ let text=await r.text();
+ let data=text?JSON.parse(text):null;
+ if(!r.ok)throw new Error(data?.message||data?.hint||text||("HTTP "+r.status));
+ return data;
 }
 async function getProducts(){
  try{products=await rest("/products?select=*&order=created_at.desc");render();fillProducts()}catch(e){$("productGrid").innerHTML='<div class="status err">Products load error: '+esc(e.message)+'</div>'}
@@ -84,6 +103,4 @@ function calc(){if(!selected)return;let sub=Number(selected.price)*Math.max(1,Nu
 async function applyCoupon(){let code=$("coupon").value.trim().toUpperCase(),c=coupons.find(x=>x.code.toUpperCase()===code);if(!c){try{c=await rest("/coupons?select=*&code=eq."+encodeURIComponent(code)+"&is_active=eq.true&limit=1");c=c[0]}catch(e){}}let today=new Date().toISOString().slice(0,10);if(!c||c.start_date&&c.start_date>today||c.end_date&&c.end_date<today){applied=null;msg("couponMsg","Invalid or expired coupon.",false);return calc()}let sub=Number(selected.price)*Math.max(1,Number($("qty").value)||1);if(sub<Number(c.minimum_order||0)){applied=null;msg("couponMsg","Minimum order ₹"+c.minimum_order+" required.",false);return calc()}applied=c;msg("couponMsg","Coupon applied.");calc()}
 async function placeOrder(){if($("payment").value==="ONLINE")return msg("orderStatus","Online payment gateway is not connected yet. Select COD.",false);if(!$("name").value.trim()||!$("phone").value.trim()||!$("address").value.trim())return msg("orderStatus","Name, mobile and address are required.",false);let q=Math.max(1,Number($("qty").value)||1),sub=Number(selected.price)*q,d=0;if(applied){d=applied.discount_type==="percentage"?sub*Number(applied.discount_value)/100:Number(applied.discount_value);if(applied.maximum_discount!=null)d=Math.min(d,Number(applied.maximum_discount))}let total=Math.max(0,sub-d),no="ZIV"+Date.now().toString().slice(-8),row={order_number:no,customer_name:$("name").value.trim(),customer_phone:$("phone").value.trim(),address:$("address").value.trim(),city:$("city").value.trim(),state:$("state").value.trim(),pincode:$("pin").value.trim(),product_id:selected.id,product_name:selected.name,quantity:q,size:$("size").value,product_price:selected.price,discount_amount:d,coupon_code:applied?.code||null,delivery_charge:0,final_amount:total,payment_method:"COD",payment_status:"Pending",order_status:"New"};try{await rest("/orders",{method:"POST",headers:{"Prefer":"return=minimal"},body:JSON.stringify(row)});let wa="https://wa.me/919752923124?text="+encodeURIComponent("ZIVARA Order "+no+"\nProduct: "+selected.name+"\nQty: "+q+"\nSize: "+row.size+"\nAmount: ₹"+total+"\nCustomer: "+row.customer_name+"\nMobile: "+row.customer_phone+"\nAddress: "+row.address);$("orderStatus").innerHTML='<div class="status ok">Order placed! <b>'+no+'</b><br><a class="btn primary" style="display:inline-block;margin-top:8px;text-decoration:none" href="'+wa+'" target="_blank">📱 Send on WhatsApp</a></div>'}catch(e){msg("orderStatus",e.message,false)}}
 
-async function login(){if(!client)return msg("aStatus","Supabase connection unavailable.",false);let email=$("aEmail").value.trim(),pass=$("aPass").value;if(!email||!pass)return msg("aStatus","Email and password required.",false);let {data,error}=await client.auth.signInWithPassword({email,password:pass});if(error)return msg("aStatus",error.message,false);if(data.user.email.toLowerCase()!==ADMIN.toLowerCase()){await client.auth.signOut();return msg("aStatus","This is not the configured admin account.",false)}showAdmin();msg("aStatus","Admin login successful.")}
-function showAdmin(){$("adminPanel").style.display="block";$("logout").classList.remove("hidden");loadAdmin()}
-async function logout(){if(client)await client.auth.signOut();$("adminPanel").style.display="none";$("logout").classList.add(
+async function login(){if(!client)return msg("aStatus","Supabase connection unavailable.",false);let email=$("aEmail").value.trim(),pass=$("aPass").value;if(!email||!pass)return msg("aStatus","Email and password required.",false);let {data,error}=await client.auth.signInWithPassword({email,password:pass});if(error)return msg("aStatus",error.message,false);if(data.user.email.toLowerCase()!==ADMIN.toLowerCase()){await client.auth.signOut();return msg("aStatus","This is not the configured 
