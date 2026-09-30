@@ -64,7 +64,7 @@ function go(id){$(id)?.scrollIntoView({behavior:"smooth"})}
 function msg(id,t,ok=true){$(id).innerHTML='<div class="status '+(ok?"ok":"err")+'">'+esc(t)+'</div>'}
 function images(p){let a=Array.isArray(p.image_urls)?p.image_urls.filter(Boolean):[];if(!a.length&&p.image_url)a=[p.image_url];return a}
 async function rest(path,options={}){
- let r=await fetch(API+path,{...options,headers:{apikey:KEY,Authorization:"Bearer "+KEY,"Content-Type":"application/json",...(options.headers||{})}});
+ let r=await fetch(API+path,{...options,headers:{apikey:KEY,Authorizat"Content-Type":"application/json",...(options.headers||{})}});
  let text=await r.text();let data=text?JSON.parse(text):null;if(!r.ok)throw new Error(data?.message||data?.hint||text||("HTTP "+r.status));return data;
 }
 async function getProducts(){
