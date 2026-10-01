@@ -1,2193 +1,4026 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#65143a">
-<title>ZIVARA | Premium Fashion Store</title>
-<meta name="description" content="ZIVARA premium lehenga, chunari, Anarkali and ladies fashion collection.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ZIVARA | Online Fashion Store</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 <style>
-:root{--w:#65143a;--w2:#8d2855;--r:#d96c91;--c:#fffaf7;--g:#d7a746;--i:#241b20;--m:#746a70;--l:#eadfe3;--gr:#16834b;--sh:0 12px 35px #3f12270f}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--c);color:var(--i);line-height:1.5}button,input,textarea,select{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}
-.top{background:linear-gradient(90deg,#421024,#7b1745,#421024);color:#fff;text-align:center;padding:8px;font-size:12px}.top b{color:#ffe4a4}
-.nav{position:sticky;top:0;z-index:50;background:#fffffff2;backdrop-filter:blur(12px);border-bottom:1px solid #eee}.navin{max-width:1200px;margin:auto;padding:9px 16px;min-height:65px;display:flex;align-items:center;gap:18px}.logo{display:flex;align-items:center;gap:9px}.mark{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#7d1745,#d86a91);color:#fff;font:800 19px Georgia}.lt{font:800 23px Georgia;color:var(--w);letter-spacing:3px;line-height:1}.ls{font-size:7px;letter-spacing:2px;color:#8c747d;margin-top:3px}.links{display:flex;gap:20px;flex:1;justify-content:center;font-size:13px;font-weight:700;color:#5e5057}.actions{display:flex;gap:7px}.ib,.admin{border:1px solid var(--l);background:#fff;color:var(--w);border-radius:22px;padding:9px 12px;font-weight:800}.admin{background:var(--w);color:#fff;border:0}
-.hero{max-width:1200px;margin:18px auto;padding:0 16px}.heroCard{min-height:480px;border-radius:28px;overflow:hidden;background:linear-gradient(90deg,#31091ddd,#31091d99,#31091d22),url("https://i.ibb.co/7ts39z9P/IMG-20260927-160155-861.jpg") center/cover}.heroIn{max-width:620px;color:#fff;padding:65px 48px}.ey{display:inline-block;border:1px solid #ffffff44;background:#ffffff14;border-radius:30px;padding:7px 11px;font-size:11px;text-transform:uppercase;letter-spacing:1px}.hero h1{font:600 clamp(42px,6vw,70px)/.98 Georgia;margin:20px 0}.hero h1 span{color:#f7d68b}.hero p{font-size:16px;color:#f9edf1}.btn{border:0;border-radius:11px;padding:11px 16px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:6px}.primary{background:var(--w);color:#fff}.gold{background:#f0c96c;color:#3b2307}.light{background:#fff;color:var(--w)}.outline{background:#fff;border:1px solid var(--l);color:var(--w)}.heroBtns{display:flex;gap:9px;flex-wrap:wrap;margin-top:24px}.stats{display:flex;gap:24px;margin-top:28px;flex-wrap:wrap}.stats b{display:block}.stats span{font-size:11px;color:#ead9df}
-.sec{max-width:1200px;margin:auto;padding:35px 16px}.head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:18px}.k{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--r);font-weight:900}.sec h2{font:34px/1.1 Georgia;color:var(--w);margin-top:4px}.head p{font-size:13px;color:var(--m)}
-.offer{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;background:linear-gradient(110deg,#fff1f5,#fff8e6);border:1px solid #f0d6df;border-radius:17px;padding:16px 19px}.offer strong{color:var(--w)}.code{background:#fff;border:1px dashed var(--g);padding:8px 11px;border-radius:9px;font-weight:900;color:#6c4a0d}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 20px}.chip{border:1px solid var(--l);background:#fff;color:#65545b;border-radius:20px;padding:8px 12px;font-size:12px;font-weight:700}.chip.active{background:var(--w);color:#fff;border-color:var(--w)}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}.card{background:#fff;border:1px solid #eee2e7;border-radius:18px;overflow:hidden;box-shadow:var(--sh)}.pic{height:350px;position:relative;background:#f5e9ee}.pic img{width:100%;height:100%;object-fit:cover}.badge{position:absolute;top:10px;left:10px;background:#fff;color:var(--w);padding:5px 8px;border-radius:15px;font-size:10px;font-weight:900}.wish{position:absolute;top:10px;right:10px;border:0;background:#fff;color:var(--w);width:34px;height:34px;border-radius:50%}.arr{position:absolute;top:50%;transform:translateY(-50%);border:0;background:#fffdd;color:var(--w);width:32px;height:32px;border-radius:50%;font-size:20px}.prev{left:8px}.next{right:8px}.dots{position:absolute;bottom:7px;left:0;right:0;text-align:center;color:#fff;text-shadow:0 2px 4px #000;font-size:11px}.body{padding:13px}.cat{font-size:10px;color:var(--r);font-weight:900;text-transform:uppercase}.name{font:19px Georgia;color:var(--w);margin:4px 0}.priceRow{display:flex;justify-content:space-between;gap:8px;align-items:center}.price{font-size:19px;font-weight:900}.free{font-size:10px;color:var(--gr);font-weight:800}.desc{font-size:12px;color:#71666c;margin:6px 0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.sizes{font-size:11px;color:#81747a;border-top:1px solid #f1e8eb;padding-top:6px}.acts{display:grid;grid-template-columns:1fr 42px;gap:6px;margin-top:9px}.wa{background:#f0fbf5;color:var(--gr);border:1px solid #d7eade;border-radius:10px;font-weight:900}.features{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.feature,.box,.review{background:#fff;border:1px solid var(--l);border-radius:17px;padding:18px;box-shadow:var(--sh)}.feature{text-align:center}.fi{font-size:26px}.feature b{display:block;color:var(--w);margin-top:7px}.feature span{font-size:11px;color:var(--m)}.story{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center}.storyImg{min-height:370px;border-radius:23px;background:url("https://i.ibb.co/yFkqLLxg/IMG-20260927-160147-901.jpg") center/cover}.storyCopy p{color:var(--m);font-size:14px;margin:11px 0}.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.stars{color:#e0a31d}.review p{font-size:13px;color:#635960;margin-top:7px}.review img{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin-top:8px}.row{display:grid;grid-template-columns:1fr 1fr;gap:9px}.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}input,textarea,select{width:100%;padding:11px 12px;border:1px solid #ddd1d7;border-radius:10px;background:#fff;color:var(--i);outline:0;margin:5px 0 9px}textarea{min-height:100px;resize:vertical}.status{padding:10px;border-radius:9px;margin-top:8px;font-size:13px}.ok{background:#e8f7ef;color:#176334}.err{background:#fdeaea;color:#a01818}.adminPanel{display:none}.table{overflow:auto}.table table{width:100%;border-collapse:collapse;min-width:700px}.table th,.table td{padding:9px;border-bottom:1px solid #eee;text-align:left;font-size:12px;vertical-align:top}.small{font-size:11px;color:var(--m)}.modal{display:none;position:fixed;inset:0;background:#18060fcc;z-index:100;padding:12px;overflow:auto}.modalBox{max-width:700px;margin:15px auto;background:#fff;border-radius:22px;padding:20px;position:relative}.close{position:absolute;right:10px;top:10px;border:0;background:#f6edf1;color:var(--w);width:34px;height:34px;border-radius:50%;font-size:19px}.sel{display:grid;grid-template-columns:90px 1fr;gap:10px;background:#fff8fa;border:1px solid #f0dfe5;border-radius:13px;padding:9px;margin-bottom:10px}.sel img{width:90px;height:100px;object-fit:cover;border-radius:9px}.summary{background:#fff7e0;border:1px solid #efd996;border-radius:12px;padding:12px;margin:9px 0}footer{background:#3c0b24;color:#f7e9ee;margin-top:25px}.foot{max-width:1200px;margin:auto;padding:40px 16px 20px;display:grid;grid-template-columns:2fr 1fr 1fr;gap:25px}.foot h3,.foot h4{color:#f5cc82}.foot p,.foot a{font-size:12px;color:#ddcbd2;display:block;margin:5px 0}.copy{text-align:center;border-top:1px solid #ffffff18;padding:13px;font-size:10px;color:#bfaab3}.hidden{display:none!important}
-@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.links{display:none}.features{grid-template-columns:repeat(2,1fr)}.reviews{grid-template-columns:1fr 1fr}.foot{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.navin{padding:8px 11px}.lt{font-size:20px}.admin{padding:8px 10px}.hero{padding:8px 10px}.heroCard{min-height:520px;border-radius:21px}.heroIn{padding:50px 23px}.hero h1{font-size:43px}.hero p{font-size:14px}.sec{padding:28px 11px}.sec h2{font-size:28px}.head{display:block}.head p{margin-top:6px}.offer{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr;gap:9px}.pic{height:245px}.body{padding:10px}.name{font-size:16px}.price{font-size:16px}.desc{font-size:11px}.acts{grid-template-columns:1fr}.acts .wa{display:none}.features{grid-template-columns:1fr 1fr}.feature{padding:13px 7px}.story{grid-template-columns:1fr}.storyImg{min-height:290px}.reviews{grid-template-columns:1fr}.row,.row3{grid-template-columns:1fr}.foot{grid-template-columns:1fr}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#fff8fb;color:#292129}
+header{background:#7d123f;color:white;padding:13px;position:sticky;top:0;z-index:50}
+.nav{max-width:1150px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.logo{font-size:26px;font-weight:900;letter-spacing:2px}
+.tag{font-size:11px}
+button,.btn{border:0;border-radius:9px;padding:10px 14px;font-weight:bold;cursor:pointer}
+.nav button{background:white;color:#7d123f}
+.hero{background:linear-gradient(135deg,#7d123f,#c43c72);color:white;text-align:center;padding:55px 15px}
+.hero h1{font-size:36px;margin-bottom:10px}
+.hero p{margin-bottom:18px}
+.gold{background:#f5c94a;color:#301600}
+.primary{background:#7d123f;color:white}
+.danger{background:#c62828;color:white}
+.gray{background:#eee;color:#222}
+.section{max-width:1150px;margin:auto;padding:30px 15px}
+.title{text-align:center;color:#7d123f;margin-bottom:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:white;border:1px solid #f0dce5;border-radius:15px;overflow:hidden;box-shadow:0 4px 18px #0001}
+.card.clickable{cursor:pointer}
+.gallery{height:285px;background:#f4edf0;position:relative}
+.gallery img{width:100%;height:100%;object-fit:cover}
+.gallery button{position:absolute;top:50%;transform:translateY(-50%);background:#0009;color:white;border-radius:50%;width:35px;height:35px;padding:0;font-size:22px}
+.gallery .prev{left:8px}.gallery .next{right:8px}
+.cardbody{padding:14px}
+.card h3{color:#7d123f}
+.price{font-size:21px;font-weight:900;margin:7px 0}
+.muted{color:#777;font-size:13px}
+.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.actions .btn{flex:1;text-align:center;text-decoration:none}
+.offer{background:#fff3c7;border:1px solid #e3c65d;padding:14px;border-radius:12px;text-align:center;margin-bottom:18px}
+.box{background:white;border-radius:15px;padding:18px;box-shadow:0 4px 18px #0001;margin-bottom:20px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+input,textarea,select{width:100%;padding:11px;border:1px solid #ddd;border-radius:9px;margin:5px 0 10px;font-size:15px}
+textarea{min-height:90px}
+.status{padding:9px;border-radius:8px;margin-top:8px}
+.ok{background:#e8f7ec;color:#176332}
+.err{background:#fde8e8;color:#a00000}
+.hidden{display:none!important}
+.admin{display:none}
+footer{background:#57102f;color:white;text-align:center;padding:28px;margin-top:25px}
+footer a{color:white}
+
+.modal{display:none;position:fixed;inset:0;background:#000b;z-index:100;padding:10px;overflow:auto}
+.modalbox{background:white;max-width:950px;margin:15px auto;padding:18px;border-radius:16px;position:relative}
+.close{position:absolute;right:10px;top:8px;width:36px;height:36px;border-radius:50%;font-size:22px;padding:0;z-index:5}
+
+.detail-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:20px}
+.detail-photo{background:#f5edf1;border-radius:14px;min-height:430px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.detail-photo img{max-width:100%;max-height:650px;object-fit:contain;cursor:zoom-in}
+.thumbs{display:flex;gap:8px;overflow:auto;margin-top:10px}
+.thumbs img{width:72px;height:72px;object-fit:cover;border-radius:8px;border:2px solid transparent;cursor:pointer}
+.thumbs img.active{border-color:#7d123f}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:12px}
+.video-grid video{width:100%;border-radius:10px;background:#000}
+
+.zoom{display:none;position:fixed;inset:0;background:#000e;z-index:300;align-items:center;justify-content:center;padding:10px}
+.zoom img{max-width:100%;max-height:96vh;object-fit:contain}
+
+.preview-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin:7px 0 12px}
+.preview-grid img{width:100%;height:75px;object-fit:cover;border-radius:7px}
+.filehint{font-size:12px;color:#777;margin:-5px 0 10px}
+
+.table{overflow:auto}
+table{width:100%;border-collapse:collapse}
+th,td{padding:8px;border-bottom:1px solid #eee;text-align:left;font-size:13px;vertical-align:top}
+.admin-img{width:55px;height:55px;object-fit:cover;border-radius:7px}
+
+@media(max-width:700px){
+ .row,.row3,.detail-grid{grid-template-columns:1fr}
+ .hero h1{font-size:29px}
+ .gallery{height:265px}
+ .detail-photo{min-height:330px}
+ .preview-grid{grid-template-columns:repeat(3,1fr)}
+}
 </style>
 </head>
+
 <body>
-<div class="top">✨ <b>FESTIVE EDIT 2026</b> • Premium Fashion • COD Available • Easy WhatsApp Ordering</div>
-<nav class="nav"><div class="navin"><a class="logo" href="#"><div class="mark">Z</div><div><div class="lt">ZIVARA</div><div class="ls">FASHION &amp; LIFESTYLE</div></div></a><div class="links"><a href="#products">Shop</a><a href="#why">Why Zivara</a><a href="#story">Our Story</a><a href="#reviews">Reviews</a></div><div class="actions"><button class="ib" onclick="loadOffers()">🎁</button><button class="admin" onclick="go('adminLogin')">Admin</button></div></div></nav>
 
-<section class="hero"><div class="heroCard"><div class="heroIn"><div class="ey">✦ New season • curated with love</div><h1>Wear your <span>special</span> moment.</h1><p>Discover statement lehengas, elegant chunaris, ready-to-wear suits and beautiful ladies collections for festive days, celebrations and everyday style.</p><div class="heroBtns"><button class="btn gold" onclick="go('products')">Shop Collection →</button><button class="btn light" onclick="loadOffers()">🎁 View Offers</button></div><div class="stats"><div><b>Premium</b><span>Curated designs</span></div><div><b>COD</b><span>Easy ordering</span></div><div><b>WhatsApp</b><span>Quick support</span></div></div></div></div></section>
-
-<section class="sec"><div class="offer"><div><span class="k">ZIVARA offers</span><br><strong id="offerText">Loading latest festival offers…</strong></div><div class="code" id="offerCode">Offers</div></div></section>
-
-<section class="sec" id="why"><div class="head"><div><div class="k">The ZIVARA promise</div><h2>Made for moments that matter</h2></div><p>Simple shopping. Beautiful styles. Personal support.</p></div><div class="features"><div class="feature"><div class="fi">💎</div><b>Curated Fashion</b><span>Fresh festive &amp; ladies collections.</span></div><div class="feature"><div class="fi">📦</div><b>Careful Dispatch</b><span>Orders packed with attention.</span></div><div class="feature"><div class="fi">💬</div><b>WhatsApp Support</b><span>Quick help before you order.</span></div><div class="feature"><div class="fi">🛍️</div><b>COD Available</b><span>Convenient cash-on-delivery.</span></div></div><div style="height:12px"></div><div class="features"><div class="feature"><div class="fi">↩️</div><b>7 Days Return</b><span>Eligible items as per policy.</span></div><div class="feature"><div class="fi">🕐</div><b>24×7 Support</b><span>WhatsApp customer queries.</span></div><div class="feature"><div class="fi">🔒</div><b>Secure Payment</b><span>Supported online payment methods.</span></div><div class="feature"><div class="fi">🚚</div><b>Order Status</b><span>View your order details.</span></div></div></section>
-
-<section class="sec" id="products"><div class="head"><div><div class="k">Shop ZIVARA</div><h2>New &amp; loved styles</h2></div><p id="productCount">Loading…</p></div><div id="chips" class="chips"></div><div id="productGrid" class="grid"><div class="box">Loading collection…</div></div></section>
-
-<section class="sec" id="story"><div class="story"><div class="storyImg"></div><div class="storyCopy"><div class="k">About ZIVARA</div><h2>Style with a personal touch.</h2><p>ZIVARA brings together expressive Indian fashion and easy online shopping. From festive lehengas to elegant Anarkali sets, every collection is presented with clear details, sizes and simple ordering.</p><p>Need help with a size, design or order? Connect with us on WhatsApp.</p><button class="btn primary" onclick="openWhatsApp()">💬 Chat on WhatsApp</button></div></div></section>
-
-<section class="sec"><div class="box"><div class="head"><div><div class="k">Customer promise</div><h2 style="font-size:28px">Return &amp; Support</h2></div></div><p class="small">Eligible products can be returned/exchanged within 7 days according to the applicable product policy. Keep the item unused with tags and original packaging where applicable.</p><br><button class="btn primary" onclick="openWhatsApp()">💬 Contact Support</button></div></section>
-
-<section class="sec" id="reviews"><div class="head"><div><div class="k">Loved by customers</div><h2>Customer stories</h2></div><p>Share your experience after purchase.</p></div><div id="reviewList" class="reviews"></div></section>
-<section class="sec"><div class="box"><div class="head"><div><div class="k">Your feedback</div><h2 style="font-size:27px">Write a review</h2></div></div><div class="row"><input id="rName" placeholder="Your name"><select id="rProduct"></select></div><select id="rRating"><option value="5">★★★★★ 5 Stars</option><option value="4">★★★★ 4 Stars</option><option value="3">★★★ 3 Stars</option><option value="2">★★ 2 Stars</option><option value="1">★ 1 Star</option></select><textarea id="rText" placeholder="Tell us about your product, quality and experience…"></textarea><input id="rImage" placeholder="Review photo direct URL (optional)"><button class="btn primary" onclick="submitReview()">Submit Review</button><div id="rStatus"></div></div></section>
-<section class="sec" id="adminLogin">
-<div class="box">
-<div class="head">
+<header>
+<div class="nav">
 <div>
-<div class="k">Private area</div>
-<h2 style="font-size:28px">ZIVARA Admin</h2>
-<p>Manage products, coupons, orders and reviews.</p>
+<div class="logo">ZIVARA</div>
+<div class="tag">Lehenga • Chunari • Ladies Collection</div>
+</div>
+<div>
+<button onclick="go('products')">Shop</button>
+<button onclick="go('adminLogin')">Admin</button>
 </div>
 </div>
+</header>
+
+<section class="hero">
+<h1>Elegant Fashion, Made for You</h1>
+<p>Premium Lehenga • Anarkali • Chunari • Ladies Collection</p>
+<button class="btn gold" onclick="go('products')">Shop Now</button>
+</section>
+
+<section class="section">
+<div id="offers"></div>
+</section>
+
+<section class="section" id="products">
+<h2 class="title">✨ Our Collection</h2>
+<div id="productGrid" class="grid">
+<p>Loading products...</p>
+</div>
+</section>
+
+<section class="section">
+<h2 class="title">⭐ Customer Reviews</h2>
+<div id="reviewList" class="grid"></div>
+</section>
+
+<section class="section">
+<div class="box">
+<h2 class="title">Write a Review</h2>
 
 <div class="row">
-<input id="aEmail" type="email" placeholder="Admin email">
-<input id="aPass" type="password" placeholder="Admin password">
+<input id="rName" placeholder="Your name">
+<select id="rProduct"></select>
 </div>
 
-<button class="btn primary" onclick="login()">🔐 Secure Login</button>
-<button id="logoutBtn" class="btn outline hidden" onclick="logout()">Logout</button>
+<select id="rRating">
+<option value="5">★★★★★ 5</option>
+<option value="4">★★★★ 4</option>
+<option value="3">★★★ 3</option>
+<option value="2">★★ 2</option>
+<option value="1">★ 1</option>
+</select>
+
+<textarea id="rText" placeholder="Write your review"></textarea>
+
+<input id="rImage" placeholder="Review photo URL (optional)">
+
+<button class="btn primary" onclick="submitReview()">Submit Review</button>
+<div id="rStatus"></div>
+</div>
+</section>
+
+<section class="section" id="adminLogin">
+<div class="box">
+<h2 class="title">🔐 Admin Login</h2>
+
+<input id="aEmail" type="email" placeholder="Admin email">
+<input id="aPass" type="password" placeholder="Admin password">
+
+<button class="btn primary" onclick="login()">Login</button>
+<button id="logoutBtn" class="btn gray hidden" onclick="logout()">Logout</button>
+
 <div id="aStatus"></div>
 </div>
 </section>
 
-<section class="sec adminPanel" id="adminPanel">
+<!-- PART 2 YAHAN SE -->
+ <!-- ADMIN PANEL -->
+<section class="section admin" id="adminPanel">
 
-<div class="head">
-<div>
-<div class="k">Store control</div>
-<h2>Admin Dashboard</h2>
-<p>Manage your complete ZIVARA store.</p>
-</div>
-<button class="btn outline" onclick="logout()">Logout</button>
-</div>
+<h2 class="title">🛠️ ZIVARA Admin Panel</h2>
 
-<!-- PRODUCT MANAGEMENT -->
+<!-- PRODUCT ADD / EDIT -->
 <div class="box">
-<h3 style="color:var(--w);margin-bottom:12px">➕ Add / Edit Product</h3>
+
+<h3>➕ Add / Edit Product</h3>
 
 <input type="hidden" id="pid">
 
 <div class="row">
-<input id="pname" placeholder="Product name">
+<input id="pname" placeholder="Product Name">
 <input id="pprice" type="number" placeholder="Price ₹">
 </div>
 
 <div class="row">
-<input id="pcat" placeholder="Category e.g. Lehenga / Anarkali">
-<input id="psizes" placeholder="Sizes: M,L,XL,XXL">
+<input id="pcat" placeholder="Category">
+<input id="psizes" placeholder="Sizes e.g. M,L,XL,XXL">
 </div>
 
-<textarea id="pdesc" placeholder="Detailed product description, fabric, measurements, package details, weight, care etc."></textarea>
+<textarea id="pdesc"
+placeholder="Product details, fabric, measurements, package details, weight etc."></textarea>
 
-<input id="pimg" placeholder="Main image direct URL (ImgBB direct URL)">
+<hr>
 
-<textarea id="pimgs" placeholder="Other product image direct URLs — one URL per line"></textarea>
+<h3 style="margin:12px 0 5px;color:#7d123f">
+📸 Product Photos
+</h3>
 
-<textarea id="pvids" placeholder="Product video URLs — one URL per line (optional)"></textarea>
+<input
+id="photoFiles"
+type="file"
+accept="image/*"
+multiple
+>
 
-<div class="row">
-<button class="btn primary" onclick="saveProduct()">💾 Save Product</button>
-<button class="btn outline" onclick="resetProduct()">Clear Form</button>
+<div class="filehint">
+📱 Gallery से एक साथ 5–10 photos select कर सकते हैं.
 </div>
+
+<div id="photoPreview" class="preview-grid"></div>
+
+<hr>
+
+<h3 style="margin:12px 0 5px;color:#7d123f">
+🎥 Product Videos
+</h3>
+
+<input
+id="videoFiles"
+type="file"
+accept="video/*"
+multiple
+>
+
+<div class="filehint">
+🎥 Gallery से एक साथ कई videos select कर सकते हैं.
+</div>
+
+<div id="videoPreview" class="filehint"></div>
+
+<hr>
+
+<div class="filehint">
+पुराने products के लिए existing image/video URLs भी रखे गए हैं।
+नए products में URL डालना जरूरी नहीं है।
+</div>
+
+<label>Existing Photo URLs — optional</label>
+
+<textarea
+id="purls"
+placeholder="एक URL प्रति line"
+></textarea>
+
+<label>Existing Video URLs — optional</label>
+
+<textarea
+id="vurls"
+placeholder="एक URL प्रति line"
+></textarea>
+
+<button
+class="btn primary"
+onclick="saveProduct()">
+💾 Save Product
+</button>
+
+<button
+class="btn gray"
+onclick="clearProduct()">
+Clear
+</button>
 
 <div id="pStatus"></div>
+
 </div>
 
-<!-- COUPON MANAGEMENT -->
+
+<!-- COUPONS -->
+
 <div class="box">
-<h3 style="color:var(--w);margin-bottom:12px">🎁 Festival Coupons / Offers</h3>
+
+<h3>🎟️ Festival / Custom Coupon</h3>
+
+<input type="hidden" id="cid">
 
 <div class="row">
-<input id="cTitle" placeholder="Festival / Offer Name e.g. Diwali Special">
-<input id="cCode" placeholder="Coupon Code e.g. DIWALI10">
+<input id="ctitle" placeholder="Diwali Special">
+<input id="ccode" placeholder="DIWALI30">
 </div>
 
-<div class="row3">
-<select id="cType">
+<div class="row">
+<select id="ctype">
 <option value="percentage">Percentage %</option>
 <option value="fixed">Fixed ₹</option>
 </select>
 
-<input id="cValue" type="number" placeholder="Discount value">
-
-<input id="cMin" type="number" placeholder="Minimum order ₹">
+<input
+id="cvalue"
+type="number"
+placeholder="Discount">
 </div>
 
-<div class="row3">
-<input id="cMax" type="number" placeholder="Maximum discount ₹">
-<input id="cStart" type="date">
-<input id="cEnd" type="date">
+<div class="row">
+<input
+id="cmin"
+type="number"
+placeholder="Minimum Order ₹">
+
+<input
+id="cmax"
+type="number"
+placeholder="Maximum Discount ₹">
 </div>
 
-<label style="font-size:13px">
-<input id="cActive" type="checkbox" checked style="width:auto;margin-right:6px">
+<div class="row">
+<input id="cstart" type="date">
+<input id="cend" type="date">
+</div>
+
+<label>
+<input
+id="cactive"
+type="checkbox"
+checked
+style="width:auto">
 Active
 </label>
 
 <br><br>
 
-<button class="btn primary" onclick="saveCoupon()">🎁 Save Coupon</button>
+<button
+class="btn primary"
+onclick="saveCoupon()">
+💾 Save Coupon
+</button>
+
+<button
+class="btn gray"
+onclick="clearCoupon()">
+Clear
+</button>
 
 <div id="cStatus"></div>
 
-<div id="couponTable" class="table" style="margin-top:14px"></div>
 </div>
 
-<!-- PRODUCTS -->
-<div class="box">
-<h3 style="color:var(--w);margin-bottom:12px">📦 Products</h3>
-<div id="adminProducts" class="table">Loading products…</div>
-</div>
 
 <!-- ORDERS -->
+
 <div class="box">
-<h3 style="color:var(--w);margin-bottom:12px">🛒 Customer Orders</h3>
-<div id="adminOrders" class="table">Loading orders…</div>
+
+<h3>📦 Customer Orders</h3>
+
+<div class="table">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Order</th>
+<th>Customer</th>
+<th>Product</th>
+<th>Total</th>
+<th>Status</th>
+</tr>
+
+</thead>
+
+<tbody id="orders"></tbody>
+
+</table>
+
 </div>
 
-<!-- REVIEWS -->
+</div>
+
+
+<!-- COUPONS LIST -->
+
 <div class="box">
-<h3 style="color:var(--w);margin-bottom:12px">⭐ Customer Reviews</h3>
-<div id="adminReviews" class="table">Loading reviews…</div>
+
+<h3>🎟️ All Coupons</h3>
+
+<div class="table">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Offer</th>
+<th>Code</th>
+<th>Discount</th>
+<th>Active</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+<tbody id="couponRows"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- PRODUCTS LIST -->
+
+<div class="box">
+
+<h3>🛍️ Manage Products</h3>
+
+<div class="table">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Product</th>
+<th>Price</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+<tbody id="productRows"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- REVIEWS -->
+
+<div class="box">
+
+<h3>⭐ Manage Reviews</h3>
+
+<div class="table">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Name</th>
+<th>Rating</th>
+<th>Review</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+<tbody id="reviewRows"></tbody>
+
+</table>
+
+</div>
+
 </div>
 
 </section>
 
-<footer>
-<div class="foot">
-
-<div>
-<div class="lt" style="color:#fff">ZIVARA</div>
-<p>Premium lehenga, chunari, Anarkali and ladies fashion collection.</p>
-<button class="btn gold" onclick="openWhatsApp()">💬 WhatsApp Support</button>
-</div>
-
-<div>
-<h4>Shop</h4>
-<a href="#products">Collection</a>
-<a href="#offers">Offers</a>
-<a href="#reviews">Reviews</a>
-</div>
-
-<div>
-<h4>Help</h4>
-<a href="#story">About ZIVARA</a>
-<a href="#policies">Returns</a>
-<a href="#adminLogin">Admin</a>
-</div>
-
-</div>
-
-<div class="copy">
-© 2026 ZIVARA. All rights reserved.
-</div>
-</footer>
 
 <!-- ORDER MODAL -->
-<div id="orderModal" class="modal">
 
-<div class="modalBox">
+<div class="modal" id="orderModal">
 
-<button class="close" onclick="closeModal('orderModal')">×</button>
+<div class="modalbox">
 
-<h2 style="font:30px Georgia;color:var(--w);margin-bottom:12px">
-Place Your Order
+<button
+class="close"
+onclick="closeOrder()">
+×
+</button>
+
+<h2 class="title">
+🛒 Place Your Order
 </h2>
 
-<div id="selected" class="sel"></div>
+<div id="selected"></div>
 
 <div class="row">
-<input id="oName" placeholder="Full name">
-<input id="oPhone" placeholder="Mobile number">
+
+<input
+id="name"
+placeholder="Customer Name">
+
+<input
+id="phone"
+placeholder="Mobile Number">
+
 </div>
 
-<textarea id="oAddress" placeholder="Full address"></textarea>
+<textarea
+id="address"
+placeholder="Full Address"></textarea>
 
 <div class="row3">
-<input id="oCity" placeholder="City">
-<input id="oState" placeholder="State">
-<input id="oPin" placeholder="Pincode">
+
+<input
+id="city"
+placeholder="City">
+
+<input
+id="state"
+value="Madhya Pradesh"
+placeholder="State">
+
+<input
+id="pin"
+placeholder="Pincode">
+
 </div>
 
 <div class="row">
-<input id="oQty" type="number" value="1" min="1" placeholder="Quantity">
-<input id="oSize" placeholder="Size">
+
+<input
+id="qty"
+type="number"
+min="1"
+value="1"
+oninput="calc()">
+
+<select id="size"></select>
+
 </div>
 
-<input id="oCoupon" placeholder="Coupon code (optional)">
-
-<div id="oSummary" class="summary"></div>
-
 <div class="row">
-<button class="btn primary" onclick="placeOrder('COD')">
+
+<input
+id="coupon"
+placeholder="Coupon Code">
+
+<button
+class="btn gold"
+onclick="applyCoupon()">
+Apply Coupon
+</button>
+
+</div>
+
+<div id="couponMsg"></div>
+
+<div
+id="summary"
+class="offer">
+</div>
+
+<select id="payment">
+
+<option value="COD">
 💵 Cash on Delivery
-</button>
+</option>
 
-<button class="btn gold" onclick="placeOrder('ONLINE')">
+<option value="ONLINE">
 💳 Online Payment
+</option>
+
+</select>
+
+<button
+class="btn primary"
+style="width:100%"
+onclick="placeOrder()">
+Confirm Order
 </button>
+
+<div id="orderStatus"></div>
+
 </div>
 
-<div id="oStatus"></div>
+</div>
+
+
+<!-- PRODUCT DETAIL MODAL -->
+
+<div
+class="modal"
+id="detailModal">
+
+<div class="modalbox">
+
+<button
+class="close"
+onclick="closeDetail()">
+×
+</button>
+
+<div id="detailContent"></div>
 
 </div>
+
 </div>
+
+
+<!-- FULL SCREEN IMAGE ZOOM -->
+
+<div
+class="zoom"
+id="zoomModal"
+onclick="closeZoom()">
+
+<img
+id="zoomImg"
+alt="ZIVARA Product">
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<b style="font-size:22px">
+ZIVARA
+</b>
+
+<br>
+
+Lehenga • Chunari • Ladies Collection
+
+<br><br>
+
+<a
+target="_blank"
+href="https://wa.me/919752923124">
+📱 WhatsApp Order / Enquiry
+</a>
+
+<br><br>
+
+<small>
+© 2026 ZIVARA. All Rights Reserved.
+</small>
+
+</footer>
+
+
+<!-- JAVASCRIPT START -->
 
 <script>
- const SUPABASE_URL="https://honebtbtjruvncafczun.supabase.co";
 
-/* अपने existing Supabase PUBLISHABLE KEY को यहां डालें */
-const SUPABASE_KEY="sb_publishable_vJnA2ymyJwDIytTUMqmXrA_G1rWiuky";
-
-/* अपना WhatsApp number country code सहित डालें, जैसे 919876543210 */
-const WHATSAPP_NUMBER="9752923124";
-
-/* Supabase Edge Function */
-const PAYMENT_ENDPOINT="https://honebtbtjruvncafczun.supabase.co/functions/v1/zivara-payment";
-
-/* Razorpay TEST key ID — LIVE करने पर अपनी live key लगाएं */
-const RAZORPAY_KEY_ID="rzp_test_REPLACE_WITH_YOUR_KEY_ID";
-
-let sb=null;
-let products=[];
-let coupons=[];
-let reviews=[];
-let selected=null;
-let currentFilter="All";
-let gallery={};
-let currentUser=null;
+const SUPABASE_URL =
+"https://honebtbtjruvncafczun.supabase.co";
 
 
-/* ---------------- BASIC HELPERS ---------------- */
+/*
+IMPORTANT:
 
-function esc(x){
- return String(x??"").replace(/[&<>"']/g,m=>({
-  "&":"&amp;",
-  "<":"&lt;",
-  ">":"&gt;",
-  '"':"&quot;",
-  "'":"&#39;"
- }[m]));
+नीचे अपनी वही EXISTING
+Supabase Publishable Key डालना है
+जो अभी आपकी website में login चला रही है।
+
+SECRET KEY यहाँ कभी नहीं डालनी है।
+*/
+
+const SUPABASE_PUBLISHABLE_KEY =
+"sb_publishable_vJnA2ymyJwDIytTUMqmXrA_G1rWiuky";
+
+
+/*
+आपका Admin email
+बाद में बदल सकते हैं।
+*/
+
+const ADMIN_EMAIL =
+"nishantsharma9752@gmail.com";
+
+
+/*
+WhatsApp number:
+Country code के साथ,
+लेकिन + या spaces नहीं।
+
+Example:
+919752923124
+*/
+
+const WHATSAPP_NUMBER =
+"9752923124";
+
+
+/*
+Supabase Storage bucket
+जो हमने अभी बनाया है।
+*/
+
+const STORAGE_BUCKET =
+"zivara-media";
+
+
+const sb =
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_PUBLISHABLE_KEY
+);
+
+
+let products = [];
+
+let activeCoupons = [];
+
+let allCoupons = [];
+
+let selected = null;
+
+let appliedCoupon = null;
+
+let galleryIndexes = {};
+
+let detailImageIndex = 0;
+
+
+/* BASIC HELPERS */
+
+function $(id){
+return document.getElementById(id);
 }
 
-function setStatus(id,msg,type="ok"){
- const e=document.getElementById(id);
- if(e){
-  e.innerHTML='<div class="status '+type+'">'+esc(msg)+'</div>';
- }
-}
-
-function money(n){
- return "₹"+Number(n||0).toLocaleString("en-IN");
-}
 
 function go(id){
- document.getElementById(id)?.scrollIntoView({
-  behavior:"smooth"
- });
+
+const el=$(id);
+
+if(el){
+el.scrollIntoView({
+behavior:"smooth"
+});
 }
 
-function closeModal(id){
- const e=document.getElementById(id);
- if(e)e.style.display="none";
-}
-
-function openModal(id){
- const e=document.getElementById(id);
- if(e)e.style.display="block";
 }
 
 
-/* ---------------- WHATSAPP ---------------- */
+function esc(value){
 
-function openWhatsApp(text=""){
- let n=String(WHATSAPP_NUMBER||"").replace(/\D/g,"");
+return String(value ?? "")
+.replace(/[&<>"']/g,function(c){
 
- if(!n || n.includes("PASTE")){
-  alert("WhatsApp number is not configured yet.");
-  return;
- }
+return {
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
 
- let msg=text || "Hello ZIVARA 👋 I need help regarding your fashion collection.";
+}[c];
 
- window.open(
-  "https://wa.me/"+n+"?text="+encodeURIComponent(msg),
-  "_blank"
- );
+});
+
 }
 
 
-/* ---------------- INITIALIZE ---------------- */
+function status(id,text,ok=true){
 
-function init(){
+$(id).innerHTML =
+'<div class="status '+(ok?"ok":"err")+'">'
++
+esc(text)
++
+'</div>';
 
- if(!window.supabase){
-  setStatus(
-   "aStatus",
-   "Supabase library failed to load.",
-   "err"
-  );
-  return;
- }
-
- if(
-  !SUPABASE_KEY ||
-  SUPABASE_KEY.includes("PASTE_YOUR")
- ){
-  setStatus(
-   "aStatus",
-   "Supabase publishable key is not configured.",
-   "err"
-  );
-  return;
- }
-
- sb=window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
- );
-
- sb.auth.onAuthStateChange((_event,session)=>{
-
-  currentUser=session?.user||null;
-
-  if(currentUser){
-   showAdmin();
-  }else{
-   hideAdmin();
-  }
-
- });
-
- loadAll();
 }
 
 
-/* ---------------- LOAD EVERYTHING ---------------- */
+/* PRODUCT IMAGE ARRAY */
 
-async function loadAll(){
+function productImages(product){
 
- await Promise.all([
-  loadProducts(),
-  loadCoupons(),
-  loadReviews()
- ]);
+let list=[];
 
- loadReviewProductOptions();
- loadOffers();
+if(
+Array.isArray(product.image_urls)
+){
+
+list =
+product.image_urls
+.filter(Boolean);
+
+}
+
+if(
+list.length===0 &&
+product.image_url
+){
+
+list=[
+product.image_url
+];
+
+}
+
+return list;
+
 }
 
 
-/* ---------------- PRODUCTS ---------------- */
+/* PRODUCT VIDEO ARRAY */
 
-async function loadProducts(){
+function productVideos(product){
 
- if(!sb)return;
+if(
+Array.isArray(product.video_urls)
+){
 
- const {data,error}=await sb
-  .from("products")
-  .select("*")
-  .order("created_at",{ascending:false});
+return product.video_urls
+.filter(Boolean);
 
- if(error){
+}
 
-  console.error(error);
+return [];
 
-  document.getElementById("productGrid").innerHTML=
-   '<div class="box">Unable to load products. Please check Supabase connection.</div>';
-
-  document.getElementById("productCount").textContent=
-   "Connection error";
-
-  return;
- }
-
- products=data||[];
-
- renderCategories();
- renderProducts();
- loadReviewProductOptions();
-
- if(currentUser){
-  renderAdminProducts();
- }
 }
 
 
-function renderCategories(){
+/* FILE PREVIEW */
 
- const box=document.getElementById("chips");
+function previewPhotos(){
 
- if(!box)return;
+const files =
+Array.from(
+$("photoFiles").files
+);
 
- let cats=[
-  "All",
-  ...new Set(
-   products
-    .map(p=>p.category)
-    .filter(Boolean)
-  )
- ];
+$("photoPreview").innerHTML =
+files
+.slice(0,10)
+.map(function(file){
 
- box.innerHTML=cats.map(c=>`
-  <button
-   class="chip ${currentFilter===c?"active":""}"
-   onclick="setFilter('${esc(c).replace(/'/g,"&#39;")}')">
-   ${esc(c)}
-  </button>
- `).join("");
+return `
+<img
+src="${URL.createObjectURL(file)}"
+alt="preview">
+`;
+
+})
+.join("");
+
 }
 
 
-function setFilter(category){
+function previewVideos(){
 
- currentFilter=category;
+const files =
+Array.from(
+$("videoFiles").files
+);
 
- renderCategories();
- renderProducts();
+if(files.length===0){
+
+$("videoPreview").textContent="";
+
+return;
+
+}
+
+$("videoPreview").innerHTML =
+files
+.map(function(file){
+
+return "🎥 "+esc(file.name);
+
+})
+.join("<br>");
+
 }
 
 
-function productImages(p){
-
- let arr=[];
-
- if(p.image_url)arr.push(p.image_url);
-
- if(Array.isArray(p.image_urls)){
-  arr.push(...p.image_urls);
- }
-
- return [...new Set(arr.filter(Boolean))];
-}
+$("photoFiles").addEventListener(
+"change",
+previewPhotos
+);
 
 
-function renderProducts(){
+$("videoFiles").addEventListener(
+"change",
+previewVideos
+);
 
- const grid=document.getElementById("productGrid");
 
- if(!grid)return;
-
- let list=currentFilter==="All"
-  ?products
-  :products.filter(p=>p.category===currentFilter);
-
- document.getElementById("productCount").textContent=
-  list.length+" product"+(list.length===1?"":"s")+" available";
-
- if(!list.length){
-  grid.innerHTML=
-   '<div class="box">No products available in this category.</div>';
-  return;
- }
-
- grid.innerHTML=list.map((p,i)=>{
-
-  let imgs=productImages(p);
-
-  if(!imgs.length){
-   imgs=["https://via.placeholder.com/600x700?text=ZIVARA"];
-  }
-
-  gallery[p.id]=0;
-
-  return `
-  <article class="card">
-
-   <div class="pic">
-
-    <img
-     id="img-${p.id}"
-     src="${esc(imgs[0])}"
-     alt="${esc(p.name)}"
-     loading="lazy"
-     onerror="this.src='https://via.placeholder.com/600x700?text=ZIVARA'"
-    >
-
-    <span class="badge">
-     ${esc(p.category||"Fashion")}
-    </span>
-
-    <button
-     class="wish"
-     onclick="openWhatsApp('Hello ZIVARA 👋 I am interested in ${esc(p.name)}')">
-     ♡
-    </button>
-
-    ${imgs.length>1?`
-    <button
-     class="arr prev"
-     onclick="changeGallery(${p.id},-1)">
-     ‹
-    </button>
-
-    <button
-     class="arr next"
-     onclick="changeGallery(${p.id},1)">
-     ›
-    </button>
-
-    <div class="dots">
-     1 / ${imgs.length}
-    </div>
-    `:""}
-
-   </div>
-
-   <div class="body">
-
-    <div class="cat">${esc(p.category||"Fashion")}</div>
-
-    <div class="name">${esc(p.name||"ZIVARA Product")}</div>
-
-    <div class="priceRow">
-     <div class="price">${money(p.price)}</div>
-     <div class="free">COD Available</div>
-    </div>
-
-    <div class="desc">
-     ${esc(p.description||"Premium ZIVARA fashion collection.")}
-    </div>
-
-    <div class="sizes">
-     Sizes: ${esc(p.sizes||"As mentioned")}
-    </div>
-
-    <div class="acts">
-
-     <button
-      class="btn primary"
-      onclick="openOrder(${p.id})">
-      🛍️ Order Now
-     </button>
-
-     <button
-      class="wa"
-      onclick="productWhatsApp(${p.id})">
-      💬
-     </button>
-
-    </div>
-
-   </div>
-  </article>
-  `;
- }).join("");
-}
-
+/* PRODUCT GALLERY */
 
 function changeGallery(id,direction){
 
- let p=products.find(x=>Number(x.id)===Number(id));
+const product =
+products.find(
+p=>Number(p.id)===Number(id)
+);
 
- if(!p)return;
+if(!product)return;
 
- let imgs=productImages(p);
+const images =
+productImages(product);
 
- if(imgs.length<2)return;
+if(images.length<2)return;
 
- gallery[id]=
-  ((gallery[id]||0)+direction+imgs.length)%imgs.length;
+let current =
+galleryIndexes[id] || 0;
 
- const img=document.getElementById("img-"+id);
+current =
+(current + direction + images.length)
+% images.length;
 
- if(img){
-  img.src=imgs[gallery[id]];
- }
+galleryIndexes[id]=current;
+
+renderProducts();
+
 }
 
 
-function productWhatsApp(id){
+/* END PART 2 */
 
- let p=products.find(x=>Number(x.id)===Number(id));
+ </script>
+ <script>
 
- if(!p)return;
+/* =========================
+   LOAD PRODUCTS
+========================= */
 
- let msg=
-  "Hello ZIVARA 👋\n\n"+
-  "I am interested in this product:\n"+
-  "Product: "+p.name+"\n"+
-  "Price: "+money(p.price)+"\n"+
-  "Category: "+(p.category||"Fashion")+"\n\n"+
-  "Please share availability and details.";
+async function loadProducts(){
 
- openWhatsApp(msg);
+const {data,error} =
+await sb
+.from("products")
+.select("*")
+.order("created_at",{ascending:false});
+
+if(error){
+
+$("productGrid").innerHTML=
+'<div class="status err">'+
+esc(error.message)+
+'</div>';
+
+return;
+
+}
+
+products=data||[];
+
+renderProducts();
+
+fillReviewProducts();
+
+renderProductRows();
+
 }
 
 
-/* ---------------- OFFERS ---------------- */
+/* =========================
+   RENDER PRODUCTS
+========================= */
+
+function renderProducts(){
+
+if(!products.length){
+
+$("productGrid").innerHTML=
+"<p>No products available.</p>";
+
+return;
+
+}
+
+$("productGrid").innerHTML=
+
+products.map(function(p){
+
+const images=
+productImages(p);
+
+let index=
+galleryIndexes[p.id]||0;
+
+if(index>=images.length)
+index=0;
+
+const image=
+images[index]||"";
+
+return `
+
+<article
+class="card clickable"
+onclick="openDetail(${p.id})">
+
+<div class="gallery">
+
+${
+image
+?
+`<img
+src="${esc(image)}"
+alt="${esc(p.name)}">`
+:
+`<div style="height:100%;display:grid;place-items:center">
+No Image
+</div>`
+}
+
+${
+images.length>1
+?
+`
+<button
+class="prev"
+onclick="event.stopPropagation();changeGallery(${p.id},-1)">
+‹
+</button>
+
+<button
+class="next"
+onclick="event.stopPropagation();changeGallery(${p.id},1)">
+›
+</button>
+`
+:
+""
+}
+
+</div>
+
+<div class="cardbody">
+
+<h3>
+${esc(p.name)}
+</h3>
+
+<div class="muted">
+${esc(p.category||"Fashion")}
+</div>
+
+<div class="price">
+₹${Number(p.price||0).toLocaleString("en-IN")}
+</div>
+
+<div class="muted">
+Sizes: ${esc(p.sizes||"Available")}
+</div>
+
+<div class="actions">
+
+<button
+class="btn primary"
+onclick="event.stopPropagation();openDetail(${p.id})">
+👁️ View Product
+</button>
+
+<button
+class="btn gold"
+onclick="event.stopPropagation();openOrder(${p.id})">
+🛒 Buy Now
+</button>
+
+</div>
+
+</div>
+
+</article>
+
+`;
+
+}).join("");
+
+}
+
+
+/* =========================
+   PRODUCT DETAIL
+========================= */
+
+function openDetail(id){
+
+selected=
+products.find(
+p=>Number(p.id)===Number(id)
+);
+
+if(!selected)return;
+
+detailImageIndex=0;
+
+renderDetail();
+
+$("detailModal").style.display="block";
+
+}
+
+
+function closeDetail(){
+
+$("detailModal").style.display="none";
+
+}
+
+
+function renderDetail(){
+
+if(!selected)return;
+
+const p=selected;
+
+const images=
+productImages(p);
+
+const videos=
+productVideos(p);
+
+let index=
+Math.min(
+detailImageIndex,
+Math.max(images.length-1,0)
+);
+
+const mainImage=
+images[index]||"";
+
+$("detailContent").innerHTML=
+
+`
+
+<div class="detail-grid">
+
+<div>
+
+<div class="detail-photo">
+
+${
+mainImage
+?
+`
+<img
+src="${esc(mainImage)}"
+onclick="openZoom(${JSON.stringify(mainImage)})"
+alt="${esc(p.name)}">
+`
+:
+`
+<div>
+No product image
+</div>
+`
+}
+
+</div>
+
+
+<div class="thumbs">
+
+${
+images.map(function(image,i){
+
+return `
+
+<img
+src="${esc(image)}"
+class="${i===index?"active":""}"
+onclick="detailImageIndex=${i};renderDetail()">
+
+`;
+
+}).join("")
+}
+
+</div>
+
+</div>
+
+
+<div>
+
+<h2 style="color:#7d123f">
+${esc(p.name)}
+</h2>
+
+<div
+class="muted"
+style="margin:6px 0">
+${esc(p.category||"Fashion")}
+</div>
+
+<div class="price">
+₹${Number(p.price||0).toLocaleString("en-IN")}
+</div>
+
+<p
+style="white-space:pre-line;line-height:1.6;margin-top:12px">
+${esc(p.description||"")}
+</p>
+
+<p style="margin-top:12px">
+<b>Sizes:</b>
+${esc(p.sizes||"Available")}
+</p>
+
+
+<div class="actions">
+
+<button
+class="btn primary"
+onclick="closeDetail();openOrder(${p.id})">
+🛒 Buy Now
+</button>
+
+<a
+class="btn gold"
+target="_blank"
+style="text-decoration:none"
+href="https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+"Hello ZIVARA, I am interested in "+p.name+
+" - ₹"+p.price
+)}">
+📱 WhatsApp
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+${
+videos.length
+?
+`
+
+<h3
+style="color:#7d123f;margin-top:22px">
+🎥 Product Videos
+</h3>
+
+<div class="video-grid">
+
+${
+videos.map(function(video){
+
+return `
+
+<video
+controls
+playsinline
+src="${esc(video)}">
+</video>
+
+`;
+
+}).join("")
+}
+
+</div>
+
+`
+:
+""
+}
+
+`;
+
+}
+
+
+/* =========================
+   FULL SCREEN ZOOM
+========================= */
+
+function openZoom(image){
+
+$("zoomImg").src=image;
+
+$("zoomModal").style.display="flex";
+
+}
+
+
+function closeZoom(){
+
+$("zoomModal").style.display="none";
+
+}
+
+
+/* =========================
+   REVIEW PRODUCTS
+========================= */
+
+function fillReviewProducts(){
+
+$("rProduct").innerHTML=
+
+products.map(function(p){
+
+return `
+<option value="${p.id}">
+${esc(p.name)}
+</option>
+`;
+
+}).join("");
+
+}
+
+
+/* =========================
+   LOAD COUPONS
+========================= */
 
 async function loadCoupons(){
 
- if(!sb)return;
+const {data,error}=
+await sb
+.from("coupons")
+.select("*")
+.eq("is_active",true);
 
- const {data,error}=await sb
-  .from("coupons")
-  .select("*")
-  .eq("is_active",true)
-  .order("created_at",{ascending:false});
+if(error)return;
 
- if(error){
-  console.warn("Coupon load:",error);
-  coupons=[];
-  return;
- }
+const today=
+new Date()
+.toISOString()
+.slice(0,10);
 
- coupons=data||[];
+activeCoupons=
+(data||[]).filter(function(c){
+
+return
+(!c.start_date||c.start_date<=today)
+&&
+(!c.end_date||c.end_date>=today);
+
+});
+
+
+if(!activeCoupons.length){
+
+$("offers").innerHTML="";
+
+return;
+
 }
 
 
-function loadOffers(){
+$("offers").innerHTML=
 
- const offerText=document.getElementById("offerText");
- const offerCode=document.getElementById("offerCode");
+activeCoupons.map(function(c){
 
- if(!offerText||!offerCode)return;
+return `
 
- if(!coupons.length){
+<div class="offer">
 
-  offerText.textContent=
-   "Festival offers will appear here.";
+🎉 <b>
+${esc(c.title||"Special Offer")}
+</b>
 
-  offerCode.textContent=
-   "Coming Soon";
+<br>
 
-  return;
- }
+Coupon:
+<strong>
+${esc(c.code)}
+</strong>
 
- const c=coupons[0];
+&nbsp; — &nbsp;
 
- let discount=
-  c.discount_type==="percentage"
-   ? Number(c.discount_value)+"% OFF"
-   : money(c.discount_value)+" OFF";
- offerText.textContent=
-  (c.title||"Special Offer")+" • "+discount;
+${
+c.discount_type==="percentage"
+?
+esc(c.discount_value)+"% OFF"
+:
+"₹"+esc(c.discount_value)+" OFF"
+}
 
- offerCode.textContent=
-  c.code||"OFFER";
+</div>
+
+`;
+
+}).join("");
+
 }
 
 
-/* ---------------- REVIEWS ---------------- */
+/* =========================
+   LOAD REVIEWS
+========================= */
 
 async function loadReviews(){
 
- if(!sb)return;
+const {data,error}=
+await sb
+.from("reviews")
+.select("*")
+.order("created_at",{ascending:false})
+.limit(50);
 
- const {data,error}=await sb
-  .from("reviews")
-  .select("*")
-  .order("created_at",{ascending:false});
+if(error){
 
- if(error){
-  console.warn("Review load:",error);
-  reviews=[];
- }else{
-  reviews=data||[];
- }
+$("reviewList").innerHTML=
+'<div class="status err">'+
+esc(error.message)+
+'</div>';
 
- renderReviews();
+return;
 
- if(currentUser){
-  renderAdminReviews();
- }
 }
 
 
-function renderReviews(){
+$("reviewList").innerHTML=
 
- const box=document.getElementById("reviewList");
+(data||[]).map(function(r){
 
- if(!box)return;
+let rating=
+Number(r.rating)||0;
 
- if(!reviews.length){
+return `
 
-  box.innerHTML=
-   '<div class="box">No customer reviews yet. Be the first to share your experience.</div>';
+<div class="card">
 
-  return;
- }
+<div class="cardbody">
 
- box.innerHTML=reviews.map(r=>`
+<b>
+${esc(r.customer_name||"Customer")}
+</b>
 
-  <div class="review">
+<div style="margin:5px 0">
+${"★".repeat(rating)}
+${"☆".repeat(5-rating)}
+</div>
 
-   <div class="stars">
-    ${"★".repeat(Number(r.rating)||0)}
-    ${"☆".repeat(5-(Number(r.rating)||0))}
-   </div>
+<p>
+${esc(r.review_text||"")}
+</p>
 
-   <b>${esc(r.customer_name||"Customer")}</b>
+${
+r.review_image_urls &&
+r.review_image_urls.length
+?
+`
+<img
+src="${esc(r.review_image_urls[0])}"
+style="width:100%;margin-top:8px;border-radius:9px">
+`
+:
+""
+}
 
-   <p>${esc(r.review_text||"")}</p>
+</div>
 
-   ${
-    Array.isArray(r.review_image_urls)&&r.review_image_urls.length
-    ?r.review_image_urls.map(u=>`
-      <img src="${esc(u)}" alt="Customer review photo">
-     `).join("")
-    :""
-   }
+</div>
 
-  </div>
- `).join("");
+`;
+
+}).join("")
+||
+"<p>No reviews yet.</p>";
+
 }
 
 
-function loadReviewProductOptions(){
-
- const select=document.getElementById("rProduct");
-
- if(!select)return;
-
- select.innerHTML=
-  '<option value="">Select product</option>'+
-  products.map(p=>
-   `<option value="${p.id}">${esc(p.name)}</option>`
-  ).join("");
-}
-
+/* =========================
+   SUBMIT REVIEW
+========================= */
 
 async function submitReview(){
 
- if(!sb){
-  setStatus("rStatus","Supabase is not connected.","err");
-  return;
- }
+const name=
+$("rName").value.trim();
 
- const name=document.getElementById("rName").value.trim();
- const productId=document.getElementById("rProduct").value;
- const rating=Number(document.getElementById("rRating").value);
- const text=document.getElementById("rText").value.trim();
- const image=document.getElementById("rImage").value.trim();
+const text=
+$("rText").value.trim();
 
- if(!name||!productId||!text){
+if(!name||!text){
 
-  setStatus(
-   "rStatus",
-   "Please fill name, product and review.",
-   "err"
-  );
+status(
+"rStatus",
+"Name and review are required.",
+false
+);
 
-  return;
- }
+return;
 
- const reviewImageUrls=image?[image]:[];
-
- const {error}=await sb
-  .from("reviews")
-  .insert({
-   product_id:Number(productId),
-   customer_name:name,
-   rating,
-   review_text:text,
-   review_image_urls:reviewImageUrls
-  });
-
- if(error){
-
-  console.error(error);
-
-  setStatus(
-   "rStatus",
-   error.message||"Review could not be submitted.",
-   "err"
-  );
-
-  return;
- }
-
- setStatus(
-  "rStatus",
-  "Thank you! Your review has been submitted.",
-  "ok"
- );
-
- document.getElementById("rName").value="";
- document.getElementById("rProduct").value="";
- document.getElementById("rText").value="";
- document.getElementById("rImage").value="";
-
- await loadReviews();
 }
 
 
-/* ---------------- ORDER ---------------- */
+const image=
+$("rImage").value.trim();
+
+const {error}=
+await sb
+.from("reviews")
+.insert({
+
+product_id:Number($("rProduct").value),
+
+customer_name:name,
+
+rating:Number($("rRating").value),
+
+review_text:text,
+
+review_image_urls:
+image?[image]:[]
+
+});
+
+
+if(error){
+
+status(
+"rStatus",
+error.message,
+false
+);
+
+return;
+
+}
+
+
+status(
+"rStatus",
+"Review submitted successfully!"
+);
+
+$("rText").value="";
+$("rImage").value="";
+
+loadReviews();
+
+}
+
+
+/* =========================
+   ORDER MODAL
+========================= */
 
 function openOrder(id){
 
- selected=products.find(
-  p=>Number(p.id)===Number(id)
- );
+selected=
+products.find(
+p=>Number(p.id)===Number(id)
+);
 
- if(!selected)return;
+if(!selected)return;
 
- const imgs=productImages(selected);
+appliedCoupon=null;
 
- document.getElementById("selected").innerHTML=`
-  <img
-  src="${esc(imgs[0]||"https://via.placeholder.com/200x220?text=ZIVARA")}"
-   alt="${esc(selected.name)}"
-  >
-  <div>
-   <b>${esc(selected.name)}</b>
-   <div class="small">${esc(selected.category||"Fashion")}</div>
-   <strong>${money(selected.price)}</strong>
-  </div>
- `;
+$("orderModal").style.display="block";
 
- document.getElementById("oQty").value=1;
- document.getElementById("oCoupon").value="";
 
- const sizeInput=document.getElementById("oSize");
- sizeInput.value="";
+$("selected").innerHTML=
 
- document.getElementById("oSummary").innerHTML=
-  "Product price: <b>"+money(selected.price)+"</b>";
+`
+<div class="offer">
 
- openModal("orderModal");
+<b>
+${esc(selected.name)}
+</b>
+
+<br>
+
+₹${Number(selected.price||0).toLocaleString("en-IN")}
+
+</div>
+`;
+
+
+const sizes=
+String(selected.sizes||"")
+.split(",")
+.map(x=>x.trim())
+.filter(Boolean);
+
+
+$("size").innerHTML=
+
+sizes.length
+
+?
+
+sizes.map(function(size){
+
+return `
+<option>
+${esc(size)}
+</option>
+`;
+
+}).join("")
+
+:
+
+`
+<option>
+Not specified
+</option>
+`;
+
+
+$("coupon").value="";
+
+$("couponMsg").innerHTML="";
+
+$("orderStatus").innerHTML="";
+
+$("qty").value=1;
+
+calc();
+
 }
 
 
-/* ---------------- COUPON CALCULATION ---------------- */
+function closeOrder(){
 
-function calculateCoupon(price,qty,code){
+$("orderModal").style.display="none";
 
- let subtotal=Number(price||0)*Number(qty||1);
-
- let c=coupons.find(
-  x=>String(x.code||"").toUpperCase()===
-     String(code||"").trim().toUpperCase()
- );
-
- if(!c){
-  return {
-   subtotal,
-   discount:0,
-   total:subtotal,
-   coupon:null
-  };
- }
-
- if(Number(c.minimum_order||0)>subtotal){
-  return {
-   subtotal,
-   discount:0,
-   total:subtotal,
-   coupon:null,
-   error:"Minimum order for this coupon is "+money(c.minimum_order)
-  };
- }
-
- let discount=0;
-
- if(c.discount_type==="percentage"){
-  discount=subtotal*Number(c.discount_value||0)/100;
- }else{
-  discount=Number(c.discount_value||0);
- }
-
- if(Number(c.maximum_discount||0)>0){
-  discount=Math.min(
-   discount,
-   Number(c.maximum_discount)
-  );
- }
-
- discount=Math.min(discount,subtotal);
-
- return {
-  subtotal,
-  discount,
-  total:subtotal-discount,
-  coupon:c
- };
 }
 
 
-function updateOrderSummary(){
+/* =========================
+   ORDER CALCULATION
+========================= */
 
- if(!selected)return;
+function calc(){
 
- const qty=Math.max(
-  1,
-  Number(document.getElementById("oQty").value||1)
- );
+if(!selected)return;
 
- const code=document.getElementById("oCoupon").value.trim();
+const quantity=
+Math.max(
+1,
+Number($("qty").value)||1
+);
 
- const result=calculateCoupon(
-  selected.price,
-  qty,
-  code
- );
+const subtotal=
+Number(selected.price||0)*quantity;
 
- let html=
-  "Subtotal: <b>"+money(result.subtotal)+"</b><br>"+
-  "Discount: <b>"+money(result.discount)+"</b><br>"+
-  "<strong>Total: "+money(result.total)+"</strong>";
+let discount=0;
 
- if(result.error){
-  html+=
-   '<br><span style="color:#a01818">'+
-   esc(result.error)+
-   "</span>";
- }
 
- document.getElementById("oSummary").innerHTML=html;
+if(appliedCoupon){
+
+if(
+appliedCoupon.discount_type==="percentage"
+){
+
+discount=
+subtotal*
+Number(appliedCoupon.discount_value||0)
+/
+100;
+
+}else{
+
+discount=
+Number(
+appliedCoupon.discount_value||0
+);
+
 }
 
 
-document.addEventListener("input",e=>{
+if(
+appliedCoupon.maximum_discount!==null &&
+appliedCoupon.maximum_discount!==undefined
+){
 
- if(
-  e.target.id==="oQty"||
-  e.target.id==="oCoupon"
- ){
-  updateOrderSummary();
- }
+discount=
+Math.min(
+discount,
+Number(appliedCoupon.maximum_discount)
+);
 
-});
- /* ---------------- ADMIN LOGIN ---------------- */
+}
+
+}
+
+
+const total=
+Math.max(
+0,
+subtotal-discount
+);
+
+
+$("summary").innerHTML=
+
+`
+Subtotal:
+₹${subtotal.toFixed(0)}
+
+<br>
+
+Discount:
+₹${discount.toFixed(0)}
+
+<br>
+
+<b>
+Total:
+₹${total.toFixed(0)}
+</b>
+
+<br>
+
+<small>
+Delivery charge will be confirmed at order processing.
+</small>
+`;
+
+}
+
+
+/* =========================
+   APPLY COUPON
+========================= */
+
+async function applyCoupon(){
+
+const code=
+$("coupon")
+.value
+.trim()
+.toUpperCase();
+
+if(!code){
+
+appliedCoupon=null;
+
+status(
+"couponMsg",
+"Please enter coupon code.",
+false
+);
+
+calc();
+
+return;
+
+}
+
+
+const {data,error}=
+await sb
+.from("coupons")
+.select("*")
+.eq("code",code)
+.eq("is_active",true)
+.maybeSingle();
+
+
+const today=
+new Date()
+.toISOString()
+.slice(0,10);
+
+
+if(
+error||
+!data||
+(data.start_date && data.start_date>today)||
+(data.end_date && data.end_date<today)
+){
+
+appliedCoupon=null;
+
+status(
+"couponMsg",
+"Invalid or expired coupon.",
+false
+);
+
+calc();
+
+return;
+
+}
+
+
+const subtotal=
+Number(selected.price||0)*
+Math.max(
+1,
+Number($("qty").value)||1
+);
+
+
+if(
+subtotal<
+Number(data.minimum_order||0)
+){
+
+appliedCoupon=null;
+
+status(
+"couponMsg",
+"Minimum order ₹"+
+data.minimum_order+
+" required.",
+false
+);
+
+calc();
+
+return;
+
+}
+
+
+appliedCoupon=data;
+
+status(
+"couponMsg",
+"Coupon applied successfully!"
+);
+
+calc();
+
+}
+
+
+/* =========================
+   WHATSAPP ORDER
+========================= */
+
+function createWhatsAppOrder(
+orderNumber,
+total
+){
+
+const message=
+
+`ZIVARA ORDER
+
+Order ID:
+${orderNumber}
+
+Product:
+${selected.name}
+
+Quantity:
+${$("qty").value}
+
+Size:
+${$("size").value}
+
+Amount:
+₹${total}
+
+Customer:
+${$("name").value}
+
+Mobile:
+${$("phone").value}
+
+Address:
+${$("address").value}
+
+City:
+${$("city").value}
+
+State:
+${$("state").value}
+
+Pincode:
+${$("pin").value}`;
+
+
+return "https://wa.me/"+
+WHATSAPP_NUMBER+
+"?text="+
+encodeURIComponent(message);
+
+}
+
+
+/* =========================
+   PLACE ORDER
+========================= */
+
+async function placeOrder(){
+
+if(
+!$("name").value.trim()||
+!$("phone").value.trim()||
+!$("address").value.trim()
+){
+
+status(
+"orderStatus",
+"Name, mobile and full address are required.",
+false
+);
+
+return;
+
+}
+
+
+/*
+Online payment अभी gateway
+connect होने तक disabled रखा है।
+*/
+
+if(
+$("payment").value==="ONLINE"
+){
+
+status(
+"orderStatus",
+"Online payment gateway is not connected yet. Please select COD.",
+false
+);
+
+return;
+
+}
+
+
+const quantity=
+Math.max(
+1,
+Number($("qty").value)||1
+);
+
+
+const subtotal=
+Number(selected.price||0)*
+quantity;
+
+let discount=0;
+
+
+if(appliedCoupon){
+
+if(
+appliedCoupon.discount_type==="percentage"
+){
+
+discount=
+subtotal*
+Number(appliedCoupon.discount_value||0)
+/
+100;
+
+}else{
+
+discount=
+Number(appliedCoupon.discount_value||0);
+
+}
+
+
+if(
+appliedCoupon.maximum_discount!==null &&
+appliedCoupon.maximum_discount!==undefined
+){
+
+discount=
+Math.min(
+discount,
+Number(appliedCoupon.maximum_discount)
+);
+
+}
+
+}
+
+
+const total=
+Math.max(
+0,
+subtotal-discount
+);
+
+
+const orderNumber=
+"ZIV"+
+Date.now()
+.toString()
+.slice(-8);
+
+
+const orderData={
+
+order_number:orderNumber,
+
+customer_name:
+$("name").value.trim(),
+
+customer_phone:
+$("phone").value.trim(),
+
+address:
+$("address").value.trim(),
+
+city:
+$("city").value.trim(),
+
+state:
+$("state").value.trim(),
+
+pincode:
+$("pin").value.trim(),
+
+product_id:selected.id,
+
+product_name:selected.name,
+
+quantity:quantity,
+
+size:$("size").value,
+
+product_price:Number(selected.price),
+
+discount_amount:discount,
+
+coupon_code:
+appliedCoupon?
+appliedCoupon.code:
+null,
+
+delivery_charge:0,
+
+final_amount:total,
+
+payment_method:"COD",
+
+payment_status:"Pending",
+
+order_status:"New"
+
+};
+
+
+const {error}=
+await sb
+.from("orders")
+.insert(orderData);
+
+
+if(error){
+
+status(
+"orderStatus",
+error.message,
+false
+);
+
+return;
+
+}
+
+
+const whatsappURL=
+createWhatsAppOrder(
+orderNumber,
+total
+);
+
+
+$("orderStatus").innerHTML=
+
+`
+
+<div class="status ok">
+
+<b>
+Order placed successfully!
+</b>
+
+<br>
+
+Order ID:
+<strong>
+${esc(orderNumber)}
+</strong>
+
+<br><br>
+
+<a
+class="btn primary"
+target="_blank"
+href="${whatsappURL}"
+style="text-decoration:none;display:inline-block">
+
+📱 Send Order on WhatsApp
+
+</a>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   PART 3 END
+========================= */
+
+ </script>
+ <script>
+
+/* =========================
+   ADMIN LOGIN
+========================= */
 
 async function login(){
 
- if(!sb){
-  setStatus(
-   "aStatus",
-   "Supabase is not connected.",
-   "err"
-  );
-  return;
- }
+const email =
+$("aEmail").value.trim();
 
- const email=document.getElementById("aEmail").value.trim();
- const password=document.getElementById("aPass").value;
+const password =
+$("aPass").value;
 
- if(!email||!password){
-  setStatus(
-   "aStatus",
-   "Please enter admin email and password.",
-   "err"
-  );
-  return;
- }
 
- setStatus(
-  "aStatus",
-  "Signing in…",
-  "ok"
- );
+if(!email || !password){
 
- const {data,error}=await sb.auth.signInWithPassword({
-  email,
-  password
- });
+status(
+"aStatus",
+"Email and password required.",
+false
+);
 
- if(error){
+return;
 
-  console.error(error);
-
-  setStatus(
-   "aStatus",
-   error.message||"Login failed.",
-   "err"
-  );
-
-  return;
- }
-
- currentUser=data.user;
-
- setStatus(
-  "aStatus",
-  "Login successful.",
-  "ok"
- );
-
- showAdmin();
-
- document.getElementById("adminPanel")?.scrollIntoView({
-  behavior:"smooth"
- });
 }
 
+
+const {data,error} =
+await sb.auth.signInWithPassword({
+
+email:email,
+
+password:password
+
+});
+
+
+if(error){
+
+status(
+"aStatus",
+error.message,
+false
+);
+
+return;
+
+}
+
+
+if(
+!data.user ||
+!data.user.email ||
+data.user.email.toLowerCase()
+!== ADMIN_EMAIL.toLowerCase()
+){
+
+await sb.auth.signOut();
+
+status(
+"aStatus",
+"This account is not the configured admin.",
+false
+);
+
+return;
+
+}
+
+
+status(
+"aStatus",
+"Admin login successful!"
+);
+
+$("logoutBtn")
+.classList
+.remove("hidden");
+
+$("adminPanel")
+.style.display="block";
+
+await loadAdmin();
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
 
 async function logout(){
 
- if(sb){
-  await sb.auth.signOut();
- }
+await sb.auth.signOut();
 
- currentUser=null;
- hideAdmin();
+$("adminPanel")
+.style.display="none";
 
- go("adminLogin");
+$("logoutBtn")
+.classList.add("hidden");
+
+status(
+"aStatus",
+"Logged out successfully."
+);
+
 }
 
 
-function showAdmin(){
+/* =========================
+   CHECK EXISTING SESSION
+========================= */
 
- const panel=document.getElementById("adminPanel");
- const loginBox=document.getElementById("adminLogin");
- const logoutBtn=document.getElementById("logoutBtn");
+async function checkAdmin(){
 
- if(panel)panel.style.display="block";
+const {data} =
+await sb.auth.getSession();
 
- if(loginBox){
-  loginBox.querySelector(".box").style.borderColor="#b9dfc8";
- }
+const user =
+data.session?.user;
 
- if(logoutBtn){
-  logoutBtn.classList.remove("hidden");
- }
 
- renderAdminProducts();
- renderAdminOrders();
- renderAdminReviews();
- renderCouponsTable();
+if(
+user &&
+user.email &&
+user.email.toLowerCase()
+===
+ADMIN_EMAIL.toLowerCase()
+){
+
+$("adminPanel")
+.style.display="block";
+
+$("logoutBtn")
+.classList
+.remove("hidden");
+
+await loadAdmin();
+
+}
+
 }
 
 
-function hideAdmin(){
+/* =========================
+   UPLOAD FILES
+========================= */
 
- const panel=document.getElementById("adminPanel");
- const logoutBtn=document.getElementById("logoutBtn");
+async function uploadFiles(
+files,
+type,
+productFolder
+){
 
- if(panel)panel.style.display="none";
+const uploadedURLs=[];
 
- if(logoutBtn){
-  logoutBtn.classList.add("hidden");
- }
+
+for(
+let i=0;
+i<files.length;
+i++
+){
+
+const file=files[i];
+
+
+if(
+type==="image" &&
+!file.type.startsWith("image/")
+){
+
+continue;
+
 }
 
 
-/* ---------------- SAVE PRODUCT ---------------- */
+if(
+type==="video" &&
+!file.type.startsWith("video/")
+){
+
+continue;
+
+}
+
+
+/*
+Maximum practical size
+for mobile upload.
+*/
+
+if(
+type==="image" &&
+file.size>15*1024*1024
+){
+
+throw new Error(
+"Image too large: "+
+file.name+
+". Please keep each image below 15 MB."
+);
+
+}
+
+
+if(
+type==="video" &&
+file.size>100*1024*1024
+){
+
+throw new Error(
+"Video too large: "+
+file.name+
+". Please keep each video below 100 MB."
+);
+
+}
+
+
+const safeName =
+file.name
+.replace(
+/[^a-zA-Z0-9._-]/g,
+"_"
+);
+
+
+const path =
+"products/"+
+productFolder+
+"/"+
+Date.now()+
+"_"+i+
+"_"+safeName;
+
+
+const {error} =
+await sb.storage
+.from(STORAGE_BUCKET)
+.upload(
+path,
+file,
+{
+cacheControl:"3600",
+upsert:false,
+contentType:file.type
+}
+);
+
+
+if(error){
+
+throw new Error(
+"Upload failed: "+
+file.name+
+" — "+
+error.message
+);
+
+}
+
+
+const {data} =
+sb.storage
+.from(STORAGE_BUCKET)
+.getPublicUrl(path);
+
+
+uploadedURLs.push(
+data.publicUrl
+);
+
+}
+
+
+return uploadedURLs;
+
+}
+
+
+/* =========================
+   URL TEXTAREA HELPER
+========================= */
+
+function parseLines(value){
+
+return String(value||"")
+.split(/\n|,/)
+.map(function(x){
+return x.trim();
+})
+.filter(Boolean);
+
+}
+
+
+/* =========================
+   SAVE PRODUCT
+========================= */
 
 async function saveProduct(){
 
- if(!sb||!currentUser){
+const {
+data:{
+user
+}
+} =
+await sb.auth.getUser();
 
-  setStatus(
-   "pStatus",
-   "Please login as admin first.",
-   "err"
-  );
 
-  return;
- }
+if(
+!user ||
+!user.email ||
+user.email.toLowerCase()
+!== ADMIN_EMAIL.toLowerCase()
+){
 
- const id=document.getElementById("pid").value;
- const name=document.getElementById("pname").value.trim();
- const price=Number(document.getElementById("pprice").value);
- const category=document.getElementById("pcat").value.trim();
- const sizes=document.getElementById("psizes").value.trim();
- const description=document.getElementById("pdesc").value.trim();
- const mainImage=document.getElementById("pimg").value.trim();
+status(
+"pStatus",
+"Please login as admin.",
+false
+);
 
- const otherImages=
-  document.getElementById("pimgs").value
-   .split(/\n+/)
-   .map(x=>x.trim())
-   .filter(Boolean);
+return;
 
- const videoUrls=
-  document.getElementById("pvids").value
-   .split(/\n+/)
-   .map(x=>x.trim())
-   .filter(Boolean);
-
- if(!name||!price){
-
-  setStatus(
-   "pStatus",
-   "Product name and price are required.",
-   "err"
-  );
-
-  return;
- }
-
- const imageUrls=[
-  ...(mainImage?[mainImage]:[]),
-  ...otherImages
- ];
-
- const payload={
-  name,
-  price,
-  category,
-  description,
-  sizes,
-  image_url:mainImage||null,
-  image_urls:imageUrls,
-  video_urls:videoUrls
- };
-
- let result;
-
- if(id){
-
-  result=await sb
-   .from("products")
-   .update(payload)
-   .eq("id",Number(id));
-
- }else{
-
-  result=await sb
-   .from("products")
-   .insert(payload);
- }
-
- if(result.error){
-
-  console.error(result.error);
-
-  setStatus(
-   "pStatus",
-   result.error.message||"Product could not be saved.",
-   "err"
-  );
-
-  return;
- }
-
- setStatus(
-  "pStatus",
-  id?"Product updated successfully.":"Product added successfully.",
-  "ok"
- );
-
- resetProduct();
-
- await loadProducts();
 }
 
 
-/* ---------------- RESET PRODUCT FORM ---------------- */
+const id =
+$("pid").value.trim();
 
-function resetProduct(){
 
- const ids=[
-  "pid",
-  "pname",
-  "pprice",
-  "pcat",
-  "psizes",
-  "pdesc",
-  "pimg",
-  "pimgs",
-  "pvids"
- ];
+const name =
+$("pname").value.trim();
 
- ids.forEach(id=>{
-  const e=document.getElementById(id);
-  if(e)e.value="";
- });
+
+const price =
+Number($("pprice").value);
+
+
+if(!name){
+
+status(
+"pStatus",
+"Product name is required.",
+false
+);
+
+return;
+
 }
 
 
-/* ---------------- EDIT PRODUCT ---------------- */
+if(!price || price<=0){
+
+status(
+"pStatus",
+"Enter a valid product price.",
+false
+);
+
+return;
+
+}
+
+
+try{
+
+status(
+"pStatus",
+id
+?
+"Updating product..."
+:
+"Creating product..."
+);
+
+
+let current=null;
+
+
+if(id){
+
+current =
+products.find(
+p=>String(p.id)===String(id)
+);
+
+}
+
+
+/*
+Existing images/videos
+*/
+
+let imageURLs =
+current
+?
+productImages(current).slice()
+:
+parseLines(
+$("purls").value
+);
+
+
+let videoURLs =
+current
+?
+productVideos(current).slice()
+:
+parseLines(
+$("vurls").value
+);
+
+
+/*
+Selected files
+*/
+
+const photoFiles =
+Array.from(
+$("photoFiles").files
+);
+
+
+const videoFiles =
+Array.from(
+$("videoFiles").files
+);
+
+
+/*
+New product:
+first create database row,
+then upload files into
+that product ID folder.
+*/
+
+if(!id){
+
+const basicProduct={
+
+name:name,
+
+price:price,
+
+category:
+$("pcat").value.trim(),
+
+description:
+$("pdesc").value.trim(),
+
+sizes:
+$("psizes").value.trim(),
+
+image_url:
+imageURLs[0] || "",
+
+image_urls:
+imageURLs,
+
+video_urls:
+videoURLs
+
+};
+
+
+const {
+data:newRows,
+error:createError
+} =
+await sb
+.from("products")
+.insert(basicProduct)
+.select()
+.single();
+
+
+if(createError){
+
+status(
+"pStatus",
+createError.message,
+false
+);
+
+return;
+
+}
+
+
+const newProductId =
+newRows.id;
+
+
+/*
+Upload selected photos
+*/
+
+if(photoFiles.length){
+
+const uploadedImages =
+await uploadFiles(
+photoFiles,
+"image",
+newProductId
+);
+
+imageURLs =
+imageURLs.concat(
+uploadedImages
+);
+
+}
+
+
+/*
+Upload selected videos
+*/
+
+if(videoFiles.length){
+
+const uploadedVideos =
+await uploadFiles(
+videoFiles,
+"video",
+newProductId
+);
+
+videoURLs =
+videoURLs.concat(
+uploadedVideos
+);
+
+}
+
+
+/*
+Update product with
+actual uploaded URLs.
+*/
+
+const {
+error:updateError
+} =
+await sb
+.from("products")
+.update({
+
+image_url:
+imageURLs[0] || "",
+
+image_urls:
+imageURLs,
+
+video_urls:
+videoURLs
+
+})
+.eq(
+"id",
+newProductId
+);
+
+
+if(updateError){
+
+status(
+"pStatus",
+updateError.message,
+false
+);
+
+return;
+
+}
+
+
+status(
+"pStatus",
+"Product added successfully!"
+);
+
+}
+
+
+/*
+EDIT EXISTING PRODUCT
+*/
+
+else{
+
+/*
+If new photos selected,
+upload them.
+*/
+
+if(photoFiles.length){
+
+const uploadedImages =
+await uploadFiles(
+photoFiles,
+"image",
+id
+);
+
+imageURLs =
+imageURLs.concat(
+uploadedImages
+);
+
+}
+
+
+/*
+If new videos selected,
+upload them.
+*/
+
+if(videoFiles.length){
+
+const uploadedVideos =
+await uploadFiles(
+videoFiles,
+"video",
+id
+);
+
+videoURLs =
+videoURLs.concat(
+uploadedVideos
+);
+
+}
+
+
+const updateData={
+
+name:name,
+
+price:price,
+
+category:
+$("pcat").value.trim(),
+
+description:
+$("pdesc").value.trim(),
+
+sizes:
+$("psizes").value.trim(),
+
+image_url:
+imageURLs[0] || "",
+
+image_urls:
+imageURLs,
+
+video_urls:
+videoURLs
+
+};
+
+
+const {
+error:updateError
+} =
+await sb
+.from("products")
+.update(updateData)
+.eq("id",id);
+
+
+if(updateError){
+
+status(
+"pStatus",
+updateError.message,
+false
+);
+
+return;
+
+}
+
+
+status(
+"pStatus",
+"Product updated successfully!"
+);
+
+}
+
+
+/*
+Refresh everything
+*/
+
+clearProduct();
+
+await loadProducts();
+
+await loadAdmin();
+
+}
+
+
+/* =========================
+   CLEAR PRODUCT FORM
+========================= */
+
+function clearProduct(){
+
+$("pid").value="";
+
+$("pname").value="";
+
+$("pprice").value="";
+
+$("pcat").value="";
+
+$("psizes").value="";
+
+$("pdesc").value="";
+
+$("purls").value="";
+
+$("vurls").value="";
+
+$("photoFiles").value="";
+
+$("videoFiles").value="";
+
+$("photoPreview").innerHTML="";
+
+$("videoPreview").innerHTML="";
+
+}
+
+
+/* =========================
+   EDIT PRODUCT
+========================= */
 
 function editProduct(id){
 
- const p=products.find(
-  x=>Number(x.id)===Number(id)
- );
+const product =
+products.find(
+p=>Number(p.id)===Number(id)
+);
 
- if(!p)return;
+if(!product)return;
 
- document.getElementById("pid").value=p.id;
- document.getElementById("pname").value=p.name||"";
- document.getElementById("pprice").value=p.price||"";
- document.getElementById("pcat").value=p.category||"";
- document.getElementById("psizes").value=p.sizes||"";
- document.getElementById("pdesc").value=p.description||"";
- document.getElementById("pimg").value=p.image_url||"";
 
- document.getElementById("pimgs").value=
-  Array.isArray(p.image_urls)
-   ?p.image_urls
-    .filter(u=>u!==p.image_url)
-    .join("\n")
-   :"";
+$("pid").value =
+product.id;
 
- document.getElementById("pvids").value=
-  Array.isArray(p.video_urls)
-   ?p.video_urls.join("\n")
-   :"";
+$("pname").value =
+product.name || "";
 
- go("adminPanel");
+$("pprice").value =
+product.price || "";
+
+$("pcat").value =
+product.category || "";
+
+$("psizes").value =
+product.sizes || "";
+
+$("pdesc").value =
+product.description || "";
+
+
+/*
+Existing URLs are shown
+for reference.
+*/
+
+$("purls").value =
+productImages(product)
+.join("\n");
+
+$("vurls").value =
+productVideos(product)
+.join("\n");
+
+
+$("photoFiles").value="";
+
+$("videoFiles").value="";
+
+$("photoPreview").innerHTML="";
+
+$("videoPreview").innerHTML="";
+
+
+status(
+"pStatus",
+"Editing: "+product.name
+);
+
+
+$("adminPanel")
+.scrollIntoView({
+behavior:"smooth"
+});
+
 }
 
 
-/* ---------------- DELETE PRODUCT ---------------- */
+/* =========================
+   DELETE PRODUCT
+========================= */
 
 async function deleteProduct(id){
 
- if(!sb||!currentUser)return;
+const product =
+products.find(
+p=>Number(p.id)===Number(id)
+);
 
- if(!confirm("Delete this product permanently?")){
-  return;
- }
 
- const {error}=await sb
-  .from("products")
-  .delete()
-  .eq("id",Number(id));
+if(!product)return;
 
- if(error){alert(
-   "Product could not be deleted: "+
-   error.message
-  );
 
-  return;
- }
+const confirmDelete =
+confirm(
+"Delete product?\n\n"+
+product.name+
+"\n\nThis cannot be undone."
+);
 
- await loadProducts();
+
+if(!confirmDelete)return;
+
+
+const {
+error
+} =
+await sb
+.from("products")
+.delete()
+.eq("id",id);
+
+
+if(error){
+
+alert(
+"Delete failed:\n"+
+error.message
+);
+
+return;
+
 }
 
 
-/* ---------------- ADMIN PRODUCT TABLE ---------------- */
+await loadProducts();
 
-function renderAdminProducts(){
+await loadAdmin();
 
- const box=document.getElementById("adminProducts");
+alert(
+"Product deleted successfully."
+);
 
- if(!box)return;
-
- if(!products.length){
-  box.innerHTML="No products found.";
-  return;
- }
-
- box.innerHTML=`
- <table>
- <thead>
- <tr>
-  <th>Product</th>
-  <th>Price</th>
-  <th>Category</th>
-  <th>Actions</th>
- </tr>
- </thead>
- <tbody>
-
- ${products.map(p=>`
-  <tr>
-   <td>
-    <b>${esc(p.name)}</b><br>
-    <span class="small">${esc(p.sizes||"")}</span>
-   </td>
-
-   <td>${money(p.price)}</td>
-
-   <td>${esc(p.category||"")}</td>
-
-   <td>
-    <button
-     class="btn outline"
-     onclick="editProduct(${p.id})">
-     Edit
-    </button>
-
-    <button
-     class="btn"
-     style="background:#fdeaea;color:#a01818;margin-top:5px"
-     onclick="deleteProduct(${p.id})">
-     Delete
-    </button>
-   </td>
-  </tr>
- `).join("")}
-
- </tbody>
- </table>
- `;
 }
 
 
-/* ---------------- SAVE COUPON ---------------- */
+/* =========================
+   SAVE COUPON
+========================= */
 
 async function saveCoupon(){
 
- if(!sb||!currentUser){
+const id =
+$("cid").value.trim();
 
-  setStatus(
-   "cStatus",
-   "Please login as admin first.",
-   "err"
-  );
 
-  return;
- }
+const coupon={
 
- const title=document.getElementById("cTitle").value.trim();
- const code=document.getElementById("cCode").value.trim().toUpperCase();
- const type=document.getElementById("cType").value;
- const value=Number(document.getElementById("cValue").value);
- const minimum=Number(document.getElementById("cMin").value||0);
- const maximum=Number(document.getElementById("cMax").value||0);
- const start=document.getElementById("cStart").value||null;
- const end=document.getElementById("cEnd").value||null;
- const active=document.getElementById("cActive").checked;
+title:
+$("ctitle").value.trim(),
 
- if(!title||!code||!value){
+code:
+$("ccode").value.trim().toUpperCase(),
 
-  setStatus(
-   "cStatus",
-   "Offer name, coupon code and discount value are required.",
-   "err"
-  );
+discount_type:
+$("ctype").value,
 
-  return;
- }
+discount_value:
+Number($("cvalue").value),
 
- const {error}=await sb
-  .from("coupons")
-  .insert({
-   title,
-   code,
-   discount_type:type,
-   discount_value:value,
-   minimum_order:minimum,
-   maximum_discount:maximum,
-   start_date:start,
-   end_date:end,
-   is_active:active
-  });
+minimum_order:
+Number($("cmin").value||0),
 
- if(error){
+maximum_discount:
+$("cmax").value
+?
+Number($("cmax").value)
+:
+null,
 
-  setStatus(
-   "cStatus",
-   error.message||"Coupon could not be saved.",
-   "err"
-  );
+start_date:
+$("cstart").value || null,
 
-  return;
- }
+end_date:
+$("cend").value || null,
 
- setStatus(
-  "cStatus",
-  "Coupon created successfully.",
-  "ok"
- );
+is_active:
+$("cactive").checked
 
- [
-  "cTitle",
-  "cCode",
-  "cValue",
-  "cMin",
-  "cMax",
-  "cStart",
-  "cEnd"
- ].forEach(id=>{
-  document.getElementById(id).value="";
- });
+};
 
- document.getElementById("cActive").checked=true;
 
- await loadCoupons();
- loadOffers();
- renderCouponsTable();
+if(
+!coupon.title ||
+!coupon.code ||
+!coupon.discount_value
+){
+
+status(
+"cStatus",
+"Offer, code and discount are required.",
+false
+);
+
+return;
+
 }
 
 
-/* ---------------- COUPON TABLE ---------------- */
+let result;
 
-function renderCouponsTable(){
 
- const box=document.getElementById("couponTable");
+if(id){
 
- if(!box)return;
+result =
+await sb
+.from("coupons")
+.update(coupon)
+.eq("id",id);
 
- if(!coupons.length){
+}else{
 
-  box.innerHTML=
-   '<div class="small">No active coupons available.</div>';
+result =
+await sb
+.from("coupons")
+.insert(coupon);
 
-  return;
- }
-
- box.innerHTML=`
- <table>
- <thead>
- <tr>
-  <th>Offer</th>
-  <th>Code</th>
-  <th>Discount</th>
-  <th>Status</th>
-  <th>Action</th>
- </tr>
- </thead>
-
- <tbody>
-
- ${coupons.map(c=>`
-
-  <tr>
-
-   <td>
-    <b>${esc(c.title||"Offer")}</b>
-   </td>
-
-   <td>
-    <b>${esc(c.code||"")}</b>
-   </td>
-
-   <td>
-    ${
-     c.discount_type==="percentage"
-     ?esc(c.discount_value)+"%"
-     :money(c.discount_value)
-    }
-   </td>
-
-   <td>
-    ${c.is_active?"Active":"Inactive"}
-   </td>
-
-   <td>
-    <button
-     class="btn"
-     style="background:#fdeaea;color:#a01818"
-     onclick="deleteCoupon(${c.id})">
-     Delete
-    </button>
-   </td>
-
-  </tr>
-
- `).join("")}
-
- </tbody>
- </table>
- `;
 }
 
+
+if(result.error){
+
+status(
+"cStatus",
+result.error.message,
+false
+);
+
+return;
+
+}
+
+
+status(
+"cStatus",
+"Coupon saved successfully!"
+);
+
+clearCoupon();
+
+await loadCoupons();
+
+await loadAdmin();
+
+}
+
+
+/* =========================
+   CLEAR COUPON
+========================= */
+
+function clearCoupon(){
+
+$("cid").value="";
+
+$("ctitle").value="";
+
+$("ccode").value="";
+
+$("cvalue").value="";
+
+$("cmin").value="";
+
+$("cmax").value="";
+
+$("cstart").value="";
+
+$("cend").value="";
+
+$("cactive").checked=true;
+
+}
+
+
+/* =========================
+   EDIT COUPON
+========================= */
+
+function editCoupon(id){
+
+const coupon =
+allCoupons.find(
+c=>Number(c.id)===Number(id)
+);
+
+if(!coupon)return;
+
+
+$("cid").value =
+coupon.id;
+
+$("ctitle").value =
+coupon.title || "";
+
+$("ccode").value =
+coupon.code || "";
+
+$("ctype").value =
+coupon.discount_type || "percentage";
+
+$("cvalue").value =
+coupon.discount_value || "";
+
+$("cmin").value =
+coupon.minimum_order || 0;
+
+$("cmax").value =
+coupon.maximum_discount ?? "";
+
+$("cstart").value =
+coupon.start_date || "";
+
+$("cend").value =
+coupon.end_date || "";
+
+$("cactive").checked =
+coupon.is_active !== false;
+
+
+$("adminPanel")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+/* =========================
+   TOGGLE COUPON
+========================= */
+
+async function toggleCoupon(
+id,
+active
+){
+
+const {error} =
+await sb
+.from("coupons")
+.update({
+is_active:active
+})
+.eq("id",id);
+
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+
+await loadCoupons();
+
+await loadAdmin();
+
+}
+
+
+/* =========================
+   DELETE COUPON
+========================= */
 
 async function deleteCoupon(id){
 
- if(!sb||!currentUser)return;
+if(
+!confirm(
+"Delete this coupon?"
+)
+)return;
 
- if(!confirm("Delete this coupon?")){
-  return;
- }
 
- const {error}=await sb
-  .from("coupons")
-  .delete()
-  .eq("id",Number(id));
+const {error} =
+await sb
+.from("coupons")
+.delete()
+.eq("id",id);
 
- if(error){
 
-  alert(
-   "Coupon could not be deleted: "+
-   error.message
-  );
+if(error){
 
-  return;
- }
+alert(error.message);
 
- await loadCoupons();
- loadOffers();
- renderCouponsTable();
+return;
+
 }
 
 
-/* ---------------- ADMIN REVIEWS ---------------- */
+await loadCoupons();
 
-function renderAdminReviews(){
+await loadAdmin();
 
- const box=document.getElementById("adminReviews");
-
- if(!box)return;
-
- if(!reviews.length){
-  box.innerHTML="No reviews found.";
-  return;
- }
-
- box.innerHTML=`
- <table>
- <thead>
- <tr>
-  <th>Customer</th>
-  <th>Rating</th>
-  <th>Review</th>
-  <th>Action</th>
- </tr>
- </thead>
-
- <tbody>
-
- ${reviews.map(r=>`
-
-  <tr>
-
-   <td>${esc(r.customer_name||"Customer")}</td>
-
-   <td>${"★".repeat(Number(r.rating)||0)}</td>
-
-   <td>${esc(r.review_text||"")}</td>
-
-   <td>
-    <button
-     class="btn"
-     style="background:#fdeaea;color:#a01818"
-     onclick="deleteReview(${r.id})">
-     Delete
-    </button>
-   </td>
-
-  </tr>
-
- `).join("")}
-
- </tbody>
- </table>
- `;
 }
 
+
+/* =========================
+   LOAD ADMIN DATA
+========================= */
+
+async function loadAdmin(){
+
+/*
+ORDERS
+*/
+
+const {
+data:ordersData,
+error:ordersError
+} =
+await sb
+.from("orders")
+.select("*")
+.order(
+"created_at",
+{
+ascending:false
+}
+);
+
+
+if(ordersError){
+
+$("orders").innerHTML =
+`
+<tr>
+<td colspan="5">
+${esc(ordersError.message)}
+</td>
+</tr>
+`;
+
+}else{
+
+$("orders").innerHTML =
+
+(ordersData||[])
+.map(function(order){
+
+const statuses=[
+"New",
+"Confirmed",
+"Packed",
+"Shipped",
+"Delivered",
+"Cancelled"
+];
+
+return `
+
+<tr>
+
+<td>
+
+<b>
+${esc(order.order_number)}
+</b>
+
+<br>
+
+<small>
+${new Date(
+order.created_at
+).toLocaleString()}
+</small>
+
+</td>
+
+
+<td>
+
+${esc(order.customer_name)}
+
+<br>
+
+${esc(order.customer_phone)}
+
+<br>
+
+${esc(order.address)}
+
+<br>
+
+${esc(order.city)}
+
+<br>
+
+${esc(order.pincode)}
+
+</td>
+
+
+<td>
+
+${esc(order.product_name)}
+
+<br>
+
+Qty:
+${order.quantity}
+
+<br>
+
+Size:
+${esc(order.size)}
+
+</td>
+
+
+<td>
+
+₹${Number(
+order.final_amount||0
+).toLocaleString("en-IN")}
+
+</td>
+
+
+<td>
+
+<select
+onchange="updateOrderStatus(${order.id},this.value)">
+
+${
+statuses.map(function(s){
+
+return `
+
+<option
+value="${s}"
+${s===order.order_status?"selected":""}>
+
+${s}
+
+</option>
+
+`;
+
+}).join("")
+}
+
+</select>
+
+</td>
+
+</tr>
+
+`;
+
+}).join("");
+
+}
+
+
+/*
+COUPONS
+*/
+
+const {
+data:couponData,
+error:couponError
+} =
+await sb
+.from("coupons")
+.select("*")
+.order(
+"created_at",
+{
+ascending:false
+}
+);
+
+
+allCoupons =
+couponData || [];
+
+
+if(couponError){
+
+$("couponRows").innerHTML =
+`
+<tr>
+<td colspan="5">
+${esc(couponError.message)}
+</td>
+</tr>
+`;
+
+}else{
+
+$("couponRows").innerHTML =
+
+allCoupons.map(function(c){
+
+return `
+
+<tr>
+
+<td>
+${esc(c.title)}
+</td>
+
+<td>
+${esc(c.code)}
+</td>
+
+<td>
+
+${
+c.discount_type==="percentage"
+?
+c.discount_value+"%"
+:
+"₹"+c.discount_value
+}
+
+</td>
+
+<td>
+
+${
+c.is_active
+?
+"🟢 ON"
+:
+"🔴 OFF"
+}
+
+</td>
+
+<td>
+
+<button
+class="btn gray"
+onclick="editCoupon(${c.id})">
+
+Edit
+
+</button>
+
+<button
+class="btn gold"
+onclick="toggleCoupon(
+${c.id},
+${!c.is_active}
+)">
+
+${
+c.is_active
+?
+"OFF"
+:
+"ON"
+}
+
+</button>
+
+<button
+class="btn danger"
+onclick="deleteCoupon(${c.id})">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+}).join("");
+
+}
+
+
+/*
+REVIEWS
+*/
+
+const {
+data:reviewsData
+} =
+await sb
+.from("reviews")
+.select("*")
+.order(
+"created_at",
+{
+ascending:false
+}
+);
+
+
+$("reviewRows").innerHTML =
+
+(reviewsData||[])
+.map(function(r){
+
+return `
+
+<tr>
+
+<td>
+${esc(r.customer_name)}
+</td>
+
+<td>
+${r.rating}/5
+</td>
+
+<td>
+${esc(r.review_text)}
+</td>
+
+<td>
+
+<button
+class="btn danger"
+onclick="deleteReview(${r.id})">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+}).join("");
+
+
+/*
+PRODUCT TABLE
+*/
+
+renderProductRows();
+
+}
+
+
+/* =========================
+   RENDER ADMIN PRODUCTS
+========================= */
+
+function renderProductRows(){
+
+$("productRows").innerHTML =
+
+products.map(function(p){
+
+const image =
+productImages(p)[0] || "";
+
+return `
+
+<tr>
+
+<td>
+
+${
+image
+?
+`
+<img
+class="admin-img"
+src="${esc(image)}">
+`
+:
+""
+}
+
+<br>
+
+<b>
+${esc(p.name)}
+</b>
+
+<br>
+
+<small>
+${productImages(p).length}
+ photos |
+${productVideos(p).length}
+ videos
+</small>
+
+</td>
+
+
+<td>
+
+₹${Number(
+p.price||0
+).toLocaleString("en-IN")}
+
+</td>
+
+
+<td>
+
+<button
+class="btn gray"
+onclick="editProduct(${p.id})">
+
+✏️ Edit
+
+</button>
+
+<button
+class="btn danger"
+onclick="deleteProduct(${p.id})">
+
+🗑️ Delete
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+}).join("");
+
+}
+
+
+/* =========================
+   UPDATE ORDER STATUS
+========================= */
+
+async function updateOrderStatus(
+id,
+newStatus
+){
+
+const {error} =
+await sb
+.from("orders")
+.update({
+order_status:newStatus
+})
+.eq("id",id);
+
+
+if(error){
+
+alert(
+"Order status update failed:\n"+
+error.message
+);
+
+return;
+
+}
+
+}
+
+
+/* =========================
+   DELETE REVIEW
+========================= */
 
 async function deleteReview(id){
 
- if(!sb||!currentUser)return;
+if(
+!confirm(
+"Delete this review?"
+)
+)return;
 
- if(!confirm("Delete this review?")){
-  return;
- }
 
- const {error}=await sb
-  .from("reviews")
-  .delete()
-  .eq("id",Number(id));
+const {error} =
+await sb
+.from("reviews")
+.delete()
+.eq("id",id);
 
- if(error){
 
-  alert(
-   "Review could not be deleted: "+
-   error.message
-  );
+if(error){
 
-  return;
- }
+alert(error.message);
 
- await loadReviews();
+return;
+
 }
 
 
-/* ---------------- ORDERS ---------------- */
+await loadReviews();
 
-async function renderAdminOrders(){
+await loadAdmin();
 
- const box=document.getElementById("adminOrders");
-
- if(!box||!sb||!currentUser)return;
-
- box.innerHTML="Loading orders…";
-
- const {data,error}=await sb
-  .from("orders")
-  .select("*")
-  .order("created_at",{ascending:false});
-
- if(error){
-
-  box.innerHTML=
-   '<div class="status err">'+
-   esc(error.message)+
-   '</div>';
-
-  return;
- }
-
- if(!data?.length){
-
-  box.innerHTML=
-   '<div class="small">No orders yet.</div>';
-
-  return;
-  }
- box.innerHTML=`
- <table>
-
- <thead>
- <tr>
-  <th>Order</th>
-  <th>Customer</th>
-  <th>Product</th>
-  <th>Amount</th>
-  <th>Payment</th>
-  <th>Status</th>
- </tr>
- </thead>
-
- <tbody>
-
- ${data.map(o=>`
-
-  <tr>
-
-   <td>
-    <b>${esc(o.order_number||o.id)}</b><br>
-    <span class="small">
-     ${esc(o.created_at||"")}
-    </span>
-   </td>
-
-   <td>
-    ${esc(o.customer_name||"")}<br>
-    ${esc(o.customer_phone||"")}<br>
-    <span class="small">
-     ${esc(o.city||"")}, ${esc(o.state||"")}
-    </span>
-   </td>
-
-   <td>
-    ${esc(o.product_name||"")}<br>
-    Qty: ${esc(o.quantity||1)}
-    ${o.size?" • Size: "+esc(o.size):""}
-   </td>
-
-   <td>
-    <b>${money(o.final_amount)}</b>
-   </td>
-
-   <td>
-    ${esc(o.payment_method||"")}<br>
-    ${esc(o.payment_status||"")}
-   </td>
-
-   <td>
-    <select
-     onchange="updateOrderStatus(${o.id},this.value)">
-
-     ${[
-      "Pending",
-      "Confirmed",
-      "Packed",
-      "Shipped",
-      "Delivered",
-      "Cancelled"
-     ].map(s=>
-      `<option ${o.order_status===s?"selected":""}>${s}</option>`
-     ).join("")}
-
-    </select>
-   </td>
-
-  </tr>
-
- `).join("")}
-
- </tbody>
- </table>
- `;
 }
 
 
-async function updateOrderStatus(id,status){
+/* =========================
+   AUTH STATE
+========================= */
 
- if(!sb||!currentUser)return;
+sb.auth.onAuthStateChange(
+async function(event,session){
 
- const {error}=await sb
-  .from("orders")
-  .update({
-   order_status:status
-  })
-  .eq("id",Number(id));
+const user =
+session?.user;
 
- if(error){
 
-  alert(
-   "Order status could not be updated: "+
-   error.message
-  );
+if(
+user &&
+user.email &&
+user.email.toLowerCase()
+===
+ADMIN_EMAIL.toLowerCase()
+){
 
-  return;
- }
+$("adminPanel")
+.style.display="block";
 
- renderAdminOrders();
+$("logoutBtn")
+.classList
+.remove("hidden");
+
+}
+
+else{
+
+$("adminPanel")
+.style.display="none";
+
+$("logoutBtn")
+.classList
+.add("hidden");
+
+}
+
+});
+
+
+/* =========================
+   START WEBSITE
+========================= */
+
+loadProducts();
+
+loadCoupons();
+
+loadReviews();
+
+checkAdmin();
+
+
+/* =========================
+   PART 4 END
+========================= */
+
+ </script>
+ <script>
+
+/* =========================
+   FINAL CONFIG CHECK
+========================= */
+
+/*
+अगर Part 2 में आपने अपनी existing
+Supabase Publishable Key डाल दी है,
+तो यहाँ कुछ बदलने की जरूरत नहीं।
+
+अगर अभी placeholder है,
+तो अपनी वही working key यहाँ डालें।
+*/
+
+if(
+SUPABASE_PUBLISHABLE_KEY ===
+"PASTE_YOUR_EXISTING_SUPABASE_PUBLISHABLE_KEY_HERE"
+){
+
+console.warn(
+"ZIVARA: Supabase Publishable Key is not configured."
+);
+
 }
 
 
-/* ---------------- ORDER NUMBER ---------------- */
+/*
+Admin email check
+*/
+
+if(
+ADMIN_EMAIL ===
+"PASTE_YOUR_ADMIN_EMAIL_HERE"
+){
+
+console.warn(
+"ZIVARA: Admin email is not configured."
+);
 
-function makeOrderNumber(){
-
- const now=new Date();
-
- return "ZIV"+
-  now.getFullYear()+
-  String(now.getMonth()+1).padStart(2,"0")+
-  String(now.getDate()).padStart(2,"0")+
-  String(now.getHours()).padStart(2,"0")+
-  String(now.getMinutes()).padStart(2,"0")+
-  String(now.getSeconds()).padStart(2,"0")+
-  Math.floor(Math.random()*900+100);
-          }
- /* ---------------- PLACE ORDER ---------------- */
-
-async function placeOrder(method){
-
- if(!sb){
-  setStatus(
-   "oStatus",
-   "Supabase is not connected.",
-   "err"
-  );
-  return;
- }
-
- if(!selected){
-  setStatus(
-   "oStatus",
-   "Please select a product first.",
-   "err"
-  );
-  return;
- }
-
- const name=document.getElementById("oName").value.trim();
- const phone=document.getElementById("oPhone").value.trim();
- const address=document.getElementById("oAddress").value.trim();
- const city=document.getElementById("oCity").value.trim();
- const state=document.getElementById("oState").value.trim();
- const pin=document.getElementById("oPin").value.trim();
- const qty=Math.max(
-  1,
-  Number(document.getElementById("oQty").value||1)
- );
- const size=document.getElementById("oSize").value.trim();
- const couponCode=document.getElementById("oCoupon").value.trim();
-
- if(!name||!phone||!address||!city||!state||!pin){
-
-  setStatus(
-   "oStatus",
-   "Please fill all customer details.",
-   "err"
-  );
-
-  return;
- }
-
- if(phone.replace(/\D/g,"").length<10){
-
-  setStatus(
-   "oStatus",
-   "Please enter a valid mobile number.",
-   "err"
-  );
-
-  return;
- }
-
- if(pin.replace(/\D/g,"").length!==6){
-
-  setStatus(
-   "oStatus",
-   "Please enter a valid 6 digit pincode.",
-   "err"
-  );
-
-  return;
- }
-
- const result=calculateCoupon(
-  selected.price,
-  qty,
-  couponCode
- );
-
- if(result.error){
-
-  setStatus(
-   "oStatus",
-   result.error,
-   "err"
-  );
-
-  return;
- }
-
- const orderNumber=makeOrderNumber();
-
- const deliveryCharge=0;
-
- const finalAmount=
-  Math.max(
-   0,
-   result.total+deliveryCharge
-  );
-
- const orderPayload={
-  order_number:orderNumber,
-  customer_name:name,
-  customer_phone:phone,
-  address,
-  city,
-  state,
-  pincode:pin,
-  product_id:selected.id,
-  product_name:selected.name,
-  quantity:qty,
-  size:size||null,
-  product_price:Number(selected.price),
-  discount_amount:Number(result.discount||0),
-  coupon_code:result.coupon?.code||null,
-  delivery_charge:deliveryCharge,
-  final_amount:finalAmount,
-  payment_method:method,
-  payment_status:method==="COD"?"Pending":"Pending",
-  order_status:"Pending"
- };
-
- if(method==="COD"){
-
-  setStatus(
-   "oStatus",
-   "Placing COD order…",
-   "ok"
-  );
-
-  const {data,error}=await sb
-   .from("orders")
-   .insert(orderPayload)
-   .select()
-   .single();
-
-  if(error){
-
-   console.error(error);
-
-   setStatus(
-    "oStatus",
-    error.message||"Order could not be placed.",
-    "err"
-   );
-
-   return;
-  }
-
-  const waMessage=
-   "New ZIVARA COD Order 🛍️\n\n"+
-   "Order ID: "+orderNumber+"\n"+
-   "Customer: "+name+"\n"+
-   "Mobile: "+phone+"\n"+
-   "Product: "+selected.name+"\n"+
-   "Quantity: "+qty+"\n"+
-   "Size: "+(size||"Not specified")+"\n"+
-   "Amount: "+money(finalAmount)+"\n"+
-   "Address: "+address+", "+city+", "+state+" - "+pin;
-
-  setStatus(
-   "oStatus",
-   "Order placed successfully! Order ID: "+orderNumber,
-   "ok"
-  );
-
-  openWhatsApp(waMessage);
-
-  setTimeout(()=>{
-   closeModal("orderModal");
-  },1800);
-
-  if(currentUser){
-   renderAdminOrders();
-  }
-
-  return;
- }
-
-
- /* ---------------- ONLINE PAYMENT ---------------- */
-
- if(method==="ONLINE"){
-
-  if(
-   !RAZORPAY_KEY_ID||
-   RAZORPAY_KEY_ID.includes("REPLACE")
-  ){
-
-   setStatus(
-    "oStatus",
-    "Online payment is not configured yet. Please use COD or configure Razorpay.",
-    "err"
-   );
-
-   return;
-  }
-
-  if(
-   !PAYMENT_ENDPOINT||
-   PAYMENT_ENDPOINT.includes("REPLACE")
-  ){
-
-   setStatus(
-    "oStatus",
-    "Payment server is not configured.",
-    "err"
-   );
-
-   return;
-  }
-
-  setStatus(
-   "oStatus",
-   "Creating secure payment…",
-   "ok"
-  );
-
-  try{
-
-   const response=await fetch(
-    PAYMENT_ENDPOINT,
-    {
-     method:"POST",
-     headers:{
-      "Content-Type":"application/json"
-     },
-     body:JSON.stringify({
-      action:"create",
-      product_id:selected.id,
-      quantity:qty,
-      size:size||null,
-      coupon_code:couponCode||null,
-      customer:{
-       name,
-       phone,
-       address,
-       city,
-       state,
-       pincode:pin
-      }
-     })
-    }
-   );
-
-   const data=await response.json();
-
-   if(!response.ok){
-
-    throw new Error(
-     data?.error||
-     "Payment order could not be created."
-    );
-   }
-
-   if(!data?.razorpay_order_id){
-
-    throw new Error(
-     "Invalid payment response."
-    );
-   }
-
-   const options={
-
-    key:
-     data.key_id||
-     RAZORPAY_KEY_ID,
-
-    amount:
-     data.amount,
-
-    currency:
-     data.currency||
-     "INR",
-
-    name:"ZIVARA",
-
-    description:
-     selected.name,
-
-    order_id:
-     data.razorpay_order_id,
-
-    prefill:{
-     name,
-     contact:phone
-    },
-
-    notes:{
-     order_number:
-      data.order_number||
-      ""
-    },
-
-    theme:{
-     color:"#65143a"
-    },
-
-    handler:async function(payment){
-
-     setStatus(
-      "oStatus",
-      "Verifying payment…",
-      "ok"
-     );
-
-     try{
-
-      const verifyResponse=
-       await fetch(
-        PAYMENT_ENDPOINT,
-        {
-         method:"POST",
-         headers:{
-          "Content-Type":
-           "application/json"
-         },
-         body:JSON.stringify({
-          action:"verify",
-          order_id:
-           data.order_id,
-          razorpay_order_id:
-           payment.razorpay_order_id,
-          razorpay_payment_id:
-           payment.razorpay_payment_id,
-          razorpay_signature:
-           payment.razorpay_signature
-         })
-        }
-       );
-
-      const verifyData=
-       await verifyResponse.json();
-
-      if(!verifyResponse.ok){
-
-       throw new Error(
-        verifyData?.error||
-        "Payment verification failed."
-       );
-      }
-
-      const finalOrderNumber=
-       verifyData.order_number||
-       data.order_number||
-       "ZIVARA";
-
-      setStatus(
-       "oStatus",
-       "Payment successful! Order ID: "+
-       finalOrderNumber,
-       "ok"
-      );
-
-      const waMessage=
-       "New ZIVARA ONLINE PAID Order 💳\n\n"+
-       "Order ID: "+finalOrderNumber+"\n"+
-       "Customer: "+name+"\n"+
-       "Mobile: "+phone+"\n"+
-       "Product: "+selected.name+"\n"+
-       "Quantity: "+qty+"\n"+
-       "Size: "+(size||"Not specified")+"\n"+
-       "Amount: "+money(finalAmount)+"\n"+
-       "Address: "+address+", "+city+", "+state+" - "+pin;
-
-      openWhatsApp(waMessage);
-
-      setTimeout(()=>{
-       closeModal("orderModal");
-      },1800);
-
-     }catch(err){
-
-      console.error(err);
-
-      setStatus(
-       "oStatus",
-       err.message||
-       "Payment verification failed.",
-       "err"
-      );
-     }
-    },
-
-    modal:{
-     ondismiss:function(){
-      setStatus(
-       "oStatus",
-       "Payment window closed.",
-       "err"
-      );
-     }
-    }
-   };
-
-   const rzp=
-    new Razorpay(options);
-
-   rzp.on(
-    "payment.failed",
-    function(response){
-
-     console.error(
-      response?.error
-     );
-
-     setStatus(
-      "oStatus",
-      "Payment failed. You can try again or choose COD.",
-      "err"
-     );
-    }
-   );
-
-   rzp.open();
-
-  }catch(err){
-
-   console.error(err);
-
-   setStatus(
-    "oStatus",
-    err.message||
-    "Online payment could not start.",
-    "err"
-   );
-  }
- }
 }
 
 
-/* ---------------- PAGE START ---------------- */
+/*
+WhatsApp check
+*/
+
+if(
+WHATSAPP_NUMBER ===
+"PASTE_YOUR_WHATSAPP_NUMBER_HERE"
+){
+
+console.warn(
+"ZIVARA: WhatsApp number is not configured."
+);
+
+}
+
+
+/* =========================
+   GLOBAL ESCAPE HANDLING
+========================= */
 
 window.addEventListener(
- "DOMContentLoaded",
- ()=>{
-  init();
- }
+"error",
+function(event){
+
+console.log(
+"ZIVARA Error:",
+event.message
+);
+
+}
 );
 
 
-/* ---------------- UPDATE OFFER ON COUPON INPUT ---------------- */
+/* =========================
+   CLOSE MODALS ON BACKDROP
+========================= */
+
+$("detailModal").addEventListener(
+"click",
+function(event){
+
+if(event.target===this){
+
+closeDetail();
+
+}
+
+}
+);
+
+
+$("orderModal").addEventListener(
+"click",
+function(event){
+
+if(event.target===this){
+
+closeOrder();
+
+}
+
+}
+);
+
+
+/* =========================
+   ESC KEY
+========================= */
 
 document.addEventListener(
- "change",
- e=>{
-  if(e.target?.id==="oCoupon"){
-   updateOrderSummary();
-  }
- }
+"keydown",
+function(event){
+
+if(event.key==="Escape"){
+
+closeDetail();
+
+closeOrder();
+
+closeZoom();
+
+}
+
+}
 );
 
+
+/* =========================
+   QUANTITY UPDATE
+========================= */
+
+$("qty").addEventListener(
+"input",
+function(){
+
+if(
+Number(this.value)<1
+){
+
+this.value=1;
+
+}
+
+calc();
+
+}
+);
+
+
+/* =========================
+   PAYMENT CHANGE
+========================= */
+
+$("payment").addEventListener(
+"change",
+function(){
+
+if(
+this.value==="ONLINE"
+){
+
+status(
+"orderStatus",
+"Online payment gateway will be connected after Razorpay setup. COD is available now.",
+false
+);
+
+}else{
+
+$("orderStatus").innerHTML="";
+
+}
+
+}
+);
+
+
+/* =========================
+   FINAL WEBSITE INIT
+========================= */
+
+async function startZivara(){
+
+try{
+
+await loadProducts();
+
+await loadCoupons();
+
+await loadReviews();
+
+await checkAdmin();
+
+console.log(
+"ZIVARA website initialized successfully."
+);
+
+}catch(error){
+
+console.error(
+"ZIVARA initialization error:",
+error
+);
+
+}
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+if(
+document.readyState==="loading"
+){
+
+document.addEventListener(
+"DOMContentLoaded",
+startZivara
+);
+
+}else{
+
+startZivara();
+
+}
+
+
+/* =========================
+   END SCRIPT
+========================= */
+
 </script>
+
 </body>
 </html>
